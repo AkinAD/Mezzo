@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context privileged="true" reloadable="true">
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
+	<Manager pathname="" />
+	<Resource name="jdbc/Db2-4413"
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+		type="javax.sql.DataSource" 
+		username="brg59346"
+		password="vxwc^kn8fdqrvpfh" 
+		initialSize="1" 
+		maxActive="5" 
+		maxIdle="3"
+		driverClassName="com.ibm.db2.jcc.DB2Driver"
+		url="jdbc:db2://dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net:50000/BLUDB" />
+	<ResourceLink global="jdbc/Db2-4413" name="jdbc/Db2-4413"
+		type="javax.sql.DataSource" />
+</Context>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<Context privileged="true" reloadable="true">
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
+	<Manager pathname="" />
+	<Resource name="New_Derby" factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+		type="javax.sql.DataSource"
+		driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+		url="jdbc:derby:C:\Users\mrspe\MyDB;create=true"/>
+	<ResourceLink global="New_Derby" name="New_Derby" type="javax.sql.DataSource" />
+</Context> -->
+
