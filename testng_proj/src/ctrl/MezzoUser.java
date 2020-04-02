@@ -19,7 +19,7 @@ import model.MusicStore;
 /**
  * Servlet implementation class MezzoUser
  */
-@WebServlet({ "/ADMIN_MezzoUser", "/Login", "/Register" })
+@WebServlet({"/Login", "/Register", "/login", "/register" })
 public class MezzoUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	// Copying all the input parameters in to local variables
@@ -43,6 +43,11 @@ public class MezzoUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		if (request.getParameter("search")!= null)
+		{
+			System.out.println("HTML works");
+			System.out.println(request.getParameter("search"));
+		}
 		System.out.println("Enter Doget");
 		System.out.println("Params " + request.getParameterNames().toString());
 		System.out.println("Request URI: " + request.getRequestURI() );

@@ -453,6 +453,10 @@ img {
             }
             img {
                 max-width: 20px;
+              	 /*AKIN ADDED/CHANGED THIS */
+    			position: relative; 
+				/* AKIN ADDED/CHANGED THIS */
+	 			top: 30px;
             }
             span {
                 font-family: $font-ubuntu;

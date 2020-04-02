@@ -15,6 +15,9 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/res/js/regLogin.js">;</script>
 <!-- leave the ";" from within the script tags or page will not load -->
+	<!-- Font Icon -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/res/fonts/material-icon/css/material-design-iconic-font.min.css"/>
+    
 <link rel="StyleSheet"
 	href="${pageContext.request.contextPath}/res/css/regLogin.css"
 	type="text/css" title="cse4413" media="screen, print" />
@@ -124,7 +127,7 @@
 							<div class="form-group">
 								<!-- Remember me? -->
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                                <label for="remember-me" class="label-agree-term"><span><span>.<!-- content --></span></span> Remember me</label>
                             </div>
 							<div class="form-group form-button">
 								<!-- Log-in -->
