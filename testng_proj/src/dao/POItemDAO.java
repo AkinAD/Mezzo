@@ -22,8 +22,8 @@ public class POItemDAO {
 	}
 
 	/**
-	 * Update POItem by giving PO_id from POBean and a map stored bid and
-	 * quantity for each book
+	 * Update POItem by giving PO_id from POBean and a map stored bid and quantity
+	 * for each book
 	 * 
 	 * @param PO_id
 	 * @param books
@@ -66,8 +66,7 @@ public class POItemDAO {
 	}
 
 	/**
-	 * Return the ordered item information for a book in a particular Purchase
-	 * order
+	 * Return the ordered item information for a book in a particular Purchase order
 	 * 
 	 * @param POID
 	 * @param bookID
@@ -98,14 +97,11 @@ public class POItemDAO {
 	 * Return books with sold quantity that has been ordered in this period (from
 	 * start to end)
 	 * 
-	 * @param start
-	 *            - starting date in String with format 'yyyymmdd', given date
-	 *            is included
-	 * @param end
-	 *            - ending date in String with format 'yyyymmdd', given date is
-	 *            included
-	 * @return Return all book that has been ordered in this period with
-	 *         quantity
+	 * @param start - starting date in String with format 'yyyymmdd', given date is
+	 *              included
+	 * @param end   - ending date in String with format 'yyyymmdd', given date is
+	 *              included
+	 * @return Return all book that has been ordered in this period with quantity
 	 * @throws SQLException
 	 */
 	public Map<String, Integer> retrieveOrderHistory(String start, String end) throws SQLException {
@@ -126,9 +122,10 @@ public class POItemDAO {
 		con.close();
 		return map;
 	}
-	
+
 	/**
 	 * Return the most popular book from the first order
+	 * 
 	 * @return the most popular book
 	 * @throws SQLException
 	 */

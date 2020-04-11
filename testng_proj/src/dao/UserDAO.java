@@ -181,8 +181,8 @@ public class UserDAO {
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
 			String name = r.getString("fname") + ", " + r.getString("lname");
-			rv.put(name, new ProfileBean(r.getString("fname"), r.getString("lname"),
-					r.getString("username"),r.getString("email"), r.getString("privilege")));
+			rv.put(name, new ProfileBean(r.getString("fname"), r.getString("lname"), r.getString("username"),
+					r.getString("email"), r.getString("privilege")));
 		}
 		r.close();
 		p.close();
@@ -198,8 +198,8 @@ public class UserDAO {
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
 			String name = r.getString("fname") + ", " + r.getString("lname");
-			rv.put(name, new ProfileBean(r.getString("fname"), r.getString("lname"),
-					r.getString("username"),r.getString("email"), r.getString("privilege")));
+			rv.put(name, new ProfileBean(r.getString("fname"), r.getString("lname"), r.getString("username"),
+					r.getString("email"), r.getString("privilege")));
 		}
 		r.close();
 		p.close();

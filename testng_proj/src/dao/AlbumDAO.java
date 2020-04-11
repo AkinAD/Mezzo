@@ -16,28 +16,29 @@ import bean.Album;
 public class AlbumDAO {
 	private DataSource ds;
 
-	public AlbumDAO() throws ClassNotFoundException{
+	public AlbumDAO() throws ClassNotFoundException {
 		try {
 //			  ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/New_Derby");
-			  ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
-		} 
-		catch (NamingException e) {
+			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
+		} catch (NamingException e) {
 			e.printStackTrace();
-		}	}
-	public Map<String, Album> retrieve(int aid) throws SQLException
-	{
+		}
+	}
+
+	public Map<String, Album> retrieve(int aid) throws SQLException {
 		String query = "select * from album where aid=" + aid;
 		Map<String, Album> rv = new HashMap<String, Album>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
-		while (r.next()){
+		while (r.next()) {
 			String albumID = Integer.toString(r.getInt("AID"));
-			rv.put(albumID, new Album(r.getInt("AID"), r.getString("artist"), r.getString("title"), r.getString("category"), r.getFloat("price"), r.getString("picture")));
+			rv.put(albumID, new Album(r.getInt("AID"), r.getString("artist"), r.getString("title"),
+					r.getString("category"), r.getFloat("price"), r.getString("picture")));
 		}
 		r.close();
 		p.close();
 		con.close();
 		return rv;
-		 }
+	}
 }

@@ -20,12 +20,12 @@ public class PODAO {
 
 	public PODAO() throws ClassNotFoundException {
 		try {
-			  ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
+			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Update Purchase Order by given a POBean, the address will be stored in
 	 * database here
@@ -48,8 +48,7 @@ public class PODAO {
 	 * Return a Purchase Order POBean with PO_id
 	 * 
 	 * @param PO_id
-	 * @return a Purchase Order POBean with PO_id, return null is PO_id is not
-	 *         found
+	 * @return a Purchase Order POBean with PO_id, return null is PO_id is not found
 	 * @throws SQLException
 	 */
 	public POBean retrievePOByID(String PO_id) throws SQLException {
@@ -132,14 +131,12 @@ public class PODAO {
 	/**
 	 * Return purchase orders within the date range from to until
 	 * 
-	 * @param start
-	 *            - starting date in String with format 'yyyymmdd', given date
-	 *            is included
-	 * @param end
-	 *            - ending date in String with format 'yyyymmdd', given date is
-	 *            included
-	 * @return purchase orders within the date range from to until, null if no
-	 *         order within those date
+	 * @param start - starting date in String with format 'yyyymmdd', given date is
+	 *              included
+	 * @param end   - ending date in String with format 'yyyymmdd', given date is
+	 *              included
+	 * @return purchase orders within the date range from to until, null if no order
+	 *         within those date
 	 * @throws SQLException
 	 */
 	public Map<String, POBean> retrievePOByDate(String start, String end) throws SQLException {
@@ -167,10 +164,9 @@ public class PODAO {
 	/**
 	 * Return purchase orders that is in the status given
 	 * 
-	 * @param status
-	 *            - "ORDERD", "PROCESSED" or "DENIED"
-	 * @return purchase orders within the date range from to until, null if no
-	 *         order within those date
+	 * @param status - "ORDERD", "PROCESSED" or "DENIED"
+	 * @return purchase orders within the date range from to until, null if no order
+	 *         within those date
 	 * @throws SQLException
 	 */
 	public Map<String, POBean> retrievePOByStatus(String status) throws SQLException {
@@ -220,6 +216,5 @@ public class PODAO {
 		con.close();
 		return map;
 	}
-
 
 }

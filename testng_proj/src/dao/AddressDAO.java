@@ -19,7 +19,7 @@ public class AddressDAO {
 
 	public AddressDAO() throws ClassNotFoundException {
 		try {
-			  ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
+			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -185,26 +185,17 @@ public class AddressDAO {
 			return id;
 	}
 
-	/*public Map<String, AddressBean> retrieveAll() throws SQLException {
-		String query = "SELECT * from ADDRESS";
-		Map<String, AddressBean> rv = new HashMap<String, AddressBean>();
-		Connection con = this.ds.getConnection();
-		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		while (r.next()) {
-			String id = r.getString("ID");
-			String street = r.getString("STREET");
-			String province = r.getString("PROVINCE");
-			String country = r.getString("COUNTRY");
-			String zip = r.getString("ZIP");
-			String phone = r.getString("PHONE");
-			String type = r.getString("TYPE");
-			AddressBean address = new AddressBean(id, street, province, country, zip, phone, type);
-			rv.put(id, address);
-		}
-		r.close();
-		p.close();
-		con.close();
-		return rv;
-	}*/
+	/*
+	 * public Map<String, AddressBean> retrieveAll() throws SQLException { String
+	 * query = "SELECT * from ADDRESS"; Map<String, AddressBean> rv = new
+	 * HashMap<String, AddressBean>(); Connection con = this.ds.getConnection();
+	 * PreparedStatement p = con.prepareStatement(query); ResultSet r =
+	 * p.executeQuery(); while (r.next()) { String id = r.getString("ID"); String
+	 * street = r.getString("STREET"); String province = r.getString("PROVINCE");
+	 * String country = r.getString("COUNTRY"); String zip = r.getString("ZIP");
+	 * String phone = r.getString("PHONE"); String type = r.getString("TYPE");
+	 * AddressBean address = new AddressBean(id, street, province, country, zip,
+	 * phone, type); rv.put(id, address); } r.close(); p.close(); con.close();
+	 * return rv; }
+	 */
 }
