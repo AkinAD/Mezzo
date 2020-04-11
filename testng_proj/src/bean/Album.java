@@ -20,10 +20,6 @@ public class Album {
 		this.picture = picture;
 	}
 
-	public Album() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public int getAid() {
 		return aid;
 	}
