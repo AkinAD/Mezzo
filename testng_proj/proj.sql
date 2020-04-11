@@ -1,7 +1,7 @@
-######################################################################################
-##	EECS4413 -BUILDING E-COMMERCE SYSTEMS 											##
-##																					##
-######################################################################################
+--######################################################################################
+--##	EECS4413 -BUILDING E-COMMERCE SYSTEMS 											##
+--##																					##
+--######################################################################################
 
 DROP TABLE Category;
 
@@ -32,7 +32,7 @@ INSERT INTO Category (category) VALUES
 	('Funk'),
 	('Synth-pop');
 
-DROP TABLE if exists Album;
+DROP TABLE  Album;
 
 CREATE TABLE Album (
 	aid INT NOT NULL,
@@ -49,7 +49,7 @@ INSERT INTO Album (aid, artist, title, category, price, picture) VALUES
 (1, 'Michael Jackson',	'Thriller',	'Pop', 47.30, 'https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png'),
 (2, 'AC/DC', 'Back in Black', 'Hard Rock', 29.4, 'https://upload.wikimedia.org/wikipedia/commons/9/92/ACDC_Back_in_Black.png'),
 (3, 'Meat Loaf', 'Bat Out of Hell',	'Hard Rock', 21.7, 'https://upload.wikimedia.org/wikipedia/en/0/00/Bat_out_of_Hell.jpg'),
-(4, 'Roddy Ricch', 'Please Excuse Me for Being Antisocial', 'Hip-hop', 15.00, 'https://upload.wikimedia.org/wikipedia/en/c/c5/Roddy_Ricch_-_Please_Excuse_Me_for_Being_Antisocial.png');
+(4, 'Roddy Ricch', 'Please Excuse Me for Being Antisocial', 'Hip-hop', 15.00, 'https://upload.wikimedia.org/wikipedia/en/c/c5/Roddy_Ricch_-_Please_Excuse_Me_for_Being_Antisocial.png'),
 (5, 'Pink Floyd',	'The Dark Side of the Moon', 'Rock', 24.2, 'https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png'),
 (6, 'The Weeknd', 'Beauty Behind the Madness', 'RnB', 15.00, 'https://upload.wikimedia.org/wikipedia/en/b/bd/The_Weeknd_-_Beauty_Behind_the_Madness.png'),
 (7, 'Young Thug', 'So Much Fun', 'Hip-hop', 12.25, 'https://upload.wikimedia.org/wikipedia/en/a/a9/Young_Thug_-_So_Much_Fun.png'),
@@ -57,16 +57,17 @@ INSERT INTO Album (aid, artist, title, category, price, picture) VALUES
 (9, 'Drake', 'If You''re Reading This It''s Too Late', 'Hip-hop', 15.00, 'https://upload.wikimedia.org/wikipedia/en/1/11/Drake_-_If_You%27re_Reading_This_It%27s_Too_Late.png'),
 (10, 'Tame Impala', 'Currents', 'Synth-pop', 20.5, 'https://upload.wikimedia.org/wikipedia/en/9/9b/Tame_Impala_-_Currents.png');
 
-SELECT * FROM ALBUM
+SELECT * FROM ALBUM;
 
-/*
- * Address
- * fname: First Name
- * lname: Last Name
- * username: user's username
- * email: users email
- * password: users Password
- */
+--/*
+-- * Address
+-- * fname: First Name
+-- * lname: Last Name
+-- * username: user's username
+-- * email: users email
+-- * password: users Password
+-- */
+
 DROP TABLE account;
 
 
@@ -94,7 +95,8 @@ INSERT INTO account (fname, lname, username, email, password) VALUES
 	('Alfi', 'Ffrench', 'affrench8', 'affrench8@tinypic.com', 'alfi123'),
 	('Sabrina', 'Orkney', 'sorkney1', 'sorkney1@redcross.org', 'sabrina123');
 
-SELECT * FROM Account	
+SELECT * FROM Account;
+
 DELETE FROM Account WHERE username='jlee';
 
 	
@@ -119,7 +121,8 @@ INSERT INTO Customer (username, password) VALUES
 	('ayaAb', 'aya123'),
 	('alanT', 'alan123');
 	
-SELECT * FROM Customer	
+SELECT * FROM Customer	;
+
 DELETE FROM Customer WHERE username='janedoe';
 
 --
@@ -128,9 +131,10 @@ DELETE FROM Customer WHERE username='janedoe';
 -- fname: first name (can be left empty)
 -- lname: last name (can be left empty)
 -- email: email address (can be left empty)
---
 
-CREATE TABLE Profile (
+DROP TABLE Profile;
+
+CREATE TABLE Profile  (
 username	VARCHAR(25) NOT NULL,
 fname		VARCHAR(25),
 lname		VARCHAR(25),
@@ -153,9 +157,9 @@ INSERT INTO Profile(username,privilege) VALUES
 	('alanT', 'admin'),
 	('cimaa', 'admin');
 
-SELECT * FROM Profile
+SELECT * FROM Profile;
 
-SELECT username FROM account WHERE username = 'akinAd'
+SELECT username FROM account WHERE username = 'akinAd';
 
 --
 -- visit to website
@@ -164,25 +168,28 @@ SELECT username FROM account WHERE username = 'akinAd'
 -- eventtype: status of purchase
 --
 
+DROP TABLE VisitEvent;
+
 CREATE TABLE VisitEvent (
 day varchar(8) NOT NULL,
-aid INT not null REFERENCES Album(aid),
+aid INT NOT NULL,
 eventtype varchar(20) NOT NULL,
-FOREIGN KEY(aid) REFERENCES Album(aid)
+FOREIGN KEY (aid) REFERENCES Album(aid) ON DELETE CASCADE
 );
 
 --
 -- Data Dump for VisitEvent
 --
-INSERT INTO VisitEvent (day, bid, eventtype) VALUES ('03192020', 1, 'VIEW'),
- ('03212020', 1, 'CART'),
+INSERT INTO VisitEvent (day, aid, eventtype) VALUES 
+('03192020', 1, 'VIEW'),
+('03212020', 1, 'CART'),
  ('03222020', 1, 'PURCHASE');
 
 
 --
 -- Table structure for table `address`
 --
-DROP TABLE if exists Address;
+DROP TABLE Address;
 
 CREATE TABLE Address (
 	a_id INT  NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -195,7 +202,7 @@ CREATE TABLE Address (
 	addrType VARCHAR(15) NOT NULL,
 	PRIMARY KEY(a_id),
 	FOREIGN KEY(username) REFERENCES Customer(username) ON DELETE CASCADE
-)
+);
 
 --
 -- Dumping data for table `address`
@@ -203,7 +210,7 @@ CREATE TABLE Address (
 INSERT INTO address (username, street, province, country, zip, phone, addrType) VALUES
 	('akinAd', '4700 Keele St', 'ON', 'Canada', 'M3J1P3', '613-123-4533', 'Shipping'),
 	('ayaAb', '97 Pond RD', 'ON', 'Canada', 'M3J2S5', '416-123-4533', 'Billing'),
-	('AlanT', '11 Arboretum Ln', 'ON', 'Canada', 'M3J2S5', '647-123-4533', 'Billing'),
+	('alanT', '11 Arboretum Ln', 'ON', 'Canada', 'M3J2S5', '647-123-4533', 'Billing'),
 	('cimaa', ' 170 Campus Walk', 'ON', 'Canada', 'M3J1P3', '913-123-4533', 'Shipping');
 
 --
@@ -213,8 +220,9 @@ INSERT INTO address (username, street, province, country, zip, phone, addrType) 
 -- id: purchase order id ( autogenerated, full timestamp of order)
 -- status:status of purchase
 --
+SELECT * from address;
 
-DROP TABLE if exists PO;
+DROP TABLE PO;
 
 CREATE TABLE PO (
 po_id 		VARCHAR(15) NOT NULL,
@@ -229,10 +237,10 @@ FOREIGN KEY (a_id) REFERENCES Address(a_id)
 );
 
 INSERT INTO PO (po_id, username, status, a_id, po_date, lname, fname) VALUES 
-( '201506071545332', 'Roger', 'PROCESSED', 2, '20150607', 'Akin', 'Adewale'),
-( '201511212359082', 'John', 'DENIED', 6, '20151121', 'John', 'Willie'),
-( '201512041403527', 'Andy', 'ORDERD', 4, '20151204', 'Andy', 'Olly'),
-( '201604010203634', 'Roger', 'ORDERD', 10, '20160401', 'Andy', 'Sherry');
+( '201906071545332', 'akinAd', 'PROCESSED', 1, '20150607', 'Akin', 'Adewale'),
+( '201911212359082', 'ayaAb', 'DENIED', 2, '20151121', 'Aya', 'Abu-Allan'),
+( '201912041403527', 'alanT', 'ORDERD', 3, '20151204', 'Alan', 'Tang'),
+( '202004010203634', 'cimaa', 'ORDERD', 4, '20160401', 'Cima', 'lastname');
 
 SELECT * from PO order by PO_date desc;
 select * from PO where PO_date > '20150710' and po_date < '20151203';
@@ -255,12 +263,13 @@ FOREIGN KEY(po_id) REFERENCES PO(po_id) ON DELETE CASCADE,
 FOREIGN KEY(aid) REFERENCES Album(aid) ON DELETE CASCADE
 );
 
-INSERT INTO POItem (po_id, aid, quantity) VALUES ('201906071545332', 1, 1);
+INSERT INTO POItem (po_id, aid, quantity) VALUES
+ ('201906071545332', 1, 1),
 ('201911212359082', 2, 2),
 ('201912041403527', 3, 1),
 ('201912041403527', 4, 1),
 ('201912041403527', 1, 3),
-('201904010203634', 1, 3),
+('202004010203634', 1, 3),
 ('202004010203634', 2, 2),
 ('202004010203634', 3, 1);
 
@@ -307,13 +316,15 @@ VALUES ('akinAd', 1, 'Akin Adewale', '1111 2222 3333 4444', 8, 17, 1);
 -- INSERT INTO Status (status) VALUES ('DENIED');
 
 
-/*
- * Review comments on books
- * bid: Book ID
- * username: user's username
- * rating: rate from 1-5
- * review: paragraph of review
- */
+--/*
+-- * Review comments on books
+-- * bid: Book ID
+-- * username: user's username
+-- * rating: rate from 1-5
+-- * review: paragraph of review
+-- */
+DROP TABLE Review;
+
 CREATE TABLE Review(
 aid 		INT NOT NULL,
 username	VARCHAR(25) NOT NULL,
@@ -326,7 +337,7 @@ FOREIGN KEY(username) REFERENCES Customer(username) ON DELETE CASCADE
 
 
 INSERT INTO Review (aid, username, rating, review) VALUES 
- (1, 'AlanT', 5, 'All time Classic!'),
+ (1, 'alanT', 5, 'All time Classic!'),
  (7, 'akinAd', 4, 'Bangersssss!');
 
 
