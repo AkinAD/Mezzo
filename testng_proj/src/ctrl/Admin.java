@@ -1,6 +1,7 @@
 package ctrl;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -83,7 +84,7 @@ public class Admin extends HttpServlet {
 			}
 			*/
 			//Forward to page
-			request.getRequestDispatcher("/admin.jsp").forward(request, response);
+			//request.getRequestDispatcher("/admin.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -100,6 +101,15 @@ public class Admin extends HttpServlet {
 			String album_category = request.getParameter(artist);
 			Float album_price = Float.valueOf(request.getParameter(artist));
 			String album_picture = request.getParameter(url);
+			
+			try {
+				MS.addAlbum(0, album_artist, album_title, album_category, album_price, album_picture);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				error = "Failed to add Album to Database";
+				System.out.println(error);
+			}
 		}
 		
 	}

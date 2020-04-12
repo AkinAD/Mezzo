@@ -43,7 +43,7 @@
 								<div class="megamenu">
 									<ul class="single-mega cn-col-4">
 										<li class="title">Top Genres</li>
-										<li><a href="shop?category=Hip-Hop">Hip-Hop</a></li>
+										<li><a href="shop?category=Hip-hop">Hip-hop</a></li>
 										<li><a href="shop?category=Pop">Pop</a></li>
 										<li><a href="shop?category=Rap">Rap</a></li>
 										<li><a href="shop?category=RnB">RnB</a></li>
