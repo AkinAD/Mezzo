@@ -52,7 +52,7 @@ public class Shop extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		MusicStore MS = (MusicStore) this.getServletContext().getAttribute("MS");
+		MS = (MusicStore) this.getServletContext().getAttribute("MS");
 		Map<String, Album> data = new HashMap<String, Album>();
 		Map<String, List<String>> out = new HashMap<String, List<String>>();
 

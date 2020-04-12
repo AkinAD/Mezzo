@@ -97,4 +97,57 @@ public class AlbumDAO {
 		con.close();
 		return rv;
 	}
+
+	public void addAlbum(Album album) throws SQLException {
+		String artist = album.getArtist();
+		String title = album.getTitle();
+		String category = album.getCategory();
+		Float price = album.getPrice();
+		String picture = album.getPicture();
+		int aid = getLastAid() + 1;
+		
+		try {
+			String query = "insert into Album (aid, artist, title, category, price, picture) values (?,?,?,?,?,?)"; // Insert
+			
+			Connection con = this.ds.getConnection();
+			PreparedStatement preparedStatement = con.prepareStatement(query); // Making use of prepared statements here
+			// to insert bunch of data
+			preparedStatement.setInt(1, aid);
+			preparedStatement.setString(2, artist);
+			preparedStatement.setString(3, title);
+			preparedStatement.setString(4, category);
+			preparedStatement.setFloat(5, price);
+			preparedStatement.setString(6, picture);
+
+			int i = preparedStatement.executeUpdate();
+			if (i != 0) // Just to ensure data has been inserted into the database
+			{
+				con.close();
+				preparedStatement.close();
+				System.out.println("successfully updated db with new album " + title);
+//				return "";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("DB Failure On Album addition");
+//			return "DB Failure On Album addition";
+		}
+		
+
+	}
+
+	private int getLastAid() throws SQLException{
+		String query = "SELECT * FROM ALBUM ORDER BY aid DESC LIMIT 1";
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		int lastAid = 0;
+		while (r.next()) {
+			lastAid = r.getInt("AID");
+		}
+		r.close();
+		p.close();
+		con.close();
+		return lastAid;
+	}
 }

@@ -90,12 +90,12 @@
 							<option value="Synth-pop">Synth-pop</option>
 						</select> <input type="number" placeholder="Price (e.g 15.45)" step=".15" />
 						<input type="url" placeholder="Album cover Image link" />
-
+						<button class="button" name="addAlbum" value="true">Update Catelog</button>
 					</form>
 					<p>Create new Album available in store</p>
 					<p>Ensure image url is valid (Copy image Address)</p>
 					<p class="error">...</p>
-					<button class="button">Update Catelog</button>
+					
 				</div>
 			</div>
 		</a> <a class="card" href="#!">
