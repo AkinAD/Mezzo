@@ -124,9 +124,9 @@
                             <div class="widget-desc">
                                 <div class="slider-range">
                                     <div data-min="49" data-max="360" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="49" data-value-max="360" data-label-result="Range:">
-                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                        <div class="ui-slider-range ui-widget-header ui-corner-all"><!--  boop -->.</div>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"><!--  boop -->.</span>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"><!--  boop -->.</span>
                                     </div>
                                     <div class="range-price">Range: $49.00 - $360.00</div>
                                 </div>
@@ -169,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-
+					
                 <div class="col-12 col-md-8 col-lg-9">
                     <div class="shop_grid_product_area">
                         <div class="row">
