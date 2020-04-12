@@ -136,4 +136,20 @@ public class UserModel {
 	public Object getError() {
 		return Error;
 	}
+	
+	/**
+	 * 
+	 * @param input
+	 * @return
+	 * Returns null if invalid input, else poorly sanitizes for SQL injection.
+	 * Why doesn't it work? Because I'm dumb, lazy and the CompSec program here is garbo.
+	 */
+	private static String sanitizeForSql(String input) {
+		String returnPrefix = input;
+		
+		// Holy crap I hate regex
+		returnPrefix = returnPrefix.replaceAll("('.*')|(-([%_*\"]|('.*'))-)|(([%_*\"]|(--))*)", "");
+		
+		return returnPrefix;
+	}
 }
