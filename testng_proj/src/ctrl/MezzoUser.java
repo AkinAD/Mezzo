@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.ProfileBean;
-import model.MusicStore;
+import model.UserModel;
 
 /**
  * Servlet implementation class MezzoUser
@@ -33,11 +33,8 @@ public class MezzoUser extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		try {
-			this.getServletContext().setAttribute("MS", MusicStore.getInstance());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		//this.getServletContext().setAttribute("MS", MusicStore.getInstance());
+		this.getServletContext().setAttribute("UM", UserModel.getInstance());
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -63,35 +60,36 @@ public class MezzoUser extends HttpServlet {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 
-			MusicStore MS = (MusicStore) this.getServletContext().getAttribute("MS");
+			//MusicStore MS = (MusicStore) this.getServletContext().getAttribute("MS");
+			UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
 			System.out.println("THIS SHOULD ONLY PRINT ONCE");
 			try {
-				MS.registerUser(fname, lname, username, email, password);
+				uModel.registerUser(fname, lname, username, email, password);
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("FAILED TO REGISTER USER: " + MS.getError());
+				System.out.println("FAILED TO REGISTER USER: " + uModel.getError());
 			}
 			Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 			Map<String, List<String>> profile = new HashMap<String, List<String>>();
 
 			try {
-				data = MS.retrieveAccountByUsername(username);
+				data = uModel.retrieveAccountByUsername(username);
 			} catch (Exception e) {
 				System.out.println("Failure to populate user.. goodluck tracing this one");
 				e.printStackTrace();
 			}
 				// this the part where you display error. or do nothing tbh
-			if (MS.getError().equals("")) {
+			if (uModel.getError().equals("")) {
 				profile = populateUser(data);
 				request.setAttribute("profile", profile);
-				request.setAttribute("error", MS.getError());
+				request.setAttribute("error", uModel.getError());
 
 				request.getRequestDispatcher(Profile).forward(request, response);
 			} else {
-				request.setAttribute("error", MS.getError());
+				request.setAttribute("error", uModel.getError());
 				request.getRequestDispatcher(LoginReg).forward(request, response);
 				System.out.println("there Was an Error in Register: ##");
-				System.out.println(MS.getError());
+				System.out.println(uModel.getError());
 			}
 		}
 		
@@ -99,30 +97,31 @@ public class MezzoUser extends HttpServlet {
 			System.out.println("SIGN IN CLICKED");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			MusicStore MS = (MusicStore) this.getServletContext().getAttribute("MS");
+			//MusicStore MS = (MusicStore) this.getServletContext().getAttribute("MS");
+			UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
 			System.out.println("THIS SHOULD also ONLY PRINT ONCE");
 
 			Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 			Map<String, List<String>> profile = new HashMap<String, List<String>>();
 
 			try {
-				data = MS.loginUser(username, password);
+				data = uModel.loginUser(username, password);
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("FAILED TO LOGIN USER: " + MS.getError());
+				System.out.println("FAILED TO LOGIN USER: " + uModel.getError());
 			}
-			if (MS.getError().equals("")) {
+			if (uModel.getError().equals("")) {
 				profile = populateUser(data);
 				request.setAttribute("profile", profile);
-				request.setAttribute("error", MS.getError());
+				request.setAttribute("error", uModel.getError());
 
 				request.getRequestDispatcher(Profile).forward(request, response);
 			} 
 			else {
-				request.setAttribute("error", MS.getError());
+				request.setAttribute("error", uModel.getError());
 				System.out.println("BOTTOM");
 				request.getRequestDispatcher(LoginReg).forward(request, response);
-				System.out.println("there Was an Error in Log in : " + MS.getError());
+				System.out.println("there Was an Error in Log in : " + uModel.getError());
 			}
 		}
 		System.out.println("==== END DOGET ====");

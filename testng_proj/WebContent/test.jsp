@@ -14,7 +14,7 @@
 <title>DB Image Link</title>
 </head>
 <body>
-	<form action="Mezzo" method="POST" >
+	<form action="Test" method="POST" >
 		<input type="text" name="aid"/>
 		<button action="submit" name="query" value="true">Submit</button>
 
