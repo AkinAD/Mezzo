@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Album;
+import bean.ReviewBean;
 import model.MusicStore;
 
 /**
@@ -17,10 +18,15 @@ import model.MusicStore;
  * 
  * @author alanyork
  */
-@WebServlet("/ProductPage")
+@WebServlet({"/ProductPage","/ProductPage"})
 public class ProductPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private MusicStore musicStore;
+	
+	private static final String PRODUCTPAGE = "singleProduct.jsp";
+	private static final String REVIEW_RESULTS = "reviewResults";
+	private static final String ALBUM_RESULT = "albumResult";	
+	
+	private MusicStore musicStore;
 	
 	
     /**
@@ -44,15 +50,22 @@ public class ProductPage extends HttpServlet {
 			int aidInt = Integer.valueOf(aid);
 			
 			// Retrieve Album			
-			Map<String,Album> retrRes = musicStore.retrievAlbum(aidInt);
+			Map<String,Album> retrRes = musicStore.retrieveAlbum(aidInt);
 			Album retrResAlbum = retrRes.get(new Integer(aidInt).toString());
 			if (retrResAlbum == null) {
 				throw new IllegalArgumentException();
 			}
 			
+			// Retrieve Reviews
+			Map<String,ReviewBean> retrRevRes = musicStore.retrieveReviews(aidInt);
+			
+			// Output to request context and dispatch page
+			request.setAttribute(ALBUM_RESULT, retrResAlbum);
+			request.setAttribute(REVIEW_RESULTS, retrRevRes);
+			request.getRequestDispatcher(PRODUCTPAGE).forward(request, response);
 		} catch (Exception e) {
 			// I call this a pro gamer move
-			response.setStatus(400);
+			response.setStatus(400); // If something goes wrong it's because you're not dank enough
 			e.printStackTrace();
 		}
 	}
@@ -61,7 +74,6 @@ public class ProductPage extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
