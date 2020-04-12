@@ -106,7 +106,7 @@ public class MusicStore {
 		return alDao.retrieveAlbumByCat(cat);
 	}
 	
-	public void addAlbum(int aid, String artist, String title, String category, Float price, String picture) throws SQLException
+	public void addAlbum(int aid, String artist, String title, String category, Float price, String picture) throws Exception
 	{	
 		aid = 0; // this will be set dynamically by the Album DAO 
 		if(artist.equals("") || artist == null)

@@ -70,7 +70,7 @@ public class Admin extends HttpServlet {
 			try {
 				System.out.println("we got here fellas -Album");
 				MS.addAlbum(0, album_artist, album_title, album_category, album_price, album_picture);
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				error = "Failed to add Album to Database";

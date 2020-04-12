@@ -25,9 +25,10 @@ public class AlbumDAO {
 	public AlbumDAO() throws ClassNotFoundException {
 		try {
 			// ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/New_Derby");
-			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413"); // USE THIS TO DEBUG LOCALLY
+			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413"); // USE THIS TO DEBUG
+																								// LOCALLY
 //			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
-			
+
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +84,7 @@ public class AlbumDAO {
 	}
 
 	public Map<String, Album> retrieveAlbumByCat(String cat) throws SQLException {
-		String query = "select * from album where category='" + cat +"'";
+		String query = "select * from album where category='" + cat + "'";
 		Map<String, Album> rv = new HashMap<String, Album>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
@@ -99,45 +100,51 @@ public class AlbumDAO {
 		return rv;
 	}
 
-	public void addAlbum(Album album) throws SQLException {
+	public void addAlbum(Album album) throws Exception {
 		String artist = album.getArtist();
 		String title = album.getTitle();
 		String category = album.getCategory();
 		Float price = album.getPrice();
 		String picture = album.getPicture();
 		int aid = getLastAid() + 1;
-		
-		try {
-			String query = "insert into Album (aid, artist, title, category, price, picture) values (?,?,?,?,?,?)"; // Insert
-			
-			Connection con = this.ds.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(query); // Making use of prepared statements here
-			// to insert bunch of data
-			preparedStatement.setInt(1, aid);
-			preparedStatement.setString(2, artist);
-			preparedStatement.setString(3, title);
-			preparedStatement.setString(4, category);
-			preparedStatement.setFloat(5, price);
-			preparedStatement.setString(6, picture);
 
-			int i = preparedStatement.executeUpdate();
-			if (i != 0) // Just to ensure data has been inserted into the database
-			{
-				con.close();
-				preparedStatement.close();
-				System.out.println("successfully updated db with new album " + title);
+		if (preventDiuplicates(artist, title) == true) { //check if album already exists, preventDiuplicates will return false if album exists
+			try {
+				String query = "insert into Album (aid, artist, title, category, price, picture) values (?,?,?,?,?,?)"; // Insert
+
+				Connection con = this.ds.getConnection();
+				PreparedStatement preparedStatement = con.prepareStatement(query); // Making use of prepared statements
+																					// here
+				// to insert bunch of data
+				preparedStatement.setInt(1, aid);
+				preparedStatement.setString(2, artist);
+				preparedStatement.setString(3, title);
+				preparedStatement.setString(4, category);
+				preparedStatement.setFloat(5, price);
+				preparedStatement.setString(6, picture);
+
+				int i = preparedStatement.executeUpdate();
+				if (i != 0) // Just to ensure data has been inserted into the database
+				{
+					con.close();
+					preparedStatement.close();
+					System.out.println("successfully updated db with new album " + title);
 //				return "";
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("DB Failure On Album addition");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("DB Failure On Album addition");
 //			return "DB Failure On Album addition";
+			}
 		}
-		
+		else
+		{
+			throw new Exception("Album Already exists!");
+		}
 
 	}
 
-	private int getLastAid() throws SQLException{
+	private int getLastAid() throws SQLException {
 		String query = "SELECT * FROM ALBUM ORDER BY aid DESC LIMIT 1";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
@@ -150,5 +157,27 @@ public class AlbumDAO {
 		p.close();
 		con.close();
 		return lastAid;
+	}
+
+	public boolean preventDiuplicates(String artist, String title) throws SQLException {
+		Connection con = this.ds.getConnection();
+		String query = "SELECT * FROM album WHERE title = ? AND artist = ?";
+		PreparedStatement prepState = con.prepareStatement(query);
+		prepState.setString(1, title);
+		prepState.setString(2, artist);
+
+		ResultSet res = prepState.executeQuery();
+		if (res.next()) // if any result is returned, return false( a duplicate)
+		{
+			System.out.println("album already exists in DB!!!!");
+			res.close();
+			con.close();
+			prepState.close();
+			return false;
+		}
+		res.close();
+		con.close();
+		prepState.close();
+		return true;
 	}
 }
