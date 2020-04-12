@@ -115,8 +115,7 @@ public class Admin extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
-		
+			
 		
 	}
 
