@@ -97,14 +97,59 @@ public class ShoppingCart {
 
 	/**
 	 * @param aid
-	 * @return the Album from
+	 * @return the Album according to album id
 	 */
-	public Album retrieveAlbum(int aid) throws SQLException {
+	public Album getAlbum(int aid) throws SQLException {
 		Album al = null;
-		if (albums.containsKey(aid)) {
-
+		if (this.albums.containsKey(aid)) {
+			try {
+				al = this.albumInfo.retrieveAlbum(aid);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return al;
 	}
 
+	/**
+	 * @param aid
+	 * @return the artist name of the album
+	 * @throws SQLException
+	 */
+	public String getArtist(int aid) throws SQLException {
+		return this.getAlbum(aid).getArtist();
+	}
+	
+	/**
+	 * @param aid
+	 * @return the title of the album
+	 * @throws SQLException
+	 */
+	public String getTitle (int aid) throws SQLException {
+		return this.getAlbum(aid).getTitle();
+	}
+	
+	/**
+	 * @param aid
+	 * @return the category of the album
+	 * @throws SQLException
+	 */
+	public String getCategory (int aid) throws SQLException {
+		return this.getAlbum(aid).getCategory();
+	}
+	
+	/**
+	 * @param aid
+	 * @return the price of the album
+	 * @throws SQLException
+	 */
+	public Float getPrice (int aid) throws SQLException {
+		return this.getAlbum(aid).getPrice();
+	}
+	
+	/*
+	public String getPicture (int aid) throws SQLException {
+		return this.getAlbum(aid).getPicture();
+	}
+	*/
 }
