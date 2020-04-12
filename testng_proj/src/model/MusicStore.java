@@ -124,7 +124,7 @@ public class MusicStore {
 			Error = "Category must not be empty";
 			throw new IllegalArgumentException();
 		}
-		else if(price < 1.00  || !isNumberWith2Decimals(price.toString()))
+		else if(price < 1.00)
 		{
 			Error = "Invalid number! provide a number greater than 1.00 and with 2 decimal trailing values";
 			throw new IllegalArgumentException();
