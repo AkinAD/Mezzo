@@ -148,6 +148,8 @@ public class ShoppingCart {
 	}
 	
 	/*
+	 * Picture retrieval not being used 
+	 * 
 	public String getPicture (int aid) throws SQLException {
 		return this.getAlbum(aid).getPicture();
 	}
