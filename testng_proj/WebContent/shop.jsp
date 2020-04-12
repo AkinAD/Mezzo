@@ -36,7 +36,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="page-title text-center">
-                        <h2>dresses</h2>
+                        <h2>ALBUMS</h2>
                     </div>
                 </div>
             </div>
@@ -61,53 +61,36 @@
                                 <ul id="menu-content2" class="menu-content collapse show">
                                     <!-- Single Item -->
                                     <li data-toggle="collapse" data-target="#clothing">
-                                        <a href="#">clothing</a>
+                                        <a href="#">Popular</a>
                                         <ul class="sub-menu collapse show" id="clothing">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
+                                            <li><a href="shop?category=Hip-Hop">Hip-Hop</a></li>
+											<li><a href="shop?category=Pop">Pop</a></li>
+											<li><a href="shop?category=Rap">Rap</a></li>
+											<li><a href="shop?category=RnB">RnB</a></li>
+											<li><a href="shop?category=Rock">Rock </a></li>
+											<li><a href="shop?category=Jazz">Jazz</a></li>
+											<li><a href="shop?category=Country">Country</a></li>
+											<li><a href="shop?category=Blues">Blues</a></li>
+											<li><a href="shop?category=Folk">Folk</a></li>
+											<li><a href="shop?category=Gospel" >Gospel</a></li>
                                         </ul>
                                     </li>
                                     <!-- Single Item -->
                                     <li data-toggle="collapse" data-target="#shoes" class="collapsed">
-                                        <a href="#">shoes</a>
+                                        <a href="#">More</a>
                                         <ul class="sub-menu collapse" id="shoes">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
-                                        </ul>
-                                    </li>
-                                    <!-- Single Item -->
-                                    <li data-toggle="collapse" data-target="#accessories" class="collapsed">
-                                        <a href="#">accessories</a>
-                                        <ul class="sub-menu collapse" id="accessories">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
+                                            <li><a href="shop?category=All">All</a></li>
+                                            <li><a href="shop?category=Funk">Funk</a></li>
+										<li><a href="shop?category=Synth-Pop">Synth-Pop</a></li>
+										<li><a href="shop?category=Electro">Electro</a></li>
+										<li><a href="shop?category=Indie">Indie</a></li>
+										<li><a href="shop?category=Disco">Disco</a></li>
+										<li><a href="shop?category=Heavy%20metal">Heavy metal</a></li>
+										<li><a href="shop?category=Hard%20Rock">Hard Rock</a></li>
+										<li><a href="shop?category=Punk%20rock">Punk rock</a></li>
+										<li><a href="shop?category=Reggae">Reggae</a></li>
+										<li><a href="shop?categoryIndie">Indie</a></li>						
+										
                                         </ul>
                                     </li>
                                 </ul>
