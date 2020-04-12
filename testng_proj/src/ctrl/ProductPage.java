@@ -18,13 +18,14 @@ import model.MusicStore;
  * 
  * @author alanyork
  */
-@WebServlet({"/ProductPage","/ProductPage"})
+@WebServlet({"/ProductPage"})
 public class ProductPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static final String PRODUCTPAGE = "singleProduct.jsp";
 	private static final String REVIEW_RESULTS = "reviewResults";
 	private static final String ALBUM_RESULT = "albumResult";	
+	private static final String MEZZO_USERNAME = "MezzoUsername";
 	
 	private MusicStore musicStore;
 	
@@ -44,10 +45,14 @@ public class ProductPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String aid = request.getParameter("aid");
+		String review = request.getParameter("review");
+		String rating = request.getParameter("rating");
+		String username = (String) request.getSession().getAttribute(MEZZO_USERNAME);
 		
 		try {
 			// Normalize input
 			int aidInt = Integer.valueOf(aid);
+			int ratingInt = Integer.valueOf(rating);
 			
 			// Retrieve Album			
 			Map<String,Album> retrRes = musicStore.retrieveAlbum(aidInt);
@@ -59,7 +64,12 @@ public class ProductPage extends HttpServlet {
 			// Retrieve Reviews
 			Map<String,ReviewBean> retrRevRes = musicStore.retrieveReviews(aidInt);
 			
-			// Output to request context and dispatch page
+			// Add review logic
+			if (review != null) {
+				musicStore.putReview(aidInt, username, ratingInt, review);
+			}
+			
+			// Output page content to request context and dispatch page
 			request.setAttribute(ALBUM_RESULT, retrResAlbum);
 			request.setAttribute(REVIEW_RESULTS, retrRevRes);
 			request.getRequestDispatcher(PRODUCTPAGE).forward(request, response);

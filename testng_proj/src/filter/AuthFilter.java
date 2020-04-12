@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet Filter implementation class AuthFilter
  */
 @WebFilter(dispatcherTypes = {DispatcherType.REQUEST }
-					, servletNames = { "ProductPage" })
+					, urlPatterns = { "/ProductPage" }, servletNames = { "ProductPage" })
 public class AuthFilter implements Filter {
 
     private static final String AUTH_CAUSE = "AuthCause";
@@ -51,18 +51,20 @@ public class AuthFilter implements Filter {
 		
 		boolean authRequired = false;
 		
-		boolean addReviewPath = httpReq.getServletPath().equals("ProductPage");
+		// Reviewing requires auth
+		boolean addReviewPath = httpReq.getServletPath().equals("/ProductPage");
 		addReviewPath = addReviewPath && (httpReq.getParameter("review") != null);
-		authRequired = authRequired || (httpReq.getMethod().equals("POST") && addReviewPath);
+		authRequired = authRequired || addReviewPath;
 		
 		if ((username == null || username.length() == 0) && authRequired) {
 			// Not logged in
 			httpReq.setAttribute(AUTH_CAUSE, httpReq.getRequestURI()+httpReq.getQueryString());
 			httpReq.getRequestDispatcher(LOGIN_ENDPOINT).forward(httpReq, httpResp);
-		}
+		} else {
+			// pass the request along the filter chain
+			chain.doFilter(request, response);
+		}		
 		
-		// pass the request along the filter chain
-		chain.doFilter(request, response);
 	}
 
 	/**
