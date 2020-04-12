@@ -42,28 +42,29 @@
 							<li><a href="#">Shop</a>
 								<div class="megamenu">
 									<ul class="single-mega cn-col-4">
-										<li class="title">Women's Collection</li>
-										<li><a href="shop.html">Dresses</a></li>
-										<li><a href="shop.html">Blouses &amp; Shirts</a></li>
-										<li><a href="shop.html">T-shirts</a></li>
-										<li><a href="shop.html">Rompers</a></li>
-										<li><a href="shop.html">Bras &amp; Panties</a></li>
+										<li class="title">Top Genres</li>
+										<li><a href="shop?category=Hip-Hop">Hip-Hop</a></li>
+										<li><a href="shop?category=Pop">Pop</a></li>
+										<li><a href="shop?category=Rap">Rap</a></li>
+										<li><a href="shop?category=RnB">RnB</a></li>
+										<li><a href="shop?category=Rock">Rock </a></li>
 									</ul>
 									<ul class="single-mega cn-col-4">
-										<li class="title">Men's Collection</li>
-										<li><a href="shop.html">T-Shirts</a></li>
-										<li><a href="shop.html">Polo</a></li>
-										<li><a href="shop.html">Shirts</a></li>
-										<li><a href="shop.html">Jackets</a></li>
-										<li><a href="shop.html">Trench</a></li>
+										<li class="title">Favorites</li>
+										<li><a href="shop?category=Jazz">Jazz</a></li>
+										<li><a href="shop?category=Country">Country</a></li>
+										<li><a href="shop?category=Blues">Blues</a></li>
+										<li><a href="shop?category=Folk">Folk</a></li>
+										<li><a href="shop?category=Gospel" >Gospel</a></li>
 									</ul>
 									<ul class="single-mega cn-col-4">
-										<li class="title">Kid's Collection</li>
-										<li><a href="shop.html">Dresses</a></li>
-										<li><a href="shop.html">Shirts</a></li>
-										<li><a href="shop.html">T-shirts</a></li>
-										<li><a href="shop.html">Jackets</a></li>
-										<li><a href="shop.html">Trench</a></li>
+										<li class="title">Others</li>
+										<li><a href="shop?category=Funk">Funk</a></li>
+										<li><a href="shop?category=Synth-Pop">Synth-Pop</a></li>
+										<li><a href="shop?category=Electro">Electro</a></li>
+										<li><a href="shop?category=Indie">Indie</a></li>
+										<li><a href="shop?category=Disco">Disco</a></li>
+										<li><a href="shop" style="color:blue;">View All</a></li>
 									</ul>
 									<div class="single-mega cn-col-4">
 										<img src="${pageContext.request.contextPath}/res/img/bg-img/bg-6.jpg" alt=""/>
@@ -71,18 +72,13 @@
 								</div></li>
 							<li><a href="#">Pages</a>
 								<ul class="dropdown">
-									<li><a href="index.html">Home</a></li>
-									<li><a href="shop.html">Shop</a></li>
-									<li><a href="single-product-details.html">Product
-											Details</a></li>
+									<li><a href="home">Home</a></li>
+									<li><a href="shop">Shop</a></li>
 									<li><a href="payment.jsp">Checkout</a></li>
-									<li><a href="blog.html">Blog</a></li>
-									<li><a href="single-blog.html">Single Blog</a></li>
-									<li><a href="regular-page.html">Regular Page</a></li>
+									<li><a href="admin">Admin</a></li>
 									<li><a href="contact.html">Contact</a></li>
 								</ul></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="contact">Contact</a></li>
 						</ul>
 					</div>
 					<!-- Nav End -->
