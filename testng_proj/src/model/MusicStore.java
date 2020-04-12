@@ -37,7 +37,7 @@ public class MusicStore {
 			throw new IllegalArgumentException();
 		}
 		Error = "";
-		return alDao.retrieve(aid);
+		return alDao.retrieveAll(aid);
 	}
 
 	public String getError() {
