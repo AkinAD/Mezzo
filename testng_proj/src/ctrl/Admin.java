@@ -21,6 +21,10 @@ public class Admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MusicStore MS = null;
 	private String category = "category";
+	private String artist = "artist";
+	private String title = "title";
+	private String price = "price";
+	private String url = "url";
 	private String error = "";
 
 	
@@ -91,7 +95,11 @@ public class Admin extends HttpServlet {
 		}
 		else if(request.getParameter("addAlbum") != null)
 		{
-			
+			String album_artist = request.getParameter(artist);
+			String album_title = request.getParameter(artist);
+			String album_category = request.getParameter(artist);
+			Float album_price = Float.valueOf(request.getParameter(artist));
+			String album_picture = request.getParameter(url);
 		}
 		
 	}

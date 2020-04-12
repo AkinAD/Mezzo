@@ -8,8 +8,9 @@
 		omit-xml-declaration="true" />
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Admin Console</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/admin.css"/>
+<title>Admin Console</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/res/css/admin.css" />
 
 </head>
 <body>
@@ -17,9 +18,8 @@
 	<div class="content">
 		<h1 class="heading">Admin Console</h1>
 		<p class="description">Hover over a card to flip it.</p>
-		<a href="home" class="description rturn"> Return to store</a>
-
-		<a class="card" href="#!">
+		<a href="home" class="description rturn"> Return to store</a> <a
+			class="card" href="#!">
 			<div class="front"
 				style="background-image: url(//source.unsplash.com/300x402);">
 				<p>Welcome {user}</p>
@@ -68,8 +68,9 @@
 			<div class="back">
 				<div>
 					<form>
-						<input type="text" placeholder="Artist" /> <input type="text"
-							placeholder="Title" /> <select id="category" name="category">
+						<input type="text" placeholder="Artist" name="artist" /> <input
+							type="text" placeholder="Title" name="title" /> <select
+							id="category" name="category">
 							<option value="Hip-hop">Hip-hop</option>
 							<option value="Rap">Rap</option>
 							<option value="Jazz">Jazz</option>
@@ -88,14 +89,16 @@
 							<option value="Electro">Electro</option>
 							<option value="Funk">Funk</option>
 							<option value="Synth-pop">Synth-pop</option>
-						</select> <input type="number" placeholder="Price (e.g 15.45)" step=".15" />
-						<input type="url" placeholder="Album cover Image link" />
-						<button class="button" name="addAlbum" value="true">Update Catelog</button>
+						</select> <input type="number" placeholder="Price (e.g 15.45)" step=".15"
+							name="price" /> <input type="url" name="url"
+							placeholder="Album cover Image link" />
+						<button class="button" name="addAlbum" value="true">Update
+							Catelog</button>
 					</form>
 					<p>Create new Album available in store</p>
 					<p>Ensure image url is valid (Copy image Address)</p>
 					<p class="error">...</p>
-					
+
 				</div>
 			</div>
 		</a> <a class="card" href="#!">
@@ -122,7 +125,7 @@
 		</a>
 
 	</div>
-	
+
 </body>
-</html>
+	</html>
 </jsp:root>
