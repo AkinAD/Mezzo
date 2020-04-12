@@ -45,7 +45,7 @@
 					<div class="hero-content">
 						<h6>Chart Toppers</h6>
 						<h2>Latest Releases</h2>
-						<a href="#" class="btn essence-btn">view collection</a>
+						<a href="shop" class="btn essence-btn">view collection</a>
 					</div>
 				</div>
 			</div>
@@ -63,7 +63,7 @@
 						class="single_catagory_area d-flex align-items-center justify-content-center bg-img"
 						style="background-image: url(${pageContext.request.contextPath}/res/img/bg-img/bg-2.jpg);">
 						<div class="catagory-content">
-							<a href="#">Hip Hop</a>
+							<a href="shop?category=Hip-hop">Hip Hop</a> <!-- redirect to Search by category -->
 						</div>
 					</div>
 				</div>
@@ -73,7 +73,7 @@
 						class="single_catagory_area d-flex align-items-center justify-content-center bg-img"
 						style="background-image: url(${pageContext.request.contextPath}/res/img/bg-img/bg-3.jpg);">
 						<div class="catagory-content">
-							<a href="#">RnB</a>
+							<a href="shop?category=RnB">RnB</a> <!-- redirect to Search by category -->
 						</div>
 					</div>
 				</div>
@@ -83,7 +83,7 @@
 						class="single_catagory_area d-flex align-items-center justify-content-center bg-img"
 						style="background-image: url(${pageContext.request.contextPath}/res/img/bg-img/bg-4.jpg);">
 						<div class="catagory-content">
-							<a href="#">Pop</a>
+							<a href="shop?category=pop">Pop</a> <!-- redirect to Search by category -->
 						</div>
 					</div>
 				</div>
@@ -103,7 +103,7 @@
 							<div class="cta--text">
 								<h6>This Weeks</h6>
 								<h2>Chart Toppers</h2>
-								<a href="#" class="btn essence-btn">Buy Now</a>
+								<a href="shop" class="btn essence-btn">Buy Now</a>
 							</div>
 						</div>
 					</div>
@@ -119,7 +119,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="section-heading text-center">
-						<h2>Popular Products</h2>
+						<h2>Popular Releases</h2>
 					</div>
 
 				</div>
@@ -150,16 +150,16 @@
 							</div>
 							<!-- Product Description -->
 							<div class="product-description">
-								<span>topshop</span> <a href="single-product-details.html">
-									<h6>Knot Front Mini Dress</h6>
+								<span>Micheal Jackson</span> <a href="single-product-details.html">
+									<h6>Thriller</h6>
 								</a>
-								<p class="product-price">$80.00</p>
+								<p class="product-price">$47.30</p>
 
 								<!-- Hover Content -->
 								<div class="hover-content">
 									<!-- Add to Cart -->
 									<div class="add-to-cart-btn">
-										<a href="#" class="btn essence-btn">Add to Cart</a>
+										<a href="#" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
 									</div>
 								</div>
 							</div>
@@ -185,16 +185,16 @@
 							</div>
 							<!-- Product Description -->
 							<div class="product-description">
-								<span>topshop</span> <a href="single-product-details.html">
-									<h6>Poplin Displaced Wrap Dress</h6>
+								<span>ACDC</span> <a href="single-product-details.html">
+									<h6>Back In Black</h6>
 								</a>
-								<p class="product-price">$80.00</p>
+								<p class="product-price">$29.40</p>
 
 								<!-- Hover Content -->
 								<div class="hover-content">
 									<!-- Add to Cart -->
 									<div class="add-to-cart-btn">
-										<a href="#" class="btn essence-btn">Add to Cart</a>
+										<a href="#" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
 									</div>
 								</div>
 							</div>
@@ -225,18 +225,18 @@
 							</div>
 							<!-- Product Description -->
 							<div class="product-description">
-								<span>mango</span> <a href="single-product-details.html">
-									<h6>PETITE Crepe Wrap Mini Dress</h6>
+								<span>Meat Loaf</span> <a href="single-product-details.html">
+									<h6>Bat Out Of Hell</h6>
 								</a>
 								<p class="product-price">
-									<span class="old-price">$75.00</span> $55.00
+									<span class="old-price">$30.00</span> $21.70
 								</p>
 
 								<!-- Hover Content -->
 								<div class="hover-content">
 									<!-- Add to Cart -->
 									<div class="add-to-cart-btn">
-										<a href="#" class="btn essence-btn">Add to Cart</a>
+										<a href="#" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
 									</div>
 								</div>
 							</div>
@@ -268,16 +268,16 @@
 							</div>
 							<!-- Product Description -->
 							<div class="product-description">
-								<span>mango</span> <a href="single-product-details.html">
-									<h6>PETITE Belted Jumper Dress</h6>
+								<span>Roddy Ricch</span> <a href="single-product-details.html">
+									<h6>Antisocial </h6>
 								</a>
-								<p class="product-price">$80.00</p>
+								<p class="product-price">$15.00</p>
 
 								<!-- Hover Content -->
 								<div class="hover-content">
 									<!-- Add to Cart -->
 									<div class="add-to-cart-btn">
-										<a href="#" class="btn essence-btn">Add to Cart</a>
+										<a href="#" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
 									</div>
 								</div>
 							</div>

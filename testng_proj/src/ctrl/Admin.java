@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.MusicStore;
 
 /**
  * Servlet implementation class Admin
@@ -16,7 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet({ "/Admin", "/admin" })
 public class Admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private MusicStore MS = null;
+	private String category = "category";
+	private String artist = "artist";
+	private String title = "title";
+	private String price = "price";
+	private String url = "url";
+	private String error = "";
+
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -25,6 +36,16 @@ public class Admin extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    @Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		try {
+			this.getServletContext().setAttribute("MS", MusicStore.getInstance());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}   
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -32,6 +53,7 @@ public class Admin extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getRequestDispatcher("/admin.jsp").forward(request, response);
+		MS = (MusicStore) this.getServletContext().getAttribute("MS");
 		// Retrieve DAOs from context scope.
 		//POAccessor = new POData();
 		
@@ -61,10 +83,25 @@ public class Admin extends HttpServlet {
 			}
 			*/
 			//Forward to page
-			request.getRequestDispatcher("/analytics.jspx").forward(request, response);
+			request.getRequestDispatcher("/admin.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		if(request.getParameter("addAlbum") == null)
+		{
+			// DO NOTHING
+		}
+		else if(request.getParameter("addAlbum") != null)
+		{
+			String album_artist = request.getParameter(artist);
+			String album_title = request.getParameter(artist);
+			String album_category = request.getParameter(artist);
+			Float album_price = Float.valueOf(request.getParameter(artist));
+			String album_picture = request.getParameter(url);
+		}
+		
 	}
 
 	/**
