@@ -44,4 +44,9 @@ public class MusicStore {
 		return Error;
 	}
 
+	public Map<String, Album> retrievAlbumsByCat(String cat) throws SQLException {
+		// TODO Auto-generated method stub
+		return alDao.retrieveAlbumByCat(cat);
+	}
+
 }

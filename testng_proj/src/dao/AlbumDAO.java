@@ -41,4 +41,21 @@ public class AlbumDAO {
 		con.close();
 		return rv;
 	}
+
+	public Map<String, Album> retrieveAlbumByCat(String cat) throws SQLException {
+		String query = "select * from album where category=" + cat;
+		Map<String, Album> rv = new HashMap<String, Album>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()) {
+			String albumID = Integer.toString(r.getInt("AID"));
+			rv.put(albumID, new Album(r.getInt("AID"), r.getString("artist"), r.getString("title"),
+					r.getString("category"), r.getFloat("price"), r.getString("picture")));
+		}
+		r.close();
+		p.close();
+		con.close();
+		return rv;
+	}
 }
