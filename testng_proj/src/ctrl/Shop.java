@@ -59,9 +59,11 @@ public class Shop extends HttpServlet {
 		if (request.getParameter(category) == null) {
 			request.getRequestDispatcher("/shop.jsp").forward(request, response);
 		} else {
+			System.out.println("it got here- Shop");
 			try {
 				data = MS.retrievAlbumsByCat(request.getParameter(category));
 				String cat = request.getParameter(category);
+				System.out.println("the value of category is: " + cat);
 				data = MS.retrievAlbumsByCat(cat);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -74,22 +76,18 @@ public class Shop extends HttpServlet {
 					List<String> tmp = new ArrayList<String>();
 					tmp.add(Integer.toString(data.get(stuff).getAid()));
 					tmp.add(data.get(stuff).getArtist());
-
 					tmp.add(data.get(stuff).getTitle());
-
 					tmp.add(data.get(stuff).getCategory());
-
 					tmp.add(Float.toString(data.get(stuff).getPrice()));
-
 					tmp.add(data.get(stuff).getPicture());
-
 					out.put(stuff, tmp);
+					
 				}
 			} else {
 				System.out.println("there Was an Error");
 			}
 			request.setAttribute("shopItems", out);
-			request.setAttribute("shopDisp", "filter");
+			request.setAttribute("shopDisq", "filter");
 			request.getRequestDispatcher("/shop.jsp").forward(request, response);
 		}
 

@@ -67,7 +67,7 @@
 									<li data-toggle="collapse" data-target="#clothing"><a
 										href="#">Popular</a>
 										<ul class="sub-menu collapse show" id="clothing">
-											<li><a href="shop?category=Hip-Hop">Hip-Hop</a></li>
+											<li><a href="shop?category=Hip-hop">Hip-Hop</a></li>
 											<li><a href="shop?category=Pop">Pop</a></li>
 											<li><a href="shop?category=Rap">Rap</a></li>
 											<li><a href="shop?category=RnB">RnB</a></li>
@@ -82,7 +82,7 @@
 									<li data-toggle="collapse" data-target="#shoes"
 										class="collapsed"><a href="#">More</a>
 										<ul class="sub-menu collapse" id="shoes">
-											<li><a href="shop?category=All">All</a></li>
+											<li><a href="shop">All</a></li>
 											<li><a href="shop?category=Funk">Funk</a></li>
 											<li><a href="shop?category=Synth-Pop">Synth-Pop</a></li>
 											<li><a href="shop?category=Electro">Electro</a></li>
@@ -165,7 +165,14 @@
 									<!-- Total Products -->
 									<div class="total-products">
 										<p>
-											<span>186</span> products found
+											<c:choose>
+												<c:when test="${(empty shopDisq)}">
+													<span>186</span> products found
+											</c:when>
+												<c:otherwise>
+													<span><c:out value="${fn:length(shopItems)}" /></span> products found
+												</c:otherwise>
+											</c:choose>
 										</p>
 									</div>
 									<!-- Sorting -->
@@ -185,10 +192,8 @@
 						</div>
 
 						<div class="row">
-
-
 							<c:choose>
-								<c:when test="${(shopDisp eq '') or (empty shopDisq)}">
+								<c:when test="${(empty shopDisq)}">
 
 									<!-- Single Product -->
 									<div class="col-12 col-sm-6 col-lg-4">
@@ -568,7 +573,7 @@
 														href="single-product-details.html">
 														<h6>${current.value[2]}</h6>
 													</a>
-													<p class="product-price">$ ${current.value[2]}</p>
+													<p class="product-price">$${current.value[4]}</p>
 													<!-- Hover Content -->
 													<div class="hover-content">
 														<!-- Add to Cart -->
@@ -613,19 +618,31 @@
 
 	<!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<script
-		src="${pageContext.request.contextPath}/res/js/jquery/jquery-2.2.4.min.js">;</script>
+		src="${pageContext.request.contextPath}/res/js/jquery/jquery-2.2.4.min.js">
+		;
+	</script>
 	<!-- Popper js -->
-	<script src="${pageContext.request.contextPath}/res/js/popper.min.js">;</script>
+	<script src="${pageContext.request.contextPath}/res/js/popper.min.js">
+		;
+	</script>
 	<!-- Bootstrap js -->
 	<script
-		src="${pageContext.request.contextPath}/res/js/bootstrap.min.js">;</script>
+		src="${pageContext.request.contextPath}/res/js/bootstrap.min.js">
+		;
+	</script>
 	<!-- Plugins js -->
-	<script src="${pageContext.request.contextPath}/res/js/plugins.js">;</script>
+	<script src="${pageContext.request.contextPath}/res/js/plugins.js">
+		;
+	</script>
 	<!-- Classy Nav js -->
 	<script
-		src="${pageContext.request.contextPath}/res/js/classy-nav.min.js">;</script>
+		src="${pageContext.request.contextPath}/res/js/classy-nav.min.js">
+		;
+	</script>
 	<!-- Active js -->
-	<script src="${pageContext.request.contextPath}/res/js/active.js">;</script>
+	<script src="${pageContext.request.contextPath}/res/js/active.js">
+		;
+	</script>
 
 
 
