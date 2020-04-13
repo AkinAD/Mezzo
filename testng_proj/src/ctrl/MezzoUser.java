@@ -28,7 +28,7 @@ import model.UserModel;
  * @author akinad1
  * @author alanyork
  */
-@WebServlet({"/Login", "/Register", "/login", "/register" })
+@WebServlet({"/Login", "/Register", "/login", "/register", "/logout", "/Logout"})
 public class MezzoUser extends HttpServlet {
 	private static final String SERIALIZED_CALLBACK = "serializedCallback";
 	private static final long serialVersionUID = 1L;
@@ -62,11 +62,11 @@ public class MezzoUser extends HttpServlet {
 		}
 		
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		if (request.getParameter("search")!= null)
+		if (request.getServletPath() == "/logout")
 		{
-			System.out.println("HTML works");
-			System.out.println(request.getParameter("search"));
+			SessionManagement.unbindUser(request.getSession());
 		}
+		
 		System.out.println("Enter Doget");
 		System.out.println("Params " + request.getParameterNames().toString());
 		System.out.println("Request URI: " + request.getRequestURI() );
@@ -116,13 +116,10 @@ public class MezzoUser extends HttpServlet {
 		}
 		
 		else if (request.getParameter("signup") == null && (request.getParameter("signin")!= null || request.getParameter("signin").equals("Login"))) {
-			System.out.println("SIGN IN CLICKED");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			//MusicStore MS = (MusicStore) this.getServletContext().getAttribute("MS");
 			UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
-			System.out.println("THIS SHOULD also ONLY PRINT ONCE");
-
 			Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 			Map<String, List<String>> profile = new HashMap<String, List<String>>();
 
@@ -173,7 +170,6 @@ public class MezzoUser extends HttpServlet {
 			} 
 			else {
 				request.setAttribute("error", uModel.getError());
-				System.out.println("BOTTOM");
 				System.out.println("there Was an Error in Log in : " + uModel.getError());
 				response.setStatus(403);
 				request.getRequestDispatcher(LoginReg).forward(request, response);

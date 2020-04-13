@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  min-height: 90vh;
   min-width: 100vw;
   background: linear-gradient(to right bottom, rgba(0, 0, 255, 0.5), rgba(0, 128, 0, 0.5)), url(http://i.imgur.com/woUbg3p.jpg);
   background-size: cover;
@@ -107,4 +107,11 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+.rturn
+{
+	color: white; 
+	font-family: "Open Sans", sans-serif; 
+	font-size: 1.2rem;
 }
