@@ -167,10 +167,10 @@
 										<p>
 											<c:choose>
 												<c:when test="${(empty shopDisq)}">
-													<span>186</span> products found
+													<span>186</span> Albums found
 											</c:when>
 												<c:otherwise>
-													<span><c:out value="${fn:length(shopItems)}" /></span> products found
+													<span><c:out value="${fn:length(shopItems)}" /></span> Albums found
 												</c:otherwise>
 											</c:choose>
 										</p>

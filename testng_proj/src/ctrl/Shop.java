@@ -25,6 +25,7 @@ public class Shop extends HttpServlet {
 	private MusicStore MS = null;
 	private String category = "category";
 	private String error = "";
+	private String search = "search";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -56,10 +57,11 @@ public class Shop extends HttpServlet {
 		Map<String, Album> data = new HashMap<String, Album>();
 		Map<String, List<String>> out = new HashMap<String, List<String>>();
 
-		if (request.getParameter(category) == null) {
+		if (request.getParameter(category) == null && request.getParameter(search) == null) {
 			request.getRequestDispatcher("/shop.jsp").forward(request, response);
-		} else {
-			System.out.println("it got here- Shop");
+		} else if (request.getParameter(category) != null && request.getParameter(search) == null) {
+			System.out.println("it got here- Shop by category");
+			
 			try {
 				data = MS.retrievAlbumsByCat(request.getParameter(category));
 				String cat = request.getParameter(category);
@@ -70,27 +72,62 @@ public class Shop extends HttpServlet {
 				e.printStackTrace();
 				error = "bad cat?";
 			}
-
+			
 			if (error.equals("")) {
-				for (String stuff : data.keySet()) {
-					List<String> tmp = new ArrayList<String>();
-					tmp.add(Integer.toString(data.get(stuff).getAid()));
-					tmp.add(data.get(stuff).getArtist());
-					tmp.add(data.get(stuff).getTitle());
-					tmp.add(data.get(stuff).getCategory());
-					tmp.add(Float.toString(data.get(stuff).getPrice()));
-					tmp.add(data.get(stuff).getPicture());
-					out.put(stuff, tmp);
-					
-				}
-			} else {
+				putData(data, out);
+			} 
+			else {
 				System.out.println("there Was an Error");
 			}
+			
+			request.setAttribute("shopDisq", "category");
 			request.setAttribute("shopItems", out);
-			request.setAttribute("shopDisq", "filter");
+			request.getRequestDispatcher("/shop.jsp").forward(request, response);
+		}
+		else if(request.getParameter(search) != null && request.getParameter(category) == null)
+		{
+			System.out.println("it got here- Shop by search");
+			System.out.println(search);
+			try {
+				data = MS.retrieveAlbumByGodKnowsWhat(request.getParameter(search));
+				String srch = request.getParameter(search);
+				System.out.println("the value of search is: " + srch);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				error = "bad search param?";
+			}
+			
+			if (error.equals("")) {
+				putData(data, out);
+			} 
+			else {
+				System.out.println("there Was an Error");
+			}
+			
+			request.setAttribute("shopDisq", "search");
+			request.setAttribute("shopItems", out);
 			request.getRequestDispatcher("/shop.jsp").forward(request, response);
 		}
 
+		
+	
+
+	}
+
+	private void putData(Map<String, Album> data, Map<String, List<String>> out )
+	{
+		
+			for (String stuff : data.keySet()) {
+				List<String> tmp = new ArrayList<String>();
+				tmp.add(Integer.toString(data.get(stuff).getAid()));
+				tmp.add(data.get(stuff).getArtist());
+				tmp.add(data.get(stuff).getTitle());
+				tmp.add(data.get(stuff).getCategory());
+				tmp.add(Float.toString(data.get(stuff).getPrice()));
+				tmp.add(data.get(stuff).getPicture());
+				out.put(stuff, tmp);
+			}
 	}
 
 	/**

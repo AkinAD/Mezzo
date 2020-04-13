@@ -5,13 +5,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import bean.AccountBean;
 import bean.Album;
-import bean.ProfileBean;
 import bean.ReviewBean;
 import dao.AlbumDAO;
 import dao.ReviewDAO;
-import dao.UserDAO;
 
 public class MusicStore {
 	private AlbumDAO alDao;
@@ -106,7 +103,7 @@ public class MusicStore {
 		return alDao.retrieveAlbumByCat(cat);
 	}
 	
-	public void addAlbum(int aid, String artist, String title, String category, Float price, String picture) throws SQLException
+	public void addAlbum(int aid, String artist, String title, String category, Float price, String picture) throws Exception
 	{	
 		aid = 0; // this will be set dynamically by the Album DAO 
 		if(artist.equals("") || artist == null)
@@ -124,7 +121,7 @@ public class MusicStore {
 			Error = "Category must not be empty";
 			throw new IllegalArgumentException();
 		}
-		else if(price < 1.00  || !isNumberWith2Decimals(price.toString()))
+		else if(price < 1.00)
 		{
 			Error = "Invalid number! provide a number greater than 1.00 and with 2 decimal trailing values";
 			throw new IllegalArgumentException();
@@ -159,5 +156,16 @@ public class MusicStore {
 
 		Matcher matcher = URL_PATTERN.matcher(url);
 		return matcher.matches();
+	}
+
+	public Map<String, Album> retrieveAlbumByGodKnowsWhat(String parameter) throws SQLException {
+		// TODO Auto-generated method stub
+		if(parameter.equals("") || parameter == null)
+		{
+			Error = "Search parameter is empty, no result";
+			throw new IllegalArgumentException();
+		}
+		
+		return alDao.retrieveBySearch(parameter);
 	}
 }

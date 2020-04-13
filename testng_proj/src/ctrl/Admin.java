@@ -52,7 +52,33 @@ public class Admin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("/admin.jsp").forward(request, response);
+		
+		if(request.getParameter("addAlbum") == null)
+		{
+			// DO NOTHING
+			request.getRequestDispatcher("/admin.jsp").forward(request, response);
+		}
+		else if(request.getParameter("addAlbum") != null)
+		{
+			String album_artist = request.getParameter(artist);
+			String album_title = request.getParameter(title);
+			String album_category = request.getParameter(category);
+			Float album_price = Float.valueOf(request.getParameter(price));
+			String album_picture = request.getParameter(url);
+			
+			try {
+				System.out.println("we got here fellas -Album");
+				MS.addAlbum(0, album_artist, album_title, album_category, album_price, album_picture);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				error = "Failed to add Album to Database";
+				System.out.println(error);
+			}
+		}
+		
+		
+		
 		MS = (MusicStore) this.getServletContext().getAttribute("MS");
 		// Retrieve DAOs from context scope.
 		//POAccessor = new POData();
@@ -83,24 +109,12 @@ public class Admin extends HttpServlet {
 			}
 			*/
 			//Forward to page
-			request.getRequestDispatcher("/admin.jsp").forward(request, response);
+			//request.getRequestDispatcher("/admin.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		
-		if(request.getParameter("addAlbum") == null)
-		{
-			// DO NOTHING
-		}
-		else if(request.getParameter("addAlbum") != null)
-		{
-			String album_artist = request.getParameter(artist);
-			String album_title = request.getParameter(artist);
-			String album_category = request.getParameter(artist);
-			Float album_price = Float.valueOf(request.getParameter(artist));
-			String album_picture = request.getParameter(url);
-		}
+			
 		
 	}
 

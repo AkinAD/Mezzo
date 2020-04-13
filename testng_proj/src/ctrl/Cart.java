@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class Cart
+ * 
+ * - Currently not being used / Not needed
  */
 @WebServlet({ "/Cart", "/cart", "/Cart/*", "/cart/*" })
 public class Cart extends HttpServlet {
