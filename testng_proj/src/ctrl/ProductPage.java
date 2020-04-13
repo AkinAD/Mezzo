@@ -52,7 +52,6 @@ public class ProductPage extends HttpServlet {
 		try {
 			// Normalize input
 			int aidInt = Integer.valueOf(aid);
-			int ratingInt = Integer.valueOf(rating);
 			
 			// Retrieve Album			
 			Map<String,Album> retrRes = musicStore.retrieveAlbum(aidInt);
@@ -66,6 +65,7 @@ public class ProductPage extends HttpServlet {
 			
 			// Add review logic
 			if (review != null) {
+				int ratingInt = Integer.valueOf(rating);
 				musicStore.putReview(aidInt, username, ratingInt, review);
 			}
 			

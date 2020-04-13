@@ -8,8 +8,18 @@ import bean.AccountBean;
 import bean.ProfileBean;
 import dao.UserDAO;
 
+/**
+ * 
+ * @author akinad1
+ * @author alanyork
+ *
+ */
 public class UserModel {
-	private static final UserModel INSTANCE = new UserModel();	
+	public static final String ADMIN_PRIV = "admin";
+	public static final String CUSTOMER_PRIV = "customer";
+	public static final String PARTNER_PRIV = "partner";
+	
+	private static final UserModel INSTANCE = new UserModel();
 	
 	private static String Error = "";
 	private UserDAO userDao;
