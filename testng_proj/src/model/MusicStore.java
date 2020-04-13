@@ -5,13 +5,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import bean.AccountBean;
 import bean.Album;
-import bean.ProfileBean;
 import bean.ReviewBean;
 import dao.AlbumDAO;
 import dao.ReviewDAO;
-import dao.UserDAO;
 
 public class MusicStore {
 	private AlbumDAO alDao;
@@ -159,5 +156,16 @@ public class MusicStore {
 
 		Matcher matcher = URL_PATTERN.matcher(url);
 		return matcher.matches();
+	}
+
+	public Map<String, Album> retrieveAlbumByGodKnowsWhat(String parameter) throws SQLException {
+		// TODO Auto-generated method stub
+		if(parameter.equals("") || parameter == null)
+		{
+			Error = "Search parameter is empty, no result";
+			throw new IllegalArgumentException();
+		}
+		
+		return alDao.retrieveBySearch(parameter);
 	}
 }

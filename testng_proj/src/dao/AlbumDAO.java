@@ -25,9 +25,8 @@ public class AlbumDAO {
 	public AlbumDAO() throws ClassNotFoundException {
 		try {
 			// ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/New_Derby");
-			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413"); // USE THIS TO DEBUG
-																								// LOCALLY
-//			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
+//			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413"); // USE THIS TO DEBUG LOCALLY
+			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
 
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -100,6 +99,33 @@ public class AlbumDAO {
 		return rv;
 	}
 
+	public Map<String, Album> retrieveBySearch(String parameter) throws SQLException {
+		// since we are not aware of what the users will search the store with, we will
+		// populate the results with every and anything that matches params
+		Map<String, Album> rv = new HashMap<String, Album>();
+		Connection con = this.ds.getConnection();
+		String query = "select * from album where (category like ? OR artist like ?  OR title like ?)"; // check
+																										// against,
+																										// title
+																										// category and
+																										// artist
+		PreparedStatement p = con.prepareStatement(query);
+		p.setString(1, parameter);
+		p.setString(2, parameter);
+		p.setString(3, parameter);
+
+		ResultSet r = p.executeQuery();
+		while (r.next()) {
+			String albumID = Integer.toString(r.getInt("AID"));
+			rv.put(albumID, new Album(r.getInt("AID"), r.getString("artist"), r.getString("title"),
+					r.getString("category"), r.getFloat("price"), r.getString("picture")));
+		}
+		r.close();
+		p.close();
+		con.close();
+		return rv;
+	}
+
 	public void addAlbum(Album album) throws Exception {
 		String artist = album.getArtist();
 		String title = album.getTitle();
@@ -108,13 +134,13 @@ public class AlbumDAO {
 		String picture = album.getPicture();
 		int aid = getLastAid() + 1;
 
-		if (preventDiuplicates(artist, title) == true) { //check if album already exists, preventDiuplicates will return false if album exists
+		if (preventDiuplicates(artist, title) == true) { // check if album already exists, preventDiuplicates will
+															// return false if album exists
 			try {
 				String query = "insert into Album (aid, artist, title, category, price, picture) values (?,?,?,?,?,?)"; // Insert
 
 				Connection con = this.ds.getConnection();
 				PreparedStatement preparedStatement = con.prepareStatement(query); // Making use of prepared statements
-																					// here
 				// to insert bunch of data
 				preparedStatement.setInt(1, aid);
 				preparedStatement.setString(2, artist);
@@ -129,16 +155,13 @@ public class AlbumDAO {
 					con.close();
 					preparedStatement.close();
 					System.out.println("successfully updated db with new album " + title);
-//				return "";
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println("DB Failure On Album addition");
 //			return "DB Failure On Album addition";
 			}
-		}
-		else
-		{
+		} else {
 			throw new Exception("Album Already exists!");
 		}
 
@@ -180,4 +203,5 @@ public class AlbumDAO {
 		prepState.close();
 		return true;
 	}
+
 }
