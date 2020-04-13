@@ -24,7 +24,8 @@ public class ReviewDAO {
 	public ReviewDAO() {
 		try {
 			//ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/New_Derby");
-			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
+			//ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
+			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -60,24 +61,45 @@ public class ReviewDAO {
 	}
 	
 	public int createReview(int aid, String username, int rating, String review) throws SQLException {
-		String query = "INSERT INTO Review (aid, username, rating, review) VALUES (?,?,?,?)";
+		String searchExistQuery = "SELECT COUNT(*) AS revs FROM Review WHERE aid=? AND username=?";
+		String insertQuery = "INSERT INTO Review (aid, username, rating, review) VALUES (?,?,?,?)";		
+		String updateQuery = "UPDATE Review SET rating = ?, review = ? WHERE aid=? AND username=?";
 		
 		Connection con = this.ds.getConnection();
-		PreparedStatement p = con.prepareStatement(query);
+		PreparedStatement searchP = con.prepareStatement(searchExistQuery);
 		
-		p.setInt(1, aid);
-		p.setString(2, username);
-		p.setInt(3, rating);
-		p.setString(4, review);
+		searchP.setInt(1, aid);
+		searchP.setString(2, username);
+
+		ResultSet execRes = searchP.executeQuery();
+		execRes.next();
+		int existentReviews = execRes.getInt("revs");
+		searchP.close();
 		
-		int execRes = p.executeUpdate();
+		int returnValue;
 		
-		p.close();
+		if (existentReviews > 0) {
+			PreparedStatement p = con.prepareStatement(updateQuery);
+			p.setInt(1, rating);
+			p.setString(2, review);
+			p.setInt(3, aid);
+			p.setString(4, username);
+			returnValue = p.executeUpdate();
+			p.close();
+
+		} else {
+			PreparedStatement p = con.prepareStatement(insertQuery);
+			p.setInt(1, aid);
+			p.setString(2, username);
+			p.setInt(3, rating);
+			p.setString(4, review);
+			returnValue = p.executeUpdate();
+			p.close();
+		}
+		
 		con.close();
 		
-		return execRes;
+		return returnValue;
 	}
-	
-	
 	
 }

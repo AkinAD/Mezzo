@@ -25,7 +25,6 @@ public class ProductPage extends HttpServlet {
 	private static final String PRODUCTPAGE = "singleProduct.jsp";
 	private static final String REVIEW_RESULTS = "reviewResults";
 	private static final String ALBUM_RESULT = "albumResult";	
-	private static final String MEZZO_USERNAME = "MezzoUsername";
 	
 	private MusicStore musicStore;
 	
@@ -47,12 +46,11 @@ public class ProductPage extends HttpServlet {
 		String aid = request.getParameter("aid");
 		String review = request.getParameter("review");
 		String rating = request.getParameter("rating");
-		String username = (String) request.getSession().getAttribute(MEZZO_USERNAME);
+		String username = SessionManagement.getBoundUsername(request.getSession());
 		
 		try {
 			// Normalize input
 			int aidInt = Integer.valueOf(aid);
-			int ratingInt = Integer.valueOf(rating);
 			
 			// Retrieve Album			
 			Map<String,Album> retrRes = musicStore.retrieveAlbum(aidInt);
@@ -66,6 +64,8 @@ public class ProductPage extends HttpServlet {
 			
 			// Add review logic
 			if (review != null) {
+				int ratingInt = Integer.valueOf(rating);
+				System.out.println("PP "+username);
 				musicStore.putReview(aidInt, username, ratingInt, review);
 			}
 			

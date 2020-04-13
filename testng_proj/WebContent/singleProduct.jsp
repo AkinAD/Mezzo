@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0" xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt">
 	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
 		pageEncoding="ISO-8859-1" session="false"/>
 	<jsp:output doctype-root-element="html"
@@ -29,19 +31,23 @@
         <!-- Single Product Thumb -->
         <div class="single_product_thumb clearfix">
             <div class="product_thumbnail_slides owl-carousel">
-                <img src="${pageContext.request.contextPath}/res/img/product-img/product-big-1.jpg" alt=""/>
+                <!-- <img src="${pageContext.request.contextPath}/res/img/product-img/product-big-1.jpg" alt=""/>
                 <img src="${pageContext.request.contextPath}/res/img/product-img/product-big-2.jpg" alt=""/>
                 <img src="${pageContext.request.contextPath}/res/img/product-img/product-big-3.jpg" alt=""/>
+                 -->
+                <img src="${requestScope.albumResult.picture}" alt="Album art" />
+                <img src="${requestScope.albumResult.picture}" alt="Album art" />
+                <img src="${requestScope.albumResult.picture}" alt="Album art" />
             </div>
         </div>
 
         <!-- Single Product Description -->
         <div class="single_product_desc clearfix">
-            <span>mango</span>
+            <span>${requestScope.albumResult.artist}</span>
             <a href="cart">
-                <h2>One Shoulder Glitter Midi Dress</h2>
+                <h2>${requestScope.albumResult.title}</h2>
             </a>
-            <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>
+            <p class="product-price"><!-- <span class="old-price">$65.00</span>--><f:setLocale value="en_CA"/><f:formatNumber value="${requestScope.albumResult.price}" type="currency"/></p>
             <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
 
             <!-- Form -->
