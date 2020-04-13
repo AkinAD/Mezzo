@@ -105,7 +105,7 @@
 				<!--                <div class="classynav">-->
 				<div class="user-login-info ">
 					<!--       choose block right here to either display current user login or redirect to acoount page                 -->
-					<a href="login"><img src="${pageContext.request.contextPath}/res/img/core-img/user.svg" alt=""/><!-- content --></a>
+					<a href="profile"><img src="${pageContext.request.contextPath}/res/img/core-img/user.svg" alt=""/><!-- content --></a>
 				</div>
 				<!--                </div>-->
 				<!-- Cart Area -->
