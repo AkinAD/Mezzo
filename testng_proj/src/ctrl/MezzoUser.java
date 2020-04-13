@@ -140,18 +140,18 @@ public class MezzoUser extends HttpServlet {
 					// Access control challenge login
 					AuthFilter.AuthCauseDeserializer callbackDeserial = new AuthFilter.AuthCauseDeserializer(callbackParam);
 					String callbackEndpoint = callbackDeserial.getCause();
-					String callbackQueryString = "";
+					String callbackQueryString = "?";
 					if (callbackDeserial.getParams() != null) {
 						// Reintroduce the params from the auth cause
 						for (Entry<String, String[]> x : callbackDeserial.getParams().entrySet()) {
-							callbackQueryString += "?" + x.getKey();
+							callbackQueryString += x.getKey();
 							boolean hasVal = (x.getValue() != null && x.getValue().length > 0);
 							hasVal = hasVal && x.getValue()[0] != null && !x.getValue()[0].isEmpty();
-							callbackQueryString += (hasVal ? x.getValue()[0] + "&" : "&");
+							callbackQueryString += (hasVal ? "=" + x.getValue()[0] + "&" : "&");
 							for (int i=1; x.getValue() != null && i<x.getValue().length; i++) {
 								callbackQueryString += x.getKey();
 								hasVal = x.getValue()[i] != null && !x.getValue()[i].isEmpty();
-								callbackQueryString += (hasVal ? x.getValue()[i] + "&" : "&");
+								callbackQueryString += (hasVal ? "=" + x.getValue()[i] + "&" : "&");
 							}
 						}
 						callbackQueryString = callbackQueryString.substring(0, callbackQueryString.length()-1);

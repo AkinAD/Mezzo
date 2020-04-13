@@ -558,6 +558,7 @@
 										<div class="col-12 col-sm-6 col-lg-4">
 											<div class="single-product-wrapper">
 												<!-- Product Image -->
+												<a href="${pageContext.request.contextPath}/ProductPage?aid=${current.value[0]}">
 												<div class="product-img">
 													<img src="${myurl}" alt="" />
 													<!-- Hover Thumb -->
@@ -567,13 +568,14 @@
 														<a href="#" class="favme fa fa-heart">.</a>
 													</div>
 												</div>
+												</a>
 												<!-- Product Description -->
 												<div class="product-description">
 													<span>${current.value[1]}</span> <a
-														href="single-product-details.html">
+														href="${pageContext.request.contextPath}/ProductPage?aid=${current.value[0]}">
 														<h6>${current.value[2]}</h6>
 													</a>
-													<p class="product-price">$${current.value[4]}</p>
+													<p class="product-price"><f:setLocale value="en_CA"/><f:formatNumber value="${current.value[4]}" type="currency"/></p>
 													<!-- Hover Content -->
 													<div class="hover-content">
 														<!-- Add to Cart -->

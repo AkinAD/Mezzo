@@ -72,6 +72,11 @@ public class MusicStore {
 			throw new IllegalArgumentException();
 		}
 		
+		System.out.println(aid);
+		System.out.println(sanitUser);
+		System.out.println(rating);
+		System.out.println(sanitRev);		
+		
 		int revCreated = revDao.createReview(aid, sanitUser, rating, sanitRev);
 		if (revCreated != 1) {
 			System.err.println("wtf yo " + revCreated + " reviews created"); // "Proper" error logging
