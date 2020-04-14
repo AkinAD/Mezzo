@@ -154,4 +154,28 @@ public class ShoppingCart {
 		return this.getAlbum(aid).getPicture();
 	}
 	*/
+	
+	/**
+	 * 
+	 * @param AID album id of an album.
+	 * @return the unit price * quantity of the given album in cart.
+	 */
+	public float getPricePerQuan(int aid){
+		float totalPrice = 0;
+		Album alb;
+		try {
+			if(albums.containsKey(aid)){
+				alb = albumInfo.retrieveAlbum(aid);
+				totalPrice = alb.getPrice() * albums.get(aid);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return totalPrice;
+	}
+	
+	public void emptyCart(){
+		this.albums.clear();
+	}
 }

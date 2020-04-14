@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.ShoppingCart;
 
 /**
  * Servlet implementation class Mezzo
@@ -29,6 +32,19 @@ public class Mezzo extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getRequestDispatcher("/Home.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		try {
+			SessionManagement.bindCart(session, new ShoppingCart());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// Get cart object.
+		ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+		// Clear shopping cart.
+				cart.emptyCart();
+				request.getSession().setAttribute("cart", cart);
+		
 
 	}
 

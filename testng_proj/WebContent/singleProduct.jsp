@@ -130,7 +130,7 @@
 	<!-- Review Section -->
 	<section class="reviewBox">
 		<div class="otherReviews">
-			<span class="heading">User Revies</span>
+			<span class="heading">User Reviews</span>
 			 <span class="fa fa-star checked">&#160;</span> 
 			 <span class="fa fa-star checked">&#160;</span>
 			<span class="fa fa-star checked">&#160;</span>

@@ -15,8 +15,9 @@ public class POItemDAO {
 
 	public POItemDAO() throws ClassNotFoundException {
 		try {
-			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/EECS");
-		} catch (NamingException e) {
+			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
+//			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413"); // USE THIS TO DEBUG LOCALLY		
+			} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
