@@ -31,8 +31,7 @@
 			</div>
 			<div class="back">
 				<div>
-					<img class="profilephoto"
-						src="${pageContext.request.contextPath}/res/img/core-img/pp.jpg" />
+					<img class="profilephoto"				src="${pageContext.request.contextPath}/res/img/core-img/pp.jpg" />
 					<p>${requestScope.CurProfile.lname}, ${requestScope.CurProfile.fname}</p>
 					<p>Username: ${requestScope.CurProfile.userName} AccessLevel: ${requestScope.CurProfile.privilege}</p>
 					<form action="profile" method="get"><button class="button">Go to Profile</button></form>
