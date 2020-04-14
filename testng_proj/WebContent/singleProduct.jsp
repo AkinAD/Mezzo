@@ -90,54 +90,152 @@
 				</div>
 			</form>
 			<!-- #### START Leave a review Section -->
-		<div class="d-flex align-items-center">
-		<h6>Rate this Album!</h6> 
-		<div>
-		<form action="" method="get" >
-				<div class="rating">
-					<input type="radio" name="rating" id="r1" class="star"/>
-					<label for="r1"><!-- Some content here  --></label> 
-					
-					<input type="radio" name="rating" id="r2" class="star"/>
-					<label for="r2"><!-- Some content here  --></label>
-					
-					<input type="radio" name="rating" id="r3" class="star"/>
-					<label for="r3"><!-- Some content here  --></label>
+			<div class="d-flex align-items-center">
+				<h6>Rate this Album!</h6>
+				<div>
+					<form action="" method="get">
+						<div class="rating">
+							<input type="radio" name="rating" id="r1" class="star" /> <label
+								for="r1">
+								<!-- Some content here  -->
+							</label> <input type="radio" name="rating" id="r2" class="star" /> <label
+								for="r2">
+								<!-- Some content here  -->
+							</label> <input type="radio" name="rating" id="r3" class="star" /> <label
+								for="r3">
+								<!-- Some content here  -->
+							</label> <input type="radio" name="rating" id="r4" class="star" /> <label
+								for="r4">
+								<!-- Some content here  -->
+							</label> <input type="radio" name="rating" id="r5" class="star" /> <label
+								for="r5">
+								<!-- Some content here  -->
+							</label>
+							<div class="rev-box">
+								<h6 class="review" for="review">Leave a Review!</h6>
+								<TEXTAREA class="review" col="60" rows="100" name="review"
+									placeholder="Great Tracks!">Great Tracks!</TEXTAREA>
+								<button class="btn essence-btn">Submit</button>
+							</div>
 
-					<input type="radio" name="rating" id="r4" class="star"/>
-					<label for="r4"><!-- Some content here  --></label> 
-					
-					<input type="radio" name="rating" id="r5" class="star"/>
-					<label for="r5"><!-- Some content here  --></label>
-					<div class="rev-box">
-						<h6 class="review" for="review">Leave a Review!</h6>
-						<TEXTAREA  class="review" col="60"  rows="100" name="review" placeholder="Great Tracks!">Great Tracks!</TEXTAREA >	
-						<button class="btn essence-btn">Submit</button>
-					</div>
-					
-				</div>		
-		</form>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- #### END Leave a review Section -->
 		</div>
-	</div>
-	<!-- #### END Leave a review Section -->
-	</div>
 	</section>
 	<!-- ##### Single Product Details Area End ##### -->
-
-		<!-- ##### Footer Area Start ##### -->
+	<br/><br/>
+	<!-- Review Section -->
+	<section class="reviewBox">
+		<div class="otherReviews">
+			<span class="heading">User Revies</span>
+			 <span class="fa fa-star checked">&#160;</span> 
+			 <span class="fa fa-star checked">&#160;</span>
+			<span class="fa fa-star checked">&#160;</span>
+			<span class="fa fa-star checked">&#160;</span>
+			<span class="fa fa-star">&#160;</span>
+			<p>4.1 average based on 254 reviews.</p>
+			<hr style="border: 3px solid #f1f1f1"/>
+			<div class="revRow">
+				<div class="side">
+					<div>5 star</div>
+				</div>
+				<div class="middle">
+					<div class="bar-container">
+						<div class="bar-5">&#160;</div>
+					</div>
+				</div>
+				<div class="side right">
+					<div>150</div>
+				</div>
+				<div class="side">
+					<div>4 star</div>
+				</div>
+				<div class="middle">
+					<div class="bar-container">
+						<div class="bar-4">&#160;</div>
+					</div>
+				</div>
+				<div class="side right">
+					<div>63</div>
+				</div>
+				<div class="side">
+					<div>3 star</div>
+				</div>
+				<div class="middle">
+					<div class="bar-container">
+						<div class="bar-3">&#160;</div>
+					</div>
+				</div>
+				<div class="side right">
+					<div>15</div>
+				</div>
+				<div class="side">
+					<div>2 star</div>
+				</div>
+				<div class="middle">
+					<div class="bar-container">
+						<div class="bar-2">&#160;</div>
+					</div>
+				</div>
+				<div class="side right">
+					<div>6</div>
+				</div>
+				<div class="side">
+					<div>1 star</div>
+				</div>
+				<div class="middle">
+					<div class="bar-container">
+						<div class="bar-1">&#160;</div>
+					</div>
+				</div>
+				<div class="side right">
+					<div>20</div>
+				</div>
+			</div>
+			<br/> <br/>
+			<hr style="border: 3px solid #f1f1f1"/>
+			<!-- Individual Reviews begin here  -->
+			<div class="revRow">
+				<div class="side">
+					<img alt="" src="https://i.pinimg.com/564x/d8/69/66/d86966ce8d5c7e12cfc40b18da788d1b.jpg" style=" max-width: 50%;"/>
+					<div> AlanT says</div>
+				</div>
+				<div class="middle">
+					" All time Classic!"
+				</div>
+				<div class="side right">
+					<div>5<span class="fa fa-star checked">&#160;</span> <span class="fa fa-star checked">&#160;</span> <span class="fa fa-star checked">&#160;</span><span class="fa fa-star checked">&#160;</span> <span class="fa fa-star checked">&#160;</span> </div> 
+				</div>
+			
+			</div>
+		</div>
+	</section>
+<br/>
+	<!-- ##### Footer Area Start ##### -->
 	<jsp:include page="footer.jsp" />
 	<!-- ##### Footer Area End ##### -->
 
 	<!-- jQuery (Necessary for All JavaScript Plugins) -->
 	<script
-		src="${pageContext.request.contextPath}/res/js/jquery/jquery-2.2.4.min.js">;</script>
+		src="${pageContext.request.contextPath}/res/js/jquery/jquery-2.2.4.min.js">
+		;
+	</script>
 	<!-- Popper js -->
-	<script src="${pageContext.request.contextPath}/res/js/popper.min.js">;</script>
+	<script src="${pageContext.request.contextPath}/res/js/popper.min.js">
+		;
+	</script>
 	<!-- Bootstrap js -->
 	<script
-		src="${pageContext.request.contextPath}/res/js/bootstrap.min.js">;</script>
+		src="${pageContext.request.contextPath}/res/js/bootstrap.min.js">
+		;
+	</script>
 	<!-- Plugins js -->
-	<script src="${pageContext.request.contextPath}/res/js/plugins.js">;</script>
+	<script src="${pageContext.request.contextPath}/res/js/plugins.js">
+		;
+	</script>
 	<!-- Classy Nav js -->
 	<script
 		src="${pageContext.request.contextPath}/res/js/classy-nav.min.js">;</script>

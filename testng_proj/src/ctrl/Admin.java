@@ -3,6 +3,8 @@ package ctrl;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -11,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.ProfileBean;
 import model.MusicStore;
+import model.UserModel;
 
 /**
  * Servlet implementation class Admin
@@ -26,6 +30,8 @@ public class Admin extends HttpServlet {
 	private String price = "price";
 	private String url = "url";
 	private String error = "";
+	private static final String CUR_PROFILE = "CurProfile";
+
 
 	
     /**
@@ -41,10 +47,13 @@ public class Admin extends HttpServlet {
 		super.init(config);
 		try {
 			this.getServletContext().setAttribute("MS", MusicStore.getInstance());
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.getServletContext().setAttribute("UM", UserModel.getInstance());
+
 	}   
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +61,18 @@ public class Admin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
+		String curUsername = SessionManagement.getBoundUsername(request.getSession());
+		Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
+		try {
+			data = uModel.retrieveAccountByUsername(curUsername);
+			ProfileBean curProfile = data.values().iterator().next();
+			request.setAttribute(CUR_PROFILE, curProfile);
+		} catch (Exception e) {
+			response.sendError(500); // This is probably our fault
+			e.printStackTrace();
+		}		
+
 		if(request.getParameter("addAlbum") == null)
 		{
 			// DO NOTHING

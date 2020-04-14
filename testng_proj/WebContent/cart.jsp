@@ -42,7 +42,7 @@
 						class="cart-thumb" alt="" /> <!-- Cart Item Desc -->
 						<div class="cart-item-desc">
 							<span class="product-remove"><i class="fa fa-close"
-								aria-hidden="true"> <!--  Some content -->.
+								aria-hidden="true"> <!--  Some content -->&#160; 
 							</i></span><span class="badge">Mango</span>
 							<h6>Button Through Strap Mini Dress</h6>
 							<p class="color">Color: Red</p>
@@ -66,7 +66,7 @@
 						class="cart-thumb" alt="" /> <!-- Cart Item Desc -->
 						<div class="cart-item-desc">
 							<span class="product-remove"><i class="fa fa-close"
-								aria-hidden="true"> <!--  Some content -->.
+								aria-hidden="true"> <!--  Some content -->&#160; 
 							</i></span> <span class="badge">Mango</span>
 							<h6>Button Through Strap Mini Dress</h6>
 							<!-- <p class="size">Size: S</p> -->
@@ -91,7 +91,7 @@
 						class="cart-thumb" alt="" /> <!-- Cart Item Desc -->
 						<div class="cart-item-desc">
 							<span class="product-remove"><i class="fa fa-close"
-								aria-hidden="true"> <!--  Some content -->.
+								aria-hidden="true"> <!--  Some content -->&#160; 
 							</i></span> <span class="badge">Mango</span>
 							<h6>Button Through Strap Mini Dress</h6>
 							<!-- <p class="size">Size: S</p> -->

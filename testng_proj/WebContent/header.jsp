@@ -33,7 +33,7 @@
 					<!-- close btn -->
 					<div class="classycloseIcon">
 						<div class="cross-wrap">
-							<span class="top"><!-- content --></span><span class="bottom"><!-- content --></span>
+							<span class="top">&#160; </span><span class="bottom"><!-- content --></span>
 						</div>
 					</div>
 					<!-- Nav Start -->
@@ -93,7 +93,7 @@
 						<input type="search" name="search" id="headerSearch"
 							placeholder="Type for search"/>
 						<button type="submit">
-							<i class="fa fa-search" aria-hidden="true"><!--  Some content -->.</i>
+							<i class="fa fa-search" aria-hidden="true"><!--  Some content -->&#160;</i>
 						</button>
 					</form>
 				</div>
