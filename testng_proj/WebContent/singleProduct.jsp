@@ -95,22 +95,16 @@
 				<div>
 					<form action="" method="get">
 						<div class="rating">
-							<input type="radio" name="rating" id="r1" class="star" /> <label
-								for="r1">
-								<!-- Some content here  -->
-							</label> <input type="radio" name="rating" id="r2" class="star" /> <label
-								for="r2">
-								<!-- Some content here  -->
-							</label> <input type="radio" name="rating" id="r3" class="star" /> <label
-								for="r3">
-								<!-- Some content here  -->
-							</label> <input type="radio" name="rating" id="r4" class="star" /> <label
-								for="r4">
-								<!-- Some content here  -->
-							</label> <input type="radio" name="rating" id="r5" class="star" /> <label
-								for="r5">
-								<!-- Some content here  -->
-							</label>
+							<input type="radio" name="rating" id="r1" class="star" />
+							 <label for="r1">&#160;</label>
+							  <input type="radio" name="rating" id="r2" class="star" />
+							   <label for="r2">&#160;</label> 
+							   <input type="radio" name="rating" id="r3" class="star" /> 
+							   <label for="r3"> &#160;</label>
+							   <input type="radio" name="rating" id="r4" class="star" /> 
+							   <label for="r4">&#160;</label> 
+							   <input type="radio" name="rating" id="r5" class="star" /> 
+							   <label for="r5">&#160; </label>
 							<div class="rev-box">
 								<h6 class="review" for="review">Leave a Review!</h6>
 								<TEXTAREA class="review" col="60" rows="100" name="review"

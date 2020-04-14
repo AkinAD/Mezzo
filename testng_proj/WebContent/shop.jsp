@@ -214,7 +214,7 @@
 												</div>
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart">.</a>
+													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
 
@@ -253,7 +253,7 @@
 
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart">.</a>
+													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
 
@@ -295,7 +295,7 @@
 
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart">.</a>
+													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
 
@@ -332,7 +332,7 @@
 
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart">.</a>
+													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
 
@@ -374,7 +374,7 @@
 
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart">.</a>
+													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
 
@@ -413,7 +413,7 @@
 
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart">.</a>
+													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
 
@@ -455,7 +455,7 @@
 
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart">.</a>
+													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
 
@@ -492,7 +492,7 @@
 
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart">.</a>
+													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
 
@@ -565,7 +565,7 @@
 													<img class="hover-img" src="${myurl}" alt="" />
 													<!-- Favourite -->
 													<div class="product-favourite">
-														<a href="#" class="favme fa fa-heart">.</a>
+														<a href="#" class="favme fa fa-heart">&#160;</a> <!-- getuser.addfavorite -->
 													</div>
 												</div>
 												</a>

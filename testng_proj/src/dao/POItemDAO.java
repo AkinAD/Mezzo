@@ -95,6 +95,38 @@ public class POItemDAO {
 	}
 
 	/**
+	 * Returns a map of orders of an album and the corresponding POItem
+	 * @param aid
+	 * @return
+	 * @throws SQLException
+	 */
+	public Map<String, POItemBean> retrievePOItemWithAlbum(int aid) throws SQLException {
+		String query = "SELECT PO_ID, AID, QUANTITY FROM POITEM WHERE AID = ?";
+		Map<String, POItemBean> returnValue = new TreeMap<String,POItemBean>();
+
+		Connection con = this.ds.getConnection();
+		
+		PreparedStatement p = con.prepareStatement(query);
+		p.setInt(1, aid);
+		
+		ResultSet r = p.executeQuery();
+		
+		while (r.next()) {
+			String PO_id = r.getString("PO_ID");
+			String bid = r.getString("AID");
+			int quantity = r.getInt("QUANTITY");
+			POItemBean curItem = new POItemBean(PO_id, bid, quantity);
+			returnValue.put(PO_id, curItem);
+		}
+		
+		r.close();
+		p.close();
+		con.close();
+		
+		return returnValue;
+	}
+
+	/**
 	 * Return books with sold quantity that has been ordered in this period (from
 	 * start to end)
 	 * 
