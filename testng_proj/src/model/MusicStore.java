@@ -42,9 +42,6 @@ public class MusicStore {
 		return alDao.retrieveAll(aid);
 	}
 	
-	public Map<String, Album> retrieveAlbum(int aid) throws Exception {
-		return retrievAlbum(aid);
-	}
 	
 	public Map<String, ReviewBean> retrieveReviews(int aid) throws Exception {
 		if (aid < 0 || aid > 10000) {
