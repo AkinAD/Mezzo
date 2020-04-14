@@ -65,7 +65,7 @@
 				<!-- <div class="location"></div>-->
 				<div class="bottom">
 					<div class="cust">
-						<i class="material-icons">Person</i> <span class="user">I'm so horny</span>
+						<i class="material-icons">Person</i> <span class="user">${requestScope.CurProfile.privilege}</span>
 					</div>
 					<div class="cust">
 						<i class="material-icons">Email</i> <span class="email"><c:out
