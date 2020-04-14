@@ -91,7 +91,7 @@
 			</form>
 			<!-- #### START Leave a review Section -->
 		<div class="d-flex align-items-center">
-		<h6>Rate this Album!</h6>
+		<h6>Rate this Album!</h6> 
 		<div>
 		<form action="" method="get" >
 				<div class="rating">
