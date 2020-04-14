@@ -35,11 +35,11 @@
 	<div class="shadow overflow">
 
 		<div id="header">
-			<a href="home" class="description rturn"> <i
+			<!-- <a href="home" class="description rturn"> <i
 				class="material-icons"
 				style="text-align: center; position: relative; top: 0.3rem;">keyboard_backspace</i>To
 				Store
-			</a> <SPAN></SPAN>
+			</a> <SPAN></SPAN> -->
 		</div>
 		<div id="profile">
 			<div class="image">
@@ -48,6 +48,14 @@
 					alt="" />
 				<!-- https://i.pinimg.com/originals/4d/81/0b/4d810b426c6fc385df7cdeb53ae69f93.jpg  -->
 			</div>
+			<!-- Below is for testing  -->
+			<!-- <div class="name">Daft Punk</div>
+			<div class="nickname">@daftpunk</div>
+			<div class="location">
+				<i class="materizal-icons">place</i>Europe
+			</div> -->
+			<!-- Above is for testing  -->
+
 			<c:forEach var="current" items="${profile}">
 				<div class="name">
 					<c:out value="${current.key}" />
@@ -68,11 +76,55 @@
 					</div>
 				</div>
 			</c:forEach>
-			<a href="logout" class="btn essence-btn">
-				<i class="material-icons"
-					style="font-size: 1rem; position: relative; top: 0.2rem;">logout</i>
+
+			<h5>
+				Billing Details 
+				<a href="billing" class="btn essence-btn small-btn"> Update Address</a>
+			</h5>
+			
+			<c:forEach var="current" items="${Billing}">
+				<FORM action="">
+					<div>
+						<div>	
+							<label for="street"><h6>Street</h6></label> 
+							<input type="text" name="street" value="7538 Old Maple Drive" /> 
+						</div>	
+						<div>
+							<label for="city"><h6>City</h6></label> 
+							<input type="text" name="city" value="Bloomfield" /> 
+						</div>	
+						<div>
+							<label for="state-province"><h6>Province</h6></label> 
+							<input type="text" name="state-province" value="NJ " /> 
+						</div>	
+						<div>
+							<label for="postal"><h6>Postal Code</h6></label>
+							<input type="text" name="postal" value="07003" />
+						</div>	
+						<div>
+							<label for="phone"><h6>Phone Number</h6></label>
+							<input type="text" name="phone" value="08076234173" />
+						</div>	
+			
+					</div>
+				</FORM>
+			<!--  use case -->
+					<c:out value="${current.key}" />
+					<c:out value="${current.value[0]}" />
+					<c:out value="${current.value[1]}" />
+					<c:out value="${current.value[2]}" />
+					<c:out value="${current.value[3]}" />
+					<c:out value="${current.value[4]}" />
+			</c:forEach>
+
+
+
+			<a href="logout" class="btn essence-btn"> <i
+				class="material-icons"
+				style="font-size: 1rem; position: relative; top: 0.2rem;">logout</i>
 				Log out
 			</a>
+
 
 		</div>
 
