@@ -91,6 +91,10 @@ public class AuthFilter implements Filter {
 		pathAccessMatrix.put("/admin", adminAccess);
 		pathAccessMatrix.put("/Admin", adminAccess);
 		
+		List<String> authenticatedAccess = new ArrayList<String>();
+		pathAccessMatrix.put("/profile", authenticatedAccess);
+		pathAccessMatrix.put("/Profile", authenticatedAccess);
+		
 		// Access controlled paths require auth
 		// Fail-unsafe default
 		boolean accessControlledPath = pathAccessMatrix.containsKey(httpReq.getServletPath());
@@ -117,7 +121,7 @@ public class AuthFilter implements Filter {
 				System.out.println("AuthFilter: " + curUser.getUserName() + " requested endpoint " + httpReq.getServletPath());
 				System.out.println("AuthFilter: " + curUser.getUserName() + " is " + curUser.getPrivilege());
 				System.out.println("AuthFilter: " + httpReq.getServletPath() + " allows " + allowedGroups);
-				if (allowedGroups.contains(curUser.getPrivilege())) {
+				if (allowedGroups.isEmpty() || allowedGroups.contains(curUser.getPrivilege())) {
 					System.out.println("AuthFilter: Access Granted");
 					chain.doFilter(request, response);
 				} else {
@@ -146,7 +150,7 @@ public class AuthFilter implements Filter {
 	/**
 	 * Serializes authorization requests for handover to client.
 	 * Supposed to produce tokens, but we ran out of time.
-	 * This presents an XSRF risk
+	 * This presents a CSRF risk
 	 * 
 	 * @author alanyork
 	 *

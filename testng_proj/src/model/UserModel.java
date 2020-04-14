@@ -5,13 +5,14 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import bean.AccountBean;
+import bean.AddressBean;
 import bean.ProfileBean;
+import dao.AddressDAO;
 import dao.UserDAO;
 
 /**
  * 
  * @author akinad1
- * @author alanyork
  *
  */
 public class UserModel {
@@ -23,10 +24,12 @@ public class UserModel {
 	
 	private static String Error = "";
 	private UserDAO userDao;
+	private AddressDAO addressDao;
 	
 	public UserModel() {
 		try {
 			this.userDao = new UserDAO();
+			this.addressDao = new AddressDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -107,6 +110,63 @@ public class UserModel {
 		return userDao.retrieveByEmail(email);
 	}
 	
+	public AddressBean retrieveBillingAddressByUsername(String username) throws Exception {
+		if (username.length() < 2 || username.equals("")) {
+			Error = "Sorry, this is not a valid username";
+			throw new IllegalArgumentException();
+		}
+		Error="";
+		return addressDao.retrieveBillingAddr(username);
+	}
+	
+	/**
+	 * 
+	 * @param username
+	 * @param street
+	 * @param province
+	 * @param country
+	 * @param zip
+	 * @param phone
+	 * May be null or empty
+	 * @throws Exception
+	 */
+	public void updateBillingAddressByUsername(String username, String street, String province, String country, String zip, String phone) throws Exception {
+		if (username.length() < 2 || username.equals("")) {
+			Error = "Sorry, this is not a valid username";
+			throw new IllegalArgumentException();
+		} else if (street == null || street.isEmpty() || street.length() > 100) {
+			Error = "Invalid entry";
+			throw new IllegalArgumentException();
+		} else if (province == null || province.isEmpty() || province.length() > 25) {
+			Error = "Invalid entry";
+			throw new IllegalArgumentException();
+		} else if (country == null || country.isEmpty() || country.length() > 24) {
+			Error = "Invalid entry";
+			throw new IllegalArgumentException();
+		} else if (zip == null || zip.isEmpty() || zip.length() > 20) {
+			Error = "Invalid entry";
+			throw new IllegalArgumentException();
+		} else if (!(phone == null || phone.isEmpty()) && phone.length() > 20) {
+			Error = "Invalid entry";
+			throw new IllegalArgumentException();
+		}
+		Error="";
+		
+		AddressBean curAddr = retrieveBillingAddressByUsername(username);
+		
+		curAddr.setStreet(street);
+		curAddr.setProvince(province);
+		curAddr.setCountry(country);
+		curAddr.setZip(zip);
+		if (phone != null && !phone.isEmpty()) {
+			curAddr.setPhone(phone);
+		} else {
+			curAddr.setPhone("");
+		}
+		
+		addressDao.updateAddr(curAddr);
+	}
+	
 	private boolean isUniqueEmail(String email) {
 		try {
 			return userDao.uniqueEmail(email);
@@ -153,6 +213,9 @@ public class UserModel {
 	 * @return
 	 * Returns null if invalid input, else poorly sanitizes for SQL injection.
 	 * Why doesn't it work? Because I'm dumb, lazy and the CompSec program here is garbo.
+	 * 
+	 * @author alanyork
+	 * 
 	 */
 	private static String sanitizeForSql(String input) {
 		String returnPrefix = input;

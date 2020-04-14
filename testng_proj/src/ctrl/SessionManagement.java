@@ -16,6 +16,7 @@ public class SessionManagement {
 	
 	public static void unbindUser(HttpSession session) {
 		session.removeAttribute(MEZZO_USERNAME);
+		session.invalidate();
 	}
 	
 	public static String getBoundUsername(HttpSession session) {

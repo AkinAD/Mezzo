@@ -56,67 +56,52 @@
 			</div> -->
 			<!-- Above is for testing  -->
 
-			<c:forEach var="current" items="${profile}">
 				<div class="name">
-					<c:out value="${current.key}" />
+					${requestScope.CurProfile.lname}, ${requestScope.CurProfile.fname}
 				</div>
 				<div class="nickname">
-					Username:
-					<c:out value="${current.value[0]}" />
+					${requestScope.CurProfile.userName}
 				</div>
-				<div class="location"></div>
+				<!-- <div class="location"></div>-->
 				<div class="bottom">
 					<div class="cust">
-						<i class="material-icons">person</i> <span class="user"><c:out
-								value="${current.value[4]}" /> </span>
+						<i class="material-icons">Person</i> <span class="user">I'm so horny</span>
 					</div>
 					<div class="cust">
-						<i class="material-icons">email</i> <span class="email"><c:out
-								value="${current.value[3]}" /> </span>
+						<i class="material-icons">Email</i> <span class="email"><c:out
+								value="${requestScope.CurProfile.email}" /> </span>
 					</div>
 				</div>
-			</c:forEach>
 
-			<h5>
-				Billing Details 
-				<a href="billing" class="btn essence-btn small-btn"> Update Address</a>
-			</h5>
+			<h5>Billing Details</h5>
 			
-			<c:forEach var="current" items="${Billing}">
-				<FORM action="">
+				<FORM action="profile" method="POST">
+					<fieldset>
 					<div>
 						<div>	
-							<label for="street"><h6>Street</h6></label> 
-							<input type="text" name="street" value="7538 Old Maple Drive" /> 
+							<label for="street"><h6>Street, City</h6></label> 
+							<input type="text" name="street" value="${requestScope.BillAddr.street}" maxlength="100" required="required"/> 
 						</div>	
 						<div>
-							<label for="city"><h6>City</h6></label> 
-							<input type="text" name="city" value="Bloomfield" /> 
+							<label for="province"><h6>Province</h6></label> 
+							<input type="text" name="province" value="${requestScope.BillAddr.province}" maxlength="25" required="required"/> 
 						</div>	
 						<div>
-							<label for="state-province"><h6>Province</h6></label> 
-							<input type="text" name="state-province" value="NJ " /> 
+							<label for="country"><h6>Country</h6></label> 
+							<input type="text" name="country" value="${requestScope.BillAddr.country}"  maxlength="24" required="required"/> 
 						</div>	
 						<div>
 							<label for="postal"><h6>Postal Code</h6></label>
-							<input type="text" name="postal" value="07003" />
+							<input type="text" name="postal" value="${requestScope.BillAddr.zip}" maxlength="20" required="required"/>
 						</div>	
 						<div>
 							<label for="phone"><h6>Phone Number</h6></label>
-							<input type="text" name="phone" value="08076234173" />
-						</div>	
-			
+							<input type="tel" name="phone" value="${requestScope.BillAddr.phone}" maxlength="20"/>
+						</div>			
 					</div>
+					</fieldset>
+					<button class="btn essence-btn small-btn">Update Address</button>
 				</FORM>
-			<!--  use case -->
-					<c:out value="${current.key}" />
-					<c:out value="${current.value[0]}" />
-					<c:out value="${current.value[1]}" />
-					<c:out value="${current.value[2]}" />
-					<c:out value="${current.value[3]}" />
-					<c:out value="${current.value[4]}" />
-			</c:forEach>
-
 
 
 			<a href="logout" class="btn essence-btn"> <i

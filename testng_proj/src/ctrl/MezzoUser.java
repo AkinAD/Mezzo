@@ -30,11 +30,12 @@ import model.UserModel;
  */
 @WebServlet({"/Login", "/Register", "/login", "/register", "/logout", "/Logout"})
 public class MezzoUser extends HttpServlet {
-	private static final String SERIALIZED_CALLBACK = "serializedCallback";
 	private static final long serialVersionUID = 1L;
 	// Copying all the input parameters in to local variables
-	private static String LoginReg = "/LoginReg.jsp";
-	private static String Profile = "/profile.jsp";
+	private static final String LoginReg = "/LoginReg.jsp";
+	private static final String Profile = "/profile";
+	
+	
 
 	public MezzoUser() {
 		super();
@@ -52,30 +53,35 @@ public class MezzoUser extends HttpServlet {
 	// We ran out of time to fix this
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		// Retrieve callback for auth challenge login flow
 		String callbackParam = request.getParameter(AuthFilter.CALLBACK_PARAM);
 		if (request.getParameter(AuthFilter.CALLBACK_PARAM) != null) {
-			// Access control challenge flow
-			// Lel XSS
+			// Lel CSRF
 			AuthFilter.AuthCauseDeserializer callbackDeser = new AuthCauseDeserializer(callbackParam);
 			callbackParam = (new AuthFilter.AuthCauseSerializer(callbackDeser.getCause(), callbackDeser.getParams())).serialize();
-			request.setAttribute(SERIALIZED_CALLBACK, callbackParam);
 		}
 		
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		if (request.getServletPath() == "/logout")
-		{
+		System.out.println("MezzoUser: Params: " + request.getParameterNames().toString());
+		System.out.println("MezzoUser: Request URI: " + request.getRequestURI());
+		System.out.println("MezzoUser: Username: " + request.getParameter("username"));
+		
+		
+		// We ran out of time to add CSRF tokens
+		if (request.getServletPath().equals("/logout") || request.getServletPath().equals("/Logout")) {
+			// Logout
 			SessionManagement.unbindUser(request.getSession());
-		}
-		
-		System.out.println("Enter Doget");
-		System.out.println("Params " + request.getParameterNames().toString());
-		System.out.println("Request URI: " + request.getRequestURI() );
-		System.out.println("USERNAME: " + request.getParameter("username"));
-		if (request.getParameter("signup") == null && request.getParameter("signin") == null) {
+			response.sendRedirect(request.getServletContext().getContextPath()+"/home");
+			
+		} else if (request.getParameter("signup") == null && request.getParameter("signin") == null) {
+			// Registration/auth form
 			request.getRequestDispatcher(LoginReg).forward(request, response);
-			System.out.println("LOADING SIGN IN/ SIGN UP PAGE");
-		} 
-		else if (request.getParameter("signin") == null && (request.getParameter("signup")!= null || request.getParameter("signup").equals("Register"))) {
+			System.out.println("MezzoUser: LOADING SIGN IN/ SIGN UP PAGE");
+			
+		} else if (request.getParameter("signin") == null && (request.getParameter("signup")!= null || request.getParameter("signup").equals("Register"))) {
+			// Registration submission
+			
 			String fname = request.getParameter("fname");
 			String lname = request.getParameter("lname");
 			String email = request.getParameter("email");
@@ -84,42 +90,53 @@ public class MezzoUser extends HttpServlet {
 
 			//MusicStore MS = (MusicStore) this.getServletContext().getAttribute("MS");
 			UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
-			System.out.println("THIS SHOULD ONLY PRINT ONCE");
+			//System.out.println("THIS SHOULD ONLY PRINT ONCE");
+			
+			// Add the user to the data store
 			try {
 				uModel.registerUser(fname, lname, username, email, password);
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("FAILED TO REGISTER USER: " + uModel.getError());
+				System.out.println("MezzoUser: FAILED TO REGISTER USER" + uModel.getError());
 			}
 			Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 			Map<String, List<String>> profile = new HashMap<String, List<String>>();
 
+			// Verify the user has been added to the data store
 			try {
 				data = uModel.retrieveAccountByUsername(username);
 			} catch (Exception e) {
-				System.out.println("Failure to populate user.. goodluck tracing this one");
+				System.out.println("MezzoUser: Failure to populate user.. goodluck tracing this one");
 				e.printStackTrace();
 			}
-				// this the part where you display error. or do nothing tbh
+			
+			// this the part where you display error. or do nothing tbh
 			if (uModel.getError().equals("")) {
+				// Successful registration
 				profile = populateUser(data);
 				request.setAttribute("profile", profile);
 				request.setAttribute("error", uModel.getError());
-
-				request.getRequestDispatcher(Profile).forward(request, response);
+				SessionManagement.bindUser(request.getSession(), data.values().iterator().next().getUserName());
+				//request.getRequestDispatcher(Profile).forward(request, response);
+				response.sendRedirect(request.getServletContext().getContextPath()+Profile);
 			} else {
+				// Unsuccessful registration
 				request.setAttribute("error", uModel.getError());
 				request.getRequestDispatcher(LoginReg).forward(request, response);
-				System.out.println("there Was an Error in Register: ##");
+				System.out.println("MezzoUser: there Was an Error in Register: ##");
 				System.out.println(uModel.getError());
 			}
 		}
 		
 		else if (request.getParameter("signup") == null && (request.getParameter("signin")!= null || request.getParameter("signin").equals("Login"))) {
+			// Login submission
+			
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
+			
 			//MusicStore MS = (MusicStore) this.getServletContext().getAttribute("MS");
 			UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
+			
 			Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 			Map<String, List<String>> profile = new HashMap<String, List<String>>();
 
@@ -127,25 +144,34 @@ public class MezzoUser extends HttpServlet {
 				data = uModel.loginUser(username, password);
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("FAILED TO LOGIN USER: " + uModel.getError());
+				System.out.println("MezzoUser: FAILED TO LOGIN USER: " + uModel.getError());
 			}
 			if (uModel.getError().equals("")) {
+				// Successful login
+				
 				String curLoggedUser = data.values().iterator().next().getUserName();
 				SessionManagement.bindUser(request.getSession(), curLoggedUser);
 				
 				if (callbackParam != null && !callbackParam.isEmpty()) {
-					// Access control challenge login
+					// Access control challenge flow
+
+					// Return to callback					
 					AuthFilter.AuthCauseDeserializer callbackDeserial = new AuthFilter.AuthCauseDeserializer(callbackParam);
 					String callbackEndpoint = callbackDeserial.getCause();
-					String callbackQueryString = "?";
+					String callbackQueryString = "";
 					if (callbackDeserial.getParams() != null) {
-						// Reintroduce the params from the auth cause
+						// Generate a query string if necessary
+						// I am bad at string manipulation, don't blame me for ugly code
+						callbackQueryString+="?";
 						for (Entry<String, String[]> x : callbackDeserial.getParams().entrySet()) {
+							// For each parameter
 							callbackQueryString += x.getKey();
 							boolean hasVal = (x.getValue() != null && x.getValue().length > 0);
 							hasVal = hasVal && x.getValue()[0] != null && !x.getValue()[0].isEmpty();
 							callbackQueryString += (hasVal ? "=" + x.getValue()[0] + "&" : "&");
+							
 							for (int i=1; x.getValue() != null && i<x.getValue().length; i++) {
+								// For each subsequent value
 								callbackQueryString += x.getKey();
 								hasVal = x.getValue()[i] != null && !x.getValue()[i].isEmpty();
 								callbackQueryString += (hasVal ? "=" + x.getValue()[i] + "&" : "&");
@@ -156,27 +182,28 @@ public class MezzoUser extends HttpServlet {
 					String redirectPath = request.getServletContext().getContextPath();
 					redirectPath += callbackEndpoint;
 					redirectPath += callbackQueryString;
+					
 					response.sendRedirect(redirectPath);
-					
-					
 				} else {
-					// General login
+					// General login flow
 					profile = populateUser(data);
 					request.setAttribute("profile", profile);
 					request.setAttribute("error", uModel.getError());
-					request.getRequestDispatcher(Profile).forward(request, response);
+					//request.getRequestDispatcher(Profile).forward(request, response);
+					response.sendRedirect(request.getServletContext().getContextPath()+Profile);
 				}				
 				
 			} 
 			else {
-				request.setAttribute("error", uModel.getError());
-				System.out.println("there Was an Error in Log in : " + uModel.getError());
-				response.setStatus(403);
-				request.getRequestDispatcher(LoginReg).forward(request, response);
+				// Unsuccessful login
 				
+				request.setAttribute("error", uModel.getError());
+				System.out.println("MezzoUser: there Was an Error in Log in : " + uModel.getError());
+				response.setStatus(403);
+				request.getRequestDispatcher(LoginReg).forward(request, response);				
 			}
 		}
-		System.out.println("==== END DOGET ====");
+		System.out.println("MezzoUser: END DOGET ====");
 		
 
 	}
