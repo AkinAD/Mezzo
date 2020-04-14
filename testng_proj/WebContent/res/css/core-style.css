@@ -301,8 +301,7 @@ img {
 	background-color: #dc0345;
 }
 
-.small-btn
-{
+.small-btn {
 	min-width: 100px;
 }
 /* :: 4.0 Header Area CSS */
@@ -1214,101 +1213,156 @@ keyframes favme-anime { 0% {
 25%
 {
 opacity
+
+
 :
+
  
+
 .6
-;
 
-    
+
+;
 color
-:
- 
-#ffffff
-;
 
-    
-font-size
+
 :
+
  
+
+#ffffff
+
+
+;
+font-size
+
+
+:
+
+ 
+
 15
 px
-;
 
-    
+
+;
 -webkit-text-stroke-width
+
+
 :
+
  
+
 1
 px
-;
 
-    
--webkit-text-stroke-color
-:
- 
-#dc0345
+
 ;
+-webkit-text-stroke-color
+
+
+:
+
  
+
+#dc0345
+
+
+;
 }
 75%
 {
 opacity
+
+
 :
+
  
+
 .6
-;
 
-    
+
+;
 color
-:
- 
-#ffffff
-;
 
-    
-font-size
+
 :
+
  
+
+#ffffff
+
+
+;
+font-size
+
+
+:
+
+ 
+
 15
 px
-;
 
-    
+
+;
 -webkit-text-stroke-width
+
+
 :
+
  
+
 1
 px
-;
 
-    
--webkit-text-stroke-color
-:
- 
-#dc0345
+
 ;
+-webkit-text-stroke-color
+
+
+:
+
  
+
+#dc0345
+
+
+;
 }
 100%
 {
 opacity
+
+
 :
+
  
+
 1;
 font-size
+
+
 :
+
  
+
 14
 px
-;
 
-    
--webkit-text-stroke-color
-:
- 
-transparent
+
 ;
+-webkit-text-stroke-color
+
+
+:
+
  
+
+transparent
+
+
+;
 }
 }
 .pagination {
