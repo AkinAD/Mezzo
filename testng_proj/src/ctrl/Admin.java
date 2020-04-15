@@ -18,7 +18,7 @@ import bean.ProfileBean;
 import bean.POBean;
 import model.UserModel;
 import model.MusicStore;
-import model.Payment;
+//import model.Payment;
 import model.PurchaseOrder;
 
 /**
@@ -29,7 +29,7 @@ public class Admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MusicStore MS = null;
 	private PurchaseOrder PO = null;
-	private Payment PAY = null;
+	//private Payment PAY = null;
 	private String category = "category";
 	private String artist = "artist";
 	private String title = "title";
@@ -106,7 +106,7 @@ public class Admin extends HttpServlet {
 		
 		MS = (MusicStore) this.getServletContext().getAttribute("MS");
 		PO = (PurchaseOrder) this.getServletContext().getAttribute("PO");
-		PAY = (Payment) this.getServletContext().getAttribute("PAY");
+		//PAY = (Payment) this.getServletContext().getAttribute("PAY");
 
 		// Retrieve DAOs from context scope.
 		//POAccessor = new POData();
@@ -118,6 +118,21 @@ public class Admin extends HttpServlet {
 		
 		try {
 			//UC A1: generate report w/ albums sold each month
+			/*
+			Map<String, Integer> report = POAccessor.retrieveOrderHistory(YMformate.format(date)+"01", YMDformate.format(date));
+			for (String bid: report.keySet())
+				System.out.println("bid:"+bid+", quantity:"+report.get(bid));
+			*/
+			//UC A3: Set all PO records as attribute.
+		//	request.setAttribute("anonymizedpo", POAccessor.retrieveAllPO());
+			/*
+			Map<POBean, Map<String, Integer>> map = POAccessor.retrieveAllPO();
+			for (POBean key : map.keySet()) {
+				System.out.println("***" + key.toString());
+				for (String bid : map.get(key).keySet()) {
+					System.out.println("book: " + bid + ", quantity: " + map.get(key).get(bid));
+					*/
+			
 			System.out.println(request.getAttribute("report"));
 			
 			Map<String, Map<String, POBean>> monthlyProcessed = new HashMap<String, Map<String, POBean>>(); //<month, <PO_ID, POBean>>: month and all processed PO 
