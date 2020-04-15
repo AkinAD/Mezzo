@@ -75,8 +75,7 @@ public class Admin extends HttpServlet {
 			ProfileBean curProfile = data.values().iterator().next();
 			request.setAttribute(CUR_PROFILE, curProfile);
 		} catch (Exception e) {
-			response.sendError(500); // This is probably our fault
-			e.printStackTrace();
+			throw new ServletException(); // This is probably our fault
 		}		
 
 		if(request.getParameter("addAlbum") == null)

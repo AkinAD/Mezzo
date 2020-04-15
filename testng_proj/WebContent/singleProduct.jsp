@@ -11,7 +11,7 @@
 		omit-xml-declaration="true" />
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Album</title>
+<title>${requestScope.albumResult.title}</title>
 <!-- Favicon  -->
 <link rel="icon"
 	href="${pageContext.request.contextPath}/res/img/core-img/favicon.ico" />
@@ -63,18 +63,19 @@
 			<form class="cart-form clearfix" method="post">
 				<!-- Select Box -->
 				<div class="select-box d-flex mt-50 mb-30">
-				 <span style=" text-align: center; padding-top: 20px;">Quantity</span>				
- 				   <select name="select" id="productSize" class="mr-5">
+				 <span style=" text-align: center; padding-top: 20px;">Quantity</span>
+					<input type="number" min="0" name="addQuantity" class="select-box option mr-5" style="font-size:2em" placeholder="Quantity" value="1" required="required" />
+ 				   <!-- <select name="select" id="productSize" class="mr-5">
 						<option value="value">1</option>
 						<option value="value">2</option>
 						<option value="value">3</option>
 						<option value="value">4</option>
-					</select>
+					</select> -->
 				</div>
 				<!-- Cart & Favourite Box -->
 				<div class="cart-fav-box d-flex align-items-center">
 					<!-- Cart -->
-					<button type="submit" name="addtocart" value="5"
+					<button type="submit" name="addToCart" value="${requestScope.albumResult.aid}"
 						class="btn essence-btn">Add to cart</button>
 					<!-- Favourite -->
 					<div class="product-favourite ml-4">

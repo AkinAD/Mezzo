@@ -11,14 +11,16 @@
 		omit-xml-declaration="true" />
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>DB Image Link</title>
+<title>Test Page</title>
 </head>
 <body>
-	<form action="Test" method="POST" >
-		<input type="text" name="aid"/>
-		<button action="submit" name="query" value="true">Submit</button>
-
-	</form>
+	<p>There <c:if test="${requestScope.cartTotalQty eq 0}">are no</c:if><c:if test="${requestScope.cartTotalQty gt 0}">are ${requestScope.cartTotalQty} items</c:if> items in the cart.</p>
+	<ul>
+		<c:forEach items="${requestScope.cartItems}" var="deadmau5">
+			<li>${deadmau5.item.title} x${deadmau5.qty} - ${deadmau5.item.price} per unit - ${deadmau5.effectivePrice} total</li>
+		</c:forEach>
+	</ul>
+	<p>Total: ${requestScope.cartTotal}</p>
 </body>
 </html>
 </jsp:root>

@@ -113,8 +113,7 @@ public class Profile extends HttpServlet {
 			request.setAttribute(CUR_PROFILE, curProfile);
 			request.getRequestDispatcher(PROFILE_PAGE).forward(request, response);			
 		} catch (Exception e) {
-			response.sendError(500); // This is probably our fault
-			e.printStackTrace();
+			throw new ServletException(); // This is probably our fault
 		}		
 	}
 }

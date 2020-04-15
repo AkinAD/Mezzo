@@ -33,12 +33,7 @@ public class Mezzo extends HttpServlet {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getRequestDispatcher("/Home.jsp").forward(request, response);
 		HttpSession session = request.getSession();
-		try {
-			SessionManagement.bindCart(session, new ShoppingCart());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		// Get cart object.
 		//ShoppingCart cart = SessionManagement.getCart(request.getSession());
 		//request.getSession().setAttribute("cart", cart);

@@ -1,16 +1,18 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import dao.AlbumDAO;
 import bean.Album;
+import bean.CartItemBean;
 
 /**
  * Shopping Cart model class
  */
-public class ShoppingCart {
-
+public class ShoppingCart implements Serializable {
+	private static final long serialVersionUID = -4099230588224841965L;
 	private Map<Integer, Integer> albums; // Map of integer (album id) and integer (quantity)
 	private AlbumDAO albumInfo; // Album information retriever
 
@@ -31,9 +33,20 @@ public class ShoppingCart {
 	 * @param quantity
 	 */
 	public void addAlbum(int aid, int quantity) {
-		if (!albums.containsKey(aid)) {
+		boolean validAlbum = true;
+		
+		try {
+			Album a = this.albumInfo.retrieveAlbum(aid);
+			if (a == null) {
+				throw new IllegalArgumentException();
+			}
+		} catch (Exception e) {
+			validAlbum = false;
+		}
+		
+		if (validAlbum && !albums.containsKey(aid)) {
 			albums.put(aid, quantity);
-		} else {
+		} else if (validAlbum) {
 			albums.put(aid, albums.get(aid) + quantity);
 		}
 	}
@@ -50,14 +63,22 @@ public class ShoppingCart {
 	}
 
 	/**
-	 * Update the quantity of the album in the cart
+	 * Update the quantity of the album in the cart. 
+	 * Adds item if item not in cart.
+	 * Removes item from cart if quantity is 0.
 	 * 
 	 * @param aid
 	 * @param quantity
 	 */
 	public void updateQuantity(int aid, int quantity) {
 		if (albums.containsKey(aid)) {
-			albums.put(aid, quantity);
+			if (quantity > 0) {
+				albums.put(aid, quantity);
+			} else {
+				this.removeAlbum(aid);
+			}
+		} else {
+			this.addAlbum(aid, quantity);
 		}
 	}
 
@@ -94,10 +115,23 @@ public class ShoppingCart {
 	public Map<Integer, Integer> getAlbums() {
 		return this.albums;
 	}
+	
+	public Map<Integer, CartItemBean> getCartItemBeans() throws SQLException {
+		Map<Integer, CartItemBean> returnValue = new HashMap<Integer, CartItemBean>();
+		
+		for (Integer x : albums.keySet()) {
+			Album curAlbum = this.getAlbum(x);
+			CartItemBean curBean = new CartItemBean(albums.get(x),curAlbum);
+			returnValue.put(x, curBean);
+		}
+		return returnValue;
+	}
 
 	/**
 	 * @param aid
-	 * @return the Album according to album id
+	 * @return
+	 * the Album according to album id.
+	 * null if non-existent 
 	 */
 	public Album getAlbum(int aid) throws SQLException {
 		Album al = null;
@@ -160,9 +194,9 @@ public class ShoppingCart {
 	/**
 	 * 
 	 * @param AID album id of an album.
-	 * @return the unit price * quantity of the given album in cart.
+	 * @return the unit price times quantity of the given album in cart.
 	 */
-	public float getPricePerQuan(int aid){
+	public float getTotalPriceByAlbum(int aid){
 		float totalPrice = 0;
 		Album alb;
 		try {
