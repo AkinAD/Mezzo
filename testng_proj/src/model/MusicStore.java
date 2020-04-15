@@ -46,6 +46,10 @@ public class MusicStore {
 		return retrievAlbum(aid);
 	}
 	
+	public Album retrieveAlbumByID(int aid) throws Exception {
+		return alDao.retrieveAlbum(aid);
+	}
+	
 	public Map<String, ReviewBean> retrieveReviews(int aid) throws Exception {
 		if (aid < 0 || aid > 10000) {
 			throw new IllegalArgumentException();

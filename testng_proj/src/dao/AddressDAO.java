@@ -19,7 +19,8 @@ public class AddressDAO {
 
 	public AddressDAO() throws ClassNotFoundException {
 		try {
-			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
+			//ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
+			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
