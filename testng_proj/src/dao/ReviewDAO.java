@@ -32,6 +32,13 @@ public class ReviewDAO {
 		
 	}
 	
+	/**
+	 * 
+	 * @param aid
+	 * @return
+	 * Map of reviews with username as key
+	 * @throws SQLException
+	 */
 	public Map<String,ReviewBean> retrieveReviews(int aid) throws SQLException{
 		Map<String, ReviewBean> returnVal = new HashMap<String, ReviewBean>();
 		
