@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Album;
+import bean.AlbumBean;
 import model.MusicStore;
 
 /**
@@ -55,7 +55,7 @@ public class Shop extends HttpServlet {
 			throws ServletException, IOException {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		MS = (MusicStore) this.getServletContext().getAttribute("MS");
-		Map<String, Album> data = new HashMap<String, Album>();
+		Map<String, AlbumBean> data = new HashMap<String, AlbumBean>();
 		Map<String, List<String>> out = new HashMap<String, List<String>>();
 
 		if (request.getParameter(category) == null && request.getParameter(search) == null) {
@@ -141,7 +141,7 @@ public class Shop extends HttpServlet {
 
 	}
 
-	private void putData(Map<String, Album> data, Map<String, List<String>> out )
+	private void putData(Map<String, AlbumBean> data, Map<String, List<String>> out )
 	{
 		
 			for (String stuff : data.keySet()) {

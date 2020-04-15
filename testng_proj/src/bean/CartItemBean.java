@@ -2,10 +2,10 @@ package bean;
 
 public class CartItemBean {
 	private int qty;
-	private Album item;
+	private AlbumBean item;
 	private float effectivePrice;
 	
-	public CartItemBean(int qty, Album item){
+	public CartItemBean(int qty, AlbumBean item){
 		this.qty = qty;
 		this.item = item;
 		this.effectivePrice = (float)qty*item.getPrice();
@@ -26,13 +26,13 @@ public class CartItemBean {
 	/**
 	 * @return the item
 	 */
-	public Album getItem() {
+	public AlbumBean getItem() {
 		return item;
 	}
 	/**
 	 * @param item the item to set
 	 */
-	public void setItem(Album item) {
+	public void setItem(AlbumBean item) {
 		this.item = item;
 	}
 

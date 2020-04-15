@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import dao.AlbumDAO;
-import bean.Album;
+import bean.AlbumBean;
 import bean.CartItemBean;
 
 /**
@@ -36,7 +36,7 @@ public class ShoppingCart implements Serializable {
 		boolean validAlbum = true;
 		
 		try {
-			Album a = this.albumInfo.retrieveAlbum(aid);
+			AlbumBean a = this.albumInfo.retrieveAlbum(aid);
 			if (a == null) {
 				throw new IllegalArgumentException();
 			}
@@ -88,7 +88,7 @@ public class ShoppingCart implements Serializable {
 	public float getTotalPrice() {
 		float subtotal = 0f;
 		for (Map.Entry<Integer, Integer> entry : this.albums.entrySet()) {
-			Album al;
+			AlbumBean al;
 			try {
 				al = this.albumInfo.retrieveAlbum(entry.getKey());
 				subtotal += al.getPrice() * entry.getValue();
@@ -120,7 +120,7 @@ public class ShoppingCart implements Serializable {
 		Map<Integer, CartItemBean> returnValue = new HashMap<Integer, CartItemBean>();
 		
 		for (Integer x : albums.keySet()) {
-			Album curAlbum = this.getAlbum(x);
+			AlbumBean curAlbum = this.getAlbum(x);
 			CartItemBean curBean = new CartItemBean(albums.get(x),curAlbum);
 			returnValue.put(x, curBean);
 		}
@@ -133,8 +133,8 @@ public class ShoppingCart implements Serializable {
 	 * the Album according to album id.
 	 * null if non-existent 
 	 */
-	public Album getAlbum(int aid) throws SQLException {
-		Album al = null;
+	public AlbumBean getAlbum(int aid) throws SQLException {
+		AlbumBean al = null;
 		if (this.albums.containsKey(aid)) {
 			try {
 				al = this.albumInfo.retrieveAlbum(aid);
@@ -198,7 +198,7 @@ public class ShoppingCart implements Serializable {
 	 */
 	public float getTotalPriceByAlbum(int aid){
 		float totalPrice = 0;
-		Album alb;
+		AlbumBean alb;
 		try {
 			if(albums.containsKey(aid)){
 				alb = albumInfo.retrieveAlbum(aid);

@@ -19,7 +19,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import bean.Album;
+import bean.AlbumBean;
 import bean.CartItemBean;
 import ctrl.SessionManagement;
 import model.MusicStore;
@@ -28,7 +28,8 @@ import model.ShoppingCart;
 /**
  * Servlet Filter implementation class CartFilter
  * 
- * @author akinad1
+ * @author alanyork
+ * 
  */
 @WebFilter({ "/*" })
 public class CartFilter implements Filter {
@@ -99,7 +100,6 @@ public class CartFilter implements Filter {
 
 			
 			try {
-				System.out.println("CartFilter: Cart updating");
 				changeAid = Integer.parseInt(paramAddToCart);
 				if (paramDelete != null) {
 					// Change is removal
@@ -113,6 +113,9 @@ public class CartFilter implements Filter {
 				} else if (paramQuantity == null) {
 					// Change is increment of 1
 					changeQty = 1;
+					if (cart.getAlbums().containsKey(changeAid)) {
+						changeQty += cart.getAlbums().get(changeAid);
+					}
 				} else {
 					// Change to specified quantity
 					changeQty = Integer.parseInt(paramQuantity);
@@ -123,7 +126,7 @@ public class CartFilter implements Filter {
 				cart.updateQuantity(changeAid, changeQty);
 			} catch (Exception e) {
 				// Failed to update cart
-				//e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 

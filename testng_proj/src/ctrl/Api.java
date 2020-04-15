@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Album;
+import bean.AlbumBean;
 import bean.POItemBean;
 import model.MusicStore;
 import model.PurchaseOrder;
@@ -154,8 +154,8 @@ public class Api extends HttpServlet {
 			}
 			
 			if (validQuery) {
-				Map<String,Album> albumRes = musicStore.retrievAlbum(alb);
-				Album resultAlbum = albumRes.values().iterator().next();
+				Map<String,AlbumBean> albumRes = musicStore.retrievAlbum(alb);
+				AlbumBean resultAlbum = albumRes.values().iterator().next();
 			
 				String responseDoc = produceAlbumDocument(resultAlbum.getAid(),resultAlbum.getArtist(),resultAlbum.getTitle(),resultAlbum.getCategory(),resultAlbum.getPrice(),resultAlbum.getPicture());
 				response.getOutputStream().print(responseDoc);

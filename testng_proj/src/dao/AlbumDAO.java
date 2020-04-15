@@ -11,7 +11,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import bean.Album;
+import bean.AlbumBean;
 
 public class AlbumDAO {
 
@@ -40,15 +40,15 @@ public class AlbumDAO {
 	 * @return the album id as String and the album object
 	 * @throws SQLException
 	 */
-	public Map<String, Album> retrieveAll(int aid) throws SQLException {
+	public Map<String, AlbumBean> retrieveAll(int aid) throws SQLException {
 		String query = "select * from album where aid=" + aid;
-		Map<String, Album> rv = new HashMap<String, Album>();
+		Map<String, AlbumBean> rv = new HashMap<String, AlbumBean>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
 			String albumID = Integer.toString(r.getInt("AID"));
-			rv.put(albumID, new Album(r.getInt("AID"), r.getString("artist"), r.getString("title"),
+			rv.put(albumID, new AlbumBean(r.getInt("AID"), r.getString("artist"), r.getString("title"),
 					r.getString("category"), r.getFloat("price"), r.getString("picture")));
 		}
 		r.close();
@@ -64,15 +64,15 @@ public class AlbumDAO {
 	 * @return the album object with the album id
 	 * @throws SQLException
 	 */
-	public Album retrieveAlbum(int aid) throws SQLException {
+	public AlbumBean retrieveAlbum(int aid) throws SQLException {
 		String query = "select * from album where aid=" + aid;
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
-		Album al = null;
+		AlbumBean al = null;
 
 		while (r.next()) {
-			al = new Album(r.getInt("AID"), r.getString("artist"), r.getString("title"), r.getString("category"),
+			al = new AlbumBean(r.getInt("AID"), r.getString("artist"), r.getString("title"), r.getString("category"),
 					r.getFloat("price"), r.getString("picture"));
 		}
 
@@ -82,15 +82,15 @@ public class AlbumDAO {
 		return al;
 	}
 
-	public Map<String, Album> retrieveAlbumByCat(String cat) throws SQLException {
+	public Map<String, AlbumBean> retrieveAlbumByCat(String cat) throws SQLException {
 		String query = "select * from album where category='" + cat + "'";
-		Map<String, Album> rv = new HashMap<String, Album>();
+		Map<String, AlbumBean> rv = new HashMap<String, AlbumBean>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
 			String albumID = Integer.toString(r.getInt("AID"));
-			rv.put(albumID, new Album(r.getInt("AID"), r.getString("artist"), r.getString("title"),
+			rv.put(albumID, new AlbumBean(r.getInt("AID"), r.getString("artist"), r.getString("title"),
 					r.getString("category"), r.getFloat("price"), r.getString("picture")));
 		}
 		r.close();
@@ -99,10 +99,10 @@ public class AlbumDAO {
 		return rv;
 	}
 
-	public Map<String, Album> retrieveBySearch(String parameter) throws SQLException {
+	public Map<String, AlbumBean> retrieveBySearch(String parameter) throws SQLException {
 		// since we are not aware of what the users will search the store with, we will
 		// populate the results with every and anything that matches params
-		Map<String, Album> rv = new HashMap<String, Album>();
+		Map<String, AlbumBean> rv = new HashMap<String, AlbumBean>();
 		Connection con = this.ds.getConnection();
 		String query = "select * from album where (category like ? OR artist like ?  OR title like ?)"; // check
 																										// against,
@@ -117,7 +117,7 @@ public class AlbumDAO {
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
 			String albumID = Integer.toString(r.getInt("AID"));
-			rv.put(albumID, new Album(r.getInt("AID"), r.getString("artist"), r.getString("title"),
+			rv.put(albumID, new AlbumBean(r.getInt("AID"), r.getString("artist"), r.getString("title"),
 					r.getString("category"), r.getFloat("price"), r.getString("picture")));
 		}
 		r.close();
@@ -126,7 +126,7 @@ public class AlbumDAO {
 		return rv;
 	}
 
-	public void addAlbum(Album album) throws Exception {
+	public void addAlbum(AlbumBean album) throws Exception {
 		String artist = album.getArtist();
 		String title = album.getTitle();
 		String category = album.getCategory();

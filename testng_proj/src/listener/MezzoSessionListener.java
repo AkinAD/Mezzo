@@ -12,6 +12,7 @@ import ctrl.SessionManagement;
 /**
  * Application Lifecycle Listener implementation class MezzoSessionListener
  *
+ * @author alanyork
  */
 @WebListener
 public class MezzoSessionListener implements HttpSessionListener, HttpSessionAttributeListener, HttpSessionBindingListener {

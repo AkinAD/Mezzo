@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Album;
+import bean.AlbumBean;
 import bean.ReviewBean;
 import model.MusicStore;
 
@@ -64,8 +64,8 @@ public class ProductPage extends HttpServlet {
 			int aidInt = Integer.valueOf(aid);
 
 			// Retrieve Album
-			Map<String, Album> retrRes = musicStore.retrievAlbum(aidInt);
-			Album retrResAlbum = retrRes.get(new Integer(aidInt).toString());
+			Map<String, AlbumBean> retrRes = musicStore.retrievAlbum(aidInt);
+			AlbumBean retrResAlbum = retrRes.get(new Integer(aidInt).toString());
 			if (retrResAlbum == null) {
 				throw new IllegalArgumentException();
 			}

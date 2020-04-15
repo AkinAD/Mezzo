@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import bean.Album;
+import bean.AlbumBean;
 import bean.ReviewBean;
 import dao.AlbumDAO;
 import dao.ReviewDAO;
@@ -34,7 +34,7 @@ public class MusicStore {
 		return instance;
 	}
 
-	public Map<String, Album> retrievAlbum(int aid) throws Exception {
+	public Map<String, AlbumBean> retrievAlbum(int aid) throws Exception {
 		if (aid < 0 || aid > 10000) {
 			throw new IllegalArgumentException();
 		}
@@ -43,7 +43,7 @@ public class MusicStore {
 	}
 	
 	
-	public Album retrieveAlbumByID(int aid) throws Exception {
+	public AlbumBean retrieveAlbumByID(int aid) throws Exception {
 		return alDao.retrieveAlbum(aid);
 	}
 	
@@ -104,7 +104,7 @@ public class MusicStore {
 		return returnPrefix;
   }
   
-	public Map<String, Album> retrievAlbumsByCat(String cat) throws SQLException {
+	public Map<String, AlbumBean> retrievAlbumsByCat(String cat) throws SQLException {
 		// TODO Auto-generated method stub
 		return alDao.retrieveAlbumByCat(cat);
 	}
@@ -139,7 +139,7 @@ public class MusicStore {
 		else
 		{
 			// if successful error should be empty
-			alDao.addAlbum(new Album(aid, artist, title, category, price, picture)); 
+			alDao.addAlbum(new AlbumBean(aid, artist, title, category, price, picture)); 
 		}
 	}
 	
@@ -164,7 +164,7 @@ public class MusicStore {
 		return matcher.matches();
 	}
 
-	public Map<String, Album> retrieveAlbumByGodKnowsWhat(String parameter) throws SQLException {
+	public Map<String, AlbumBean> retrieveAlbumByGodKnowsWhat(String parameter) throws SQLException {
 		// TODO Auto-generated method stub
 		if(parameter.equals("") || parameter == null)
 		{

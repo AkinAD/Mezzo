@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bean.Album;
+import bean.AlbumBean;
 import model.MusicStore;
 
 /**
@@ -45,7 +45,7 @@ public class Test extends HttpServlet {
 		System.out.println("TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST");
 		int aid = -1;
 		MusicStore MS = (MusicStore) this.getServletContext().getAttribute("MS");
-		Map<String, Album> data = new HashMap<String, Album>();
+		Map<String, AlbumBean> data = new HashMap<String, AlbumBean>();
 		Map<String, List<String>> out = new HashMap<String, List<String>>();
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());

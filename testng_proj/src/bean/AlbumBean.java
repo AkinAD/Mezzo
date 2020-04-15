@@ -5,7 +5,7 @@ package bean;
 /**
  * Album bean
  */
-public class Album {
+public class AlbumBean {
 	public int aid;
 	public String artist;
 	public String title;
@@ -23,7 +23,7 @@ public class Album {
 	 * @param price
 	 * @param picture
 	 */
-	public Album(int aid, String artist, String title, String category, Float price, String picture) {
+	public AlbumBean(int aid, String artist, String title, String category, Float price, String picture) {
 		this.setAid(aid);
 		this.setArtist(artist);
 		this.setTitle(title);

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Album;
+import bean.AlbumBean;
 import model.MusicStore;
 import model.ShoppingCart;
 
