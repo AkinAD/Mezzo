@@ -60,7 +60,7 @@
 									placeholder="Your email here" />
 								<button type="submit" class="submit">
 									<i class="fa fa-long-arrow-right" aria-hidden="true">
-										<!--  Some content -->.
+										<!--  Some content -->&#160; 
 									</i>
 								</button>
 							</form>
@@ -74,22 +74,22 @@
 							<a href="#" data-toggle="tooltip" data-placement="top"
 								title="Facebook"><i class="fa fa-facebook"
 								aria-hidden="true">
-									<!--  Some content -->.
+									<!--  Some content -->&#160; 
 							</i></a> <a href="#" data-toggle="tooltip" data-placement="top"
 								title="Instagram"><i class="fa fa-instagram"
 								aria-hidden="true">
-									<!--  Some content -->.
+									<!--  Some content -->&#160; 
 							</i></a> <a href="#" data-toggle="tooltip" data-placement="top"
 								title="Twitter"><i class="fa fa-twitter" aria-hidden="true">
-									<!--  Some content -->.
+									<!--  Some content -->&#160; 
 							</i></a> <a href="#" data-toggle="tooltip" data-placement="top"
 								title="Pinterest"><i class="fa fa-pinterest"
 								aria-hidden="true">
-									<!--  Some content -->.
+									<!--  Some content -->&#160; 
 							</i></a> <a href="#" data-toggle="tooltip" data-placement="top"
 								title="Youtube"><i class="fa fa-youtube-play"
 								aria-hidden="true">
-									<!--  Some content -->.
+									<!--  Some content -->&#160; 
 							</i></a>
 						</div>
 					</div>

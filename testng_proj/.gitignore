@@ -1,4 +1,4 @@
 /build/
 .classpath
 .settings/
-WebContent/META-INF/context.xml
+/target/

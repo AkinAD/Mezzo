@@ -33,7 +33,7 @@
 					<!-- close btn -->
 					<div class="classycloseIcon">
 						<div class="cross-wrap">
-							<span class="top"><!-- content --></span><span class="bottom"><!-- content --></span>
+							<span class="top">&#160; </span><span class="bottom"><!-- content --></span>
 						</div>
 					</div>
 					<!-- Nav Start -->
@@ -89,11 +89,11 @@
 			<div class="header-meta d-flex clearfix justify-content-end">
 				<!-- Search Area -->
 				<div class="search-area">
-					<form action="shop" method="post">
+					<form action="shop" method="GET">
 						<input type="search" name="search" id="headerSearch"
 							placeholder="Type for search"/>
 						<button type="submit">
-							<i class="fa fa-search" aria-hidden="true"><!--  Some content -->.</i>
+							<i class="fa fa-search" aria-hidden="true"><!--  Some content -->&#160;</i>
 						</button>
 					</form>
 				</div>
@@ -105,7 +105,7 @@
 				<!--                <div class="classynav">-->
 				<div class="user-login-info ">
 					<!--       choose block right here to either display current user login or redirect to acoount page                 -->
-					<a href="login"><img src="${pageContext.request.contextPath}/res/img/core-img/user.svg" alt=""/><!-- content --></a>
+					<a href="profile"><img src="${pageContext.request.contextPath}/res/img/core-img/user.svg" alt=""/><!-- content --></a>
 				</div>
 				<!--                </div>-->
 				<!-- Cart Area -->

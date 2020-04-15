@@ -9,8 +9,13 @@
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Admin Console</title>
+<!-- Favicon  -->
+<link rel="icon"
+	href="${pageContext.request.contextPath}/res/img/core-img/favicon.ico" />
+	
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/res/css/admin.css" />
+	
 
 </head>
 <body>
@@ -22,15 +27,14 @@
 			class="card" href="#!">
 			<div class="front"
 				style="background-image: url(//source.unsplash.com/300x402);">
-				<p>Welcome {user}</p>
+				<p>Welcome ${requestScope.CurProfile.fname}</p>
 			</div>
 			<div class="back">
 				<div>
-					<img class="profilephoto"
-						src="${pageContext.request.contextPath}/res/img/core-img/pp.jpg" />
-					<p>Show user info here, similar to the 'profile' page</p>
-					<p>Get Creative</p>
-					<button class="button">Click Here</button>
+					<img class="profilephoto"		src="${pageContext.request.contextPath}/res/img/core-img/pp.jpg" />
+					<p>${requestScope.CurProfile.lname}, ${requestScope.CurProfile.fname}</p>
+					<p>Username: ${requestScope.CurProfile.userName} AccessLevel: ${requestScope.CurProfile.privilege}</p>
+					<form action="profile" method="get"><button class="button">Go to Profile</button></form>
 				</div>
 			</div>
 		</a> <a class="card" href="#!">

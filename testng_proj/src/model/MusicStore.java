@@ -42,9 +42,6 @@ public class MusicStore {
 		return alDao.retrieveAll(aid);
 	}
 	
-	public Map<String, Album> retrieveAlbum(int aid) throws Exception {
-		return retrievAlbum(aid);
-	}
 	
 	public Album retrieveAlbumByID(int aid) throws Exception {
 		return alDao.retrieveAlbum(aid);
@@ -75,6 +72,11 @@ public class MusicStore {
 		if (review.length() > 25 || sanitRev.length() > 25) {
 			throw new IllegalArgumentException();
 		}
+		
+		System.out.println(aid);
+		System.out.println(sanitUser);
+		System.out.println(rating);
+		System.out.println(sanitRev);		
 		
 		int revCreated = revDao.createReview(aid, sanitUser, rating, sanitRev);
 		if (revCreated != 1) {

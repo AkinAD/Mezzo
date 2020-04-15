@@ -10,8 +10,9 @@ public class PurchaseOrder {
 
 	private PODAO po;
 	private POItemDAO poitem;
+	private static final PurchaseOrder INSTANCE = new PurchaseOrder();
 
-	public PurchaseOrder() {
+	private PurchaseOrder() {
 		try {
 			po = new PODAO();
 			poitem = new POItemDAO();
@@ -19,6 +20,10 @@ public class PurchaseOrder {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static PurchaseOrder getInstance() {
+		return INSTANCE;
 	}
 
 	/**
@@ -145,6 +150,16 @@ public class PurchaseOrder {
 	 */
 	public Map<String, Integer> retrieveItemByID(String PO_id) throws SQLException {
 		return poitem.retrieveItemByID(PO_id);
+	}
+	
+	/**
+	 * Returns a map of orders of an album and the corresponding POItem
+	 * @param aid
+	 * @return
+	 * @throws SQLException
+	 */
+	public Map<String, POItemBean> retrieveItemsByAlbum(int aid) throws SQLException {
+		return poitem.retrievePOItemWithAlbum(aid);
 	}
 
 	/**
