@@ -26,6 +26,7 @@ public class Shop extends HttpServlet {
 	private String category = "category";
 	private String error = "";
 	private String search = "search";
+	private String page = "page";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -85,6 +86,31 @@ public class Shop extends HttpServlet {
 			request.getRequestDispatcher("/shop.jsp").forward(request, response);
 		}
 		else if(request.getParameter(search) != null && request.getParameter(category) == null)
+		{
+			System.out.println("it got here- Shop by search");
+			System.out.println(search);
+			try {
+				data = MS.retrieveAlbumByGodKnowsWhat(request.getParameter(search));
+				String srch = request.getParameter(search);
+				System.out.println("the value of search is: " + srch);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				error = "bad search param?";
+			}
+			
+			if (error.equals("")) {
+				putData(data, out);
+			} 
+			else {
+				System.out.println("there Was an Error");
+			}
+			
+			request.setAttribute("shopDisq", "search");
+			request.setAttribute("shopItems", out);
+			request.getRequestDispatcher("/shop.jsp").forward(request, response);
+		}
+		else if(request.getParameter(page) != null && request.getParameter(category) == null && request.getParameter(search) == null)
 		{
 			System.out.println("it got here- Shop by search");
 			System.out.println(search);

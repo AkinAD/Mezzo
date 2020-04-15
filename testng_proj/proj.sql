@@ -57,9 +57,9 @@ INSERT INTO Album (aid, artist, title, category, price, picture) VALUES
 (9, 'Drake', 'If You''re Reading This It''s Too Late', 'Hip-hop', 15.00, 'https://upload.wikimedia.org/wikipedia/en/1/11/Drake_-_If_You%27re_Reading_This_It%27s_Too_Late.png'),
 (10, 'Tame Impala', 'Currents', 'Synth-pop', 20.5, 'https://upload.wikimedia.org/wikipedia/en/9/9b/Tame_Impala_-_Currents.png');
 (11, 'Porter Robinson', 'Virtual Self', 'Electro', 13.37, 'https://images.genius.com/76de6a7d3e8b560fc944440b78ec383e.960x960x1.jpg');
-(11, 'Crystal Castles', 'Crimewave', 'Electro', 9.11, 'https://upload.wikimedia.org/wikipedia/en/c/c7/Crimewave.jpg');
-(11, 'i_o', 'Let Me Go', 'Electro', 6.9, 'https://images.genius.com/439b8ece8100e9db0f3128f5bf8a9c87.500x500x1.jpg');
-(11, 'Deadmau5', 'while(1<2)', 'Electro', 10.2, 'https://upload.wikimedia.org/wikipedia/en/d/d7/Deadmau5_-_while_%2812%29.png');
+(12, 'Crystal Castles', 'Crimewave', 'Electro', 9.11, 'https://upload.wikimedia.org/wikipedia/en/c/c7/Crimewave.jpg');
+(13, 'i_o', 'Let Me Go', 'Electro', 6.9, 'https://images.genius.com/439b8ece8100e9db0f3128f5bf8a9c87.500x500x1.jpg');
+(14, 'Deadmau5', 'while(1<2)', 'Electro', 10.2, 'https://upload.wikimedia.org/wikipedia/en/d/d7/Deadmau5_-_while_%2812%29.png');
 
 SELECT * FROM ALBUM;
 

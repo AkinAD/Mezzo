@@ -40,12 +40,10 @@ public class Mezzo extends HttpServlet {
 			e.printStackTrace();
 		}
 		// Get cart object.
-		ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
+		//ShoppingCart cart = SessionManagement.getCart(request.getSession());
+		//request.getSession().setAttribute("cart", cart);
 		// Clear shopping cart.
-				cart.emptyCart();
-				request.getSession().setAttribute("cart", cart);
-		
-
+		//cart.emptyCart();
 	}
 
 	/**

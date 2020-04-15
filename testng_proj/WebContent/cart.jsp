@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
 	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1" session="false" />
 	<jsp:output doctype-root-element="html"
@@ -16,7 +19,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/res/css/styles_other.css" />
-
 </head>
 <body>
 	<!-- ##### Right Side Cart Area ##### -->
@@ -24,34 +26,38 @@
 
 	<div class="right-side-cart-area">
 
-		<!-- Cart Button -->
+		<!-- Cart Button --> <!-- doSimpleAjax('/OsapCalc-v4/Osap/Ajax/');return false; -->
 		<div class="cart-button">
-			<a href="#" id="rightSideCart"><img
+			<a href="" id="rightSideCart"><img
 				src="${pageContext.request.contextPath}/res/img/core-img/bag.svg"
-				alt="" /><span>3</span></a>
+				alt="" /><span>${cartCount}</span></a>
 		</div>
+		
 
 		<div class="cart-content d-flex">
 
 			<!-- Cart List Area -->
 			<div class="cart-list">
-				<!-- Single Cart Item -->
+				<c:forEach var="current" items="${cartItems}">
+					<!-- Single Cart Item -->
 				<div class="single-cart-item">
-					<a href="#" class="product-image"> <img
-						src="${pageContext.request.contextPath}/res/img/product-img/product-1.jpg"
-						class="cart-thumb" alt="" /> <!-- Cart Item Desc -->
+					<a href="${pageContext.request.contextPath}/ProductPage?aid=${current.value[0]}" class="product-image"> <!-- appende each aid here  -->
+					<c:url var="myurl" value="${current.value[5]}" />
+					<img src="${myurl}" class="cart-thumb" alt="" /> <!-- Cart Item Desc -->
 						<div class="cart-item-desc">
 							<span class="product-remove"><i class="fa fa-close"
 								aria-hidden="true"> <!--  Some content -->&#160; 
-							</i></span><span class="badge">Mango</span>
-							<h6>Button Through Strap Mini Dress</h6>
-							<p class="color">Color: Red</p>
-							<p class="price">$45.00</p>
+							</i></span><span class="badge">${current.value[1]}</span>
+							<a 	href="${pageContext.request.contextPath}/ProductPage?aid=${current.value[0]}">
+							<h6>${current.value[2]}</h6>
+							</a>
+							<!-- <p class="color">Color: Red</p> -->
+							<p class="price"><f:setLocale value="en_CA"/><f:formatNumber value="${current.value[4]}" type="currency"/></p>
 							<p class="size">Quantity</p>
 							<form action="" class="number-input">
 								<button onclick="this.nextElementSibling.stepDown();">-</button>
 								<input type="number" class="cartItemQuantity" min="1" step="1"
-									value="1" />
+									value="${current.value[6]}" />
 								<button onclick="this.previousElementSibling.stepUp();"
 									class="plus">+</button>
 							</form>
@@ -59,55 +65,11 @@
 					</a>
 				</div>
 
-				<!-- Single Cart Item -->
-				<div class="single-cart-item">
-					<a href="#" class="product-image"> <img
-						src="${pageContext.request.contextPath}/res/img/product-img/product-2.jpg"
-						class="cart-thumb" alt="" /> <!-- Cart Item Desc -->
-						<div class="cart-item-desc">
-							<span class="product-remove"><i class="fa fa-close"
-								aria-hidden="true"> <!--  Some content -->&#160; 
-							</i></span> <span class="badge">Mango</span>
-							<h6>Button Through Strap Mini Dress</h6>
-							<!-- <p class="size">Size: S</p> -->
-							<p class="color">Color: Red</p>
-							<p class="price">$45.00</p>
-							<p class="size">Quantity</p>
-							<form action="" class="number-input">
-								<button onclick="this.nextElementSibling.stepDown();">-</button>
-								<input type="number" class="cartItemQuantity" min="1" step="1"
-									value="1" />
-								<button onclick="this.previousElementSibling.stepUp();"
-									class="plus">+</button>
-							</form>
-						</div>
-					</a>
-				</div>
-
-				<!-- Single Cart Item -->
-				<div class="single-cart-item">
-					<a href="#" class="product-image"> <img
-						src="${pageContext.request.contextPath}/res/img/product-img/product-3.jpg"
-						class="cart-thumb" alt="" /> <!-- Cart Item Desc -->
-						<div class="cart-item-desc">
-							<span class="product-remove"><i class="fa fa-close"
-								aria-hidden="true"> <!--  Some content -->&#160; 
-							</i></span> <span class="badge">Mango</span>
-							<h6>Button Through Strap Mini Dress</h6>
-							<!-- <p class="size">Size: S</p> -->
-							<p class="color">Color: Red</p>
-							<p class="price">$45.00</p>
-							<p class="size">Quantity</p>
-							<form action="" class="number-input">
-								<button onclick="this.nextElementSibling.stepDown(); doAjaxPriceUpdate('some address');">-</button>
-								<input type="number" class="cartItemQuantity" min="1" step="1"
-									value="1" />
-								<button onclick="this.previousElementSibling.stepUp(); doAjaxPriceUpdate('some address');"
-									class="plus">+</button>
-							</form>
-						</div>
-					</a>
-				</div>
+				<!-- Single Cart Item -->	
+									</c:forEach>
+									
+				
+				
 			</div>
 
 			<!-- Cart Summary -->
@@ -128,7 +90,7 @@
 	</div>
 	<!-- ##### Right Side Cart End ##### -->
 		<script src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
-	
+
 </body>
 	</html>
 </jsp:root>

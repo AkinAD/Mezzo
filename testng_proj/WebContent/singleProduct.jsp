@@ -66,11 +66,12 @@
 			<form class="cart-form clearfix" method="post">
 				<!-- Select Box -->
 				<div class="select-box d-flex mt-50 mb-30">
-					<select name="select" id="productSize" class="mr-5">
-						<option value="value">Size: XL</option>
-						<option value="value">Size: X</option>
-						<option value="value">Size: M</option>
-						<option value="value">Size: S</option>
+				 <span style=" text-align: center; padding-top: 20px;">Quantity</span>				
+ 				   <select name="select" id="productSize" class="mr-5">
+						<option value="value">1</option>
+						<option value="value">2</option>
+						<option value="value">3</option>
+						<option value="value">4</option>
 					</select> <select name="select" id="productColor">
 						<option value="value">Color: Black</option>
 						<option value="value">Color: White</option>
@@ -85,7 +86,7 @@
 						class="btn essence-btn">Add to cart</button>
 					<!-- Favourite -->
 					<div class="product-favourite ml-4">
-						<a href="#" class="favme fa fa-heart">.</a>
+						<a href="#" class="favme fa fa-heart">&#160;</a>
 					</div>
 				</div>
 			</form>

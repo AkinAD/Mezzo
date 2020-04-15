@@ -199,6 +199,7 @@
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-product-wrapper">
 											<!-- Product Image -->
+											<a href="${pageContext.request.contextPath}/ProductPage?aid=1">
 											<div class="product-img">
 												<img
 													src="${pageContext.request.contextPath}/res/img/product-img/product-1.jpg"
@@ -217,21 +218,21 @@
 													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
-
+											</a>
 											<!-- Product Description -->
 											<div class="product-description">
-												<span>topshop</span> <a href="single-product-details.html">
-													<h6>Knot Front Mini Dress</h6>
+												<span>Micheal Jackson</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=1">
+													<h6>Thriller</h6>
 												</a>
 												<p class="product-price">
-													<span class="old-price">$75.00</span> $55.00
+													<span class="old-price">$61.50</span> $47.30
 												</p>
 
 												<!-- Hover Content -->
 												<div class="hover-content">
 													<!-- Add to Cart -->
 													<div class="add-to-cart-btn">
-														<a href="#" class="btn essence-btn">Add to Cart</a>
+														<a href="?addToCart=1" class="btn essence-btn">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -242,6 +243,7 @@
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-product-wrapper">
 											<!-- Product Image -->
+											<a href="${pageContext.request.contextPath}/ProductPage?aid=2">
 											<div class="product-img">
 												<img
 													src="${pageContext.request.contextPath}/res/img/product-img/product-2.jpg"
@@ -256,19 +258,19 @@
 													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
-
+											</a>
 											<!-- Product Description -->
 											<div class="product-description">
-												<span>topshop</span> <a href="single-product-details.html">
-													<h6>Knot Front Mini Dress</h6>
+												<span>AC/DC</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=2">
+													<h6>Back in Black</h6>
 												</a>
-												<p class="product-price">$80.00</p>
+												<p class="product-price">$29.40</p>
 
 												<!-- Hover Content -->
 												<div class="hover-content">
 													<!-- Add to Cart -->
 													<div class="add-to-cart-btn">
-														<a href="#" class="btn essence-btn">Add to Cart</a>
+														<a href="?addToCart=2" class="btn essence-btn">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -279,6 +281,7 @@
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-product-wrapper">
 											<!-- Product Image -->
+											<a href="${pageContext.request.contextPath}/ProductPage?aid=3">
 											<div class="product-img">
 												<img
 													src="${pageContext.request.contextPath}/res/img/product-img/product-3.jpg"
@@ -292,25 +295,26 @@
 												<div class="product-badge new-badge">
 													<span>New</span>
 												</div>
-
+											
 												<!-- Favourite -->
 												<div class="product-favourite">
 													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
-
+											</a>
 											<!-- Product Description -->
 											<div class="product-description">
-												<span>topshop</span> <a href="single-product-details.html">
-													<h6>Knot Front Mini Dress</h6>
+												<span>Meat Loaf</span> 
+												<a href="${pageContext.request.contextPath}/ProductPage?aid=3">
+													<h6>Bat Out of Hell</h6>
 												</a>
-												<p class="product-price">$80.00</p>
+												<p class="product-price">$21.70</p>
 
 												<!-- Hover Content -->
 												<div class="hover-content">
 													<!-- Add to Cart -->
 													<div class="add-to-cart-btn">
-														<a href="#" class="btn essence-btn">Add to Cart</a>
+														<a href="?addToCart=3" class="btn essence-btn">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -321,6 +325,7 @@
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-product-wrapper">
 											<!-- Product Image -->
+											<a href="${pageContext.request.contextPath}/ProductPage?aid=4">
 											<div class="product-img">
 												<img
 													src="${pageContext.request.contextPath}/res/img/product-img/product-4.jpg"
@@ -335,19 +340,19 @@
 													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
-
+											</a>
 											<!-- Product Description -->
 											<div class="product-description">
-												<span>topshop</span> <a href="single-product-details.html">
-													<h6>Knot Front Mini Dress</h6>
+												<span>Roddy Ricch</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=4">
+													<h6>Please Excuse Me for Being Antisocial</h6>
 												</a>
-												<p class="product-price">$80.00</p>
+												<p class="product-price">$15.00</p>
 
 												<!-- Hover Content -->
 												<div class="hover-content">
 													<!-- Add to Cart -->
 													<div class="add-to-cart-btn">
-														<a href="#" class="btn essence-btn">Add to Cart</a>
+														<a href="?addToCart=4" class="btn essence-btn">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -358,6 +363,7 @@
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-product-wrapper">
 											<!-- Product Image -->
+											<a href="${pageContext.request.contextPath}/ProductPage?aid=5">
 											<div class="product-img">
 												<img
 													src="${pageContext.request.contextPath}/res/img/product-img/product-5.jpg"
@@ -377,21 +383,21 @@
 													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
-
+											</a>
 											<!-- Product Description -->
 											<div class="product-description">
-												<span>topshop</span> <a href="single-product-details.html">
-													<h6>Knot Front Mini Dress</h6>
+												<span>Pink Floyd</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=5">
+													<h6>The Dark Side of the Moon</h6>
 												</a>
 												<p class="product-price">
-													<span class="old-price">$75.00</span> $55.00
+													<span class="old-price">$30.00</span> $24.00
 												</p>
 
 												<!-- Hover Content -->
 												<div class="hover-content">
 													<!-- Add to Cart -->
 													<div class="add-to-cart-btn">
-														<a href="#" class="btn essence-btn">Add to Cart</a>
+														<a href="?addToCart=5" class="btn essence-btn">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -402,6 +408,7 @@
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-product-wrapper">
 											<!-- Product Image -->
+											<a href="${pageContext.request.contextPath}/ProductPage?aid=6">
 											<div class="product-img">
 												<img
 													src="${pageContext.request.contextPath}/res/img/product-img/product-6.jpg"
@@ -413,22 +420,22 @@
 
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart">&#160;</a>
+													<a href="addToCart=6" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
-
+											</a>
 											<!-- Product Description -->
 											<div class="product-description">
-												<span>topshop</span> <a href="single-product-details.html">
-													<h6>Knot Front Mini Dress</h6>
+												<span>The Weeknd</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=6">
+													<h6>Beauty Behind the Madness</h6>
 												</a>
-												<p class="product-price">$80.00</p>
+												<p class="product-price">$15.00</p>
 
 												<!-- Hover Content -->
 												<div class="hover-content">
 													<!-- Add to Cart -->
 													<div class="add-to-cart-btn">
-														<a href="#" class="btn essence-btn">Add to Cart</a>
+														<a href="?addToCart=6" class="btn essence-btn">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -439,7 +446,8 @@
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-product-wrapper">
 											<!-- Product Image -->
-											<div class="product-img">
+											<a href="${pageContext.request.contextPath}/ProductPage?aid=7">
+												<div class="product-img">
 												<img
 													src="${pageContext.request.contextPath}/res/img/product-img/product-7.jpg"
 													alt="" />
@@ -458,19 +466,19 @@
 													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
-
+											</a>
 											<!-- Product Description -->
 											<div class="product-description">
-												<span>topshop</span> <a href="single-product-details.html">
-													<h6>Knot Front Mini Dress</h6>
+												<span>Young Thug</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=7">
+													<h6>So Much Fun</h6>
 												</a>
-												<p class="product-price">$80.00</p>
+												<p class="product-price">$12.25</p>
 
 												<!-- Hover Content -->
 												<div class="hover-content">
 													<!-- Add to Cart -->
 													<div class="add-to-cart-btn">
-														<a href="#" class="btn essence-btn">Add to Cart</a>
+														<a href="?addToCart=7" class="btn essence-btn">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -498,16 +506,16 @@
 
 											<!-- Product Description -->
 											<div class="product-description">
-												<span>topshop</span> <a href="single-product-details.html">
-													<h6>Knot Front Mini Dress</h6>
+												<span>Tyler, the Creator</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=8">
+													<h6>Igor</h6>
 												</a>
-												<p class="product-price">$80.00</p>
+												<p class="product-price">$19.77</p>
 
 												<!-- Hover Content -->
 												<div class="hover-content">
 													<!-- Add to Cart -->
 													<div class="add-to-cart-btn">
-														<a href="#" class="btn essence-btn">Add to Cart</a>
+														<a href="?addToCart=8" class="btn essence-btn">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -518,6 +526,7 @@
 									<div class="col-12 col-sm-6 col-lg-4">
 										<div class="single-product-wrapper">
 											<!-- Product Image -->
+											<a href="${pageContext.request.contextPath}/ProductPage?aid=9">
 											<div class="product-img">
 												<img
 													src="${pageContext.request.contextPath}/res/img/product-img/product-9.jpg"
@@ -529,22 +538,22 @@
 
 												<!-- Favourite -->
 												<div class="product-favourite">
-													<a href="#" class="favme fa fa-heart"></a>
+													<a href="#" class="favme fa fa-heart">&#160;</a>
 												</div>
 											</div>
-
+											</a>
 											<!-- Product Description -->
 											<div class="product-description">
-												<span>topshop</span> <a href="single-product-details.html">
-													<h6>Knot Front Mini Dress</h6>
+												<span>Drake</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=9">
+													<h6>If You're Reading This It's Too LAte</h6>
 												</a>
-												<p class="product-price">$80.00</p>
+												<p class="product-price">$15.00</p>
 
 												<!-- Hover Content -->
 												<div class="hover-content">
 													<!-- Add to Cart -->
 													<div class="add-to-cart-btn">
-														<a href="#" class="btn essence-btn">Add to Cart</a>
+														<a href="?addToCart=9" class="btn essence-btn">Add to Cart</a>
 													</div>
 												</div>
 											</div>
@@ -580,7 +589,7 @@
 													<div class="hover-content">
 														<!-- Add to Cart -->
 														<div class="add-to-cart-btn">
-															<a href="#" class="btn essence-btn">Add to Cart</a>
+															<a href="?addToCart=${current.value[0]}" class="btn essence-btn">Add to Cart</a>
 														</div>
 													</div>
 												</div>

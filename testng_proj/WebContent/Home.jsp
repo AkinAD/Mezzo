@@ -133,6 +133,7 @@
 						<!-- Single Product -->
 						<div class="single-product-wrapper">
 							<!-- Product Image -->
+							<a href="${pageContext.request.contextPath}/ProductPage?aid=1">
 							<div class="product-img">
 								<img
 									src="${pageContext.request.contextPath}/res/img/product-img/product-1.jpg"
@@ -144,13 +145,14 @@
 								<!-- Favourite -->
 								<div class="product-favourite">
 									<a href="#" class="favme fa fa-heart">
-										<!--  Some content -->.
+										<!--  Some content -->&#160;
 									</a>
 								</div>
 							</div>
+							</a>
 							<!-- Product Description -->
 							<div class="product-description">
-								<span>Micheal Jackson</span> <a href="single-product-details.html">
+								<span>Micheal Jackson</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=1">
 									<h6>Thriller</h6>
 								</a>
 								<p class="product-price">$47.30</p>
@@ -159,7 +161,7 @@
 								<div class="hover-content">
 									<!-- Add to Cart -->
 									<div class="add-to-cart-btn">
-										<a href="#" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
+										<a href="?addToCart=1" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
 									</div>
 								</div>
 							</div>
@@ -168,6 +170,7 @@
 						<!-- Single Product -->
 						<div class="single-product-wrapper">
 							<!-- Product Image -->
+							<a href="${pageContext.request.contextPath}/ProductPage?aid=2">
 							<div class="product-img">
 								<img
 									src="${pageContext.request.contextPath}/res/img/product-img/product-2.jpg"
@@ -179,13 +182,14 @@
 								<!-- Favourite -->
 								<div class="product-favourite">
 									<a href="#" class="favme fa fa-heart">
-										<!--  Some content -->.
+										<!--  Some content -->&#160;
 									</a>
 								</div>
 							</div>
+							</a>
 							<!-- Product Description -->
 							<div class="product-description">
-								<span>ACDC</span> <a href="single-product-details.html">
+								<span>ACDC</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=2">
 									<h6>Back In Black</h6>
 								</a>
 								<p class="product-price">$29.40</p>
@@ -194,7 +198,7 @@
 								<div class="hover-content">
 									<!-- Add to Cart -->
 									<div class="add-to-cart-btn">
-										<a href="#" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
+										<a href="?addToCart=2" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
 									</div>
 								</div>
 							</div>
@@ -203,7 +207,8 @@
 						<!-- Single Product -->
 						<div class="single-product-wrapper">
 							<!-- Product Image -->
-							<div class="product-img">
+							<a href="${pageContext.request.contextPath}/ProductPage?aid=3">
+								<div class="product-img">
 								<img
 									src="${pageContext.request.contextPath}/res/img/product-img/product-3.jpg"
 									alt="" />
@@ -219,13 +224,14 @@
 								<!-- Favourite -->
 								<div class="product-favourite">
 									<a href="#" class="favme fa fa-heart">
-										<!--  Some content -->.
+										<!--  Some content -->&#160;
 									</a>
 								</div>
 							</div>
+							</a>
 							<!-- Product Description -->
 							<div class="product-description">
-								<span>Meat Loaf</span> <a href="single-product-details.html">
+								<span>Meat Loaf</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=3">
 									<h6>Bat Out Of Hell</h6>
 								</a>
 								<p class="product-price">
@@ -236,7 +242,7 @@
 								<div class="hover-content">
 									<!-- Add to Cart -->
 									<div class="add-to-cart-btn">
-										<a href="#" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
+										<a href="?addToCart=3" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
 									</div>
 								</div>
 							</div>
@@ -245,7 +251,8 @@
 						<!-- Single Product -->
 						<div class="single-product-wrapper">
 							<!-- Product Image -->
-							<div class="product-img">
+							<a href="${pageContext.request.contextPath}/ProductPage?aid=4">
+								<div class="product-img">
 								<img
 									src="${pageContext.request.contextPath}/res/img/product-img/product-4.jpg"
 									alt="" />
@@ -262,13 +269,14 @@
 								<!-- Favourite -->
 								<div class="product-favourite">
 									<a href="#" class="favme fa fa-heart">
-										<!--  Some content -->.
+										<!--  Some content -->&#160;
 									</a>
 								</div>
 							</div>
+							</a>
 							<!-- Product Description -->
 							<div class="product-description">
-								<span>Roddy Ricch</span> <a href="single-product-details.html">
+								<span>Roddy Ricch</span> <a href="${pageContext.request.contextPath}/ProductPage?aid=4">
 									<h6>Antisocial </h6>
 								</a>
 								<p class="product-price">$15.00</p>
@@ -277,7 +285,7 @@
 								<div class="hover-content">
 									<!-- Add to Cart -->
 									<div class="add-to-cart-btn">
-										<a href="#" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
+										<a href="?addToCart=4" class="btn essence-btn">Add to Cart</a> <!-- Come back to fix this later -->
 									</div>
 								</div>
 							</div>
@@ -353,7 +361,8 @@
 		src="${pageContext.request.contextPath}/res/js/classy-nav.min.js">;</script>
 	<!-- Active js -->
 	<script src="${pageContext.request.contextPath}/res/js/active.js">;</script>
-
+			<script src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
+	
 </body>
 	</html>
 </jsp:root>

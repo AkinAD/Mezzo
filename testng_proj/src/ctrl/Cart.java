@@ -1,6 +1,12 @@
 package ctrl;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,75 +14,94 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Album;
+import model.MusicStore;
 import model.ShoppingCart;
 
 /**
  * Servlet implementation class Cart
- * 
- * - Currently not being used / Not needed
  */
 @WebServlet({ "/Cart", "/cart", "/Cart/*", "/cart/*" })
 public class Cart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	 
+	private MusicStore MS;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Cart() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public Cart() {
-		super();
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//request.getRequestDispatcher("/cart.jsp").forward(request, response);
-		// THOROUGHLY CHECK CODE BELOW
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");
-		if(request.getParameter("addToCart") != null )
-		{	
-			int aid = Integer.parseInt(request.getParameter("addToCart"));
-			if(request.getParameter("quantity") != null)
-			{
-				int quantity = Integer.parseInt(request.getParameter("quantity"));
-				cart.addAlbum(aid, quantity);
+		ShoppingCart cart = null;
+		if (SessionManagement.getCart(session) != null) {
+			cart = SessionManagement.getCart(session);
+		}
+		else
+		{
+			try {
+				SessionManagement.bindCart(session, new ShoppingCart());
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			}
-			else
-			{
-				cart.addAlbum(aid, 1);
-			}			
 		}
-		if(cart.getAlbumCount() != 0 && session.getAttribute("total") == null 
-				&& session.getAttribute("booksInCart") == null){
-			session.setAttribute("total", cart.getTotalPrice()); // MIGHT NEED TO MOVE THIS TO SESSION MANAGEMENT
-			session.setAttribute("booksInCart", cart.getAlbums());// MIGHT NEED TO MOVE THIS TO SESSION MANAGEMENT
+		cart = SessionManagement.getCart(session);
+		MS = (MusicStore) request.getServletContext().getAttribute("MS");
+		Map<String, Album> data = new HashMap<String, Album>();
+		Map<String, List<String>> out = new HashMap<String, List<String>>();
+		session.setAttribute("cartCount", cart.getAlbumCount());
+		if(request.getParameter("updateCart") != null && request.getParameter("updateCart").equals("true"))
+		{
+			try {
+				putData(data, out, cart);
+				session.setAttribute("cartCount", cart.getAlbumCount());
+				session.setAttribute("cartItems", out);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		if(request.getParameter("delete") != null){
-			int aid = Integer.parseInt(request.getParameter("addToCart"));
-			cart.removeAlbum(aid);
+		if (request.getPathInfo() != null && request.getPathInfo().contains("/Ajax"))
+		{		
+			request.getRequestDispatcher("/cart.jsp").forward(request, response);
 		}
-		if(request.getParameter("quantity") != null && request.getParameter("bid") != null){	
-			int quantity = Integer.parseInt(request.getParameter("quantity"));
-			int aid = Integer.parseInt(request.getParameter("addToCart"));
-			cart.updateQuantity(aid, quantity);
-			response.setHeader("total", 
-					"<b>Total: $" + cart.getTotalPrice() + ".00</b></td><br/>");
-			response.setHeader("subtotal", 
-					"$" + cart.getPricePerQuan(aid) + ".00</td><br/>");
-			response.setHeader("size", cart.getAlbumCount() +""); 
+		else
+		{ // if it has to get to this
+			//request.getRequestDispatcher("/standaloneCart.jsp").forward(request, response);
 		}
+
 	}
 
+	private void putData(Map<String, Album> data, Map<String, List<String>> out, ShoppingCart  cart) throws SQLException
+	{		
+		for(int aid : cart.getAlbums().keySet())
+		{
+		 List<String> tmp = new ArrayList<String>();
+		 
+		String  quantity = cart.getAlbums().get(aid).toString();
+		tmp.add(Integer.toString(aid));
+		tmp.add(cart.getArtist(aid));
+		tmp.add(cart.getTitle(aid));
+		tmp.add(cart.getCategory(aid));
+		tmp.add(Float.toString(cart.getPricePerQuan(aid)));
+		tmp.add(cart.getPicture(aid));
+		tmp.add(quantity);
+		out.put(Integer.toString(aid), tmp);
+		}
+	}	
+	
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

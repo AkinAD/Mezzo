@@ -30,4 +30,9 @@ public class SessionManagement {
 	{
 		session.setAttribute(MEZZO_CART, cart);
 	}
+	
+	public static ShoppingCart getCart(HttpSession session)
+	{
+		return (ShoppingCart) session.getAttribute(MEZZO_CART);
+	}
 }
