@@ -53,7 +53,7 @@
 			<p class="product-price">
 				<!-- <span class="old-price">$65.00</span>-->
 				<f:setLocale value="en_CA" />
-				<f:formatNumber type="currency" >${requestScope.albumResult.price}"</f:formatNumber>
+				<f:formatNumber type="currency" >${requestScope.albumResult.price}</f:formatNumber>
 			</p>
 			<p class="product-desc">Mauris viverra cursus ante laoreet
 				eleifend. Donec vel fringilla ante. Aenean finibus velit id urna

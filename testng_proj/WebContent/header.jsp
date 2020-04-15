@@ -9,15 +9,6 @@
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
-	<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta charset="UTF-8"/>
-    <meta name="description" content=""/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-<!-- <title>Insert title here</title>  -->
-</head>
-<body>
 <!-- ##### Header Area Start ##### -->
 	<header class="header_area">
 		<div
@@ -125,9 +116,6 @@
 	
 	
 	<!-- ##### START Cart area  ##### -->
-	<jsp:include page="cart.jsp" />
+	<!--<jsp:include page="cart.jsp" />-->
     <!-- ##### END  Cart area ##### -->
-
-</body>
-</html>
 </jsp:root>

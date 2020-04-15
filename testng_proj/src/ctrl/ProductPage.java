@@ -91,7 +91,10 @@ public class ProductPage extends HttpServlet {
 			for (int i = 0; i < 5; i++) {
 				revProportions[i] = (int) (100 * ((double) revCounts[i] / (double) revCount));
 			}
-			double avgRev = (double) reviewSum / (double) revCount;
+			double avgRev = 0;
+			if (revCount > 0) {
+				avgRev = (double) reviewSum / (double) revCount;
+			}
 			boolean revStarFills[] = new boolean[5];
 			Arrays.fill(revStarFills, false);
 			for (int i = 0; i < (int) avgRev; i++) {
