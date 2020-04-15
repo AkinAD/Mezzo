@@ -69,7 +69,7 @@ public class MusicStore {
 		if (username.length() > 25 || sanitUser.length() > 25) {
 			throw new IllegalArgumentException();
 		}
-		if (review.length() > 25 || sanitRev.length() > 25) {
+		if (review.length() > 499 || sanitRev.length() > 499) {
 			throw new IllegalArgumentException();
 		}
 		

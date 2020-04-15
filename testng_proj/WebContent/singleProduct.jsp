@@ -24,8 +24,6 @@
 	href="${pageContext.request.contextPath}/res/css/review.css" />
 </head>
 <body>
-	<!-- 	<div> <%@ include page="shop.jsp" %> </div>
- -->
 	<!-- ##### Footer Area Start ##### -->
 	<jsp:include page="header.jsp" />
 	<!-- ##### Footer Area End ##### -->
@@ -55,8 +53,7 @@
 			<p class="product-price">
 				<!-- <span class="old-price">$65.00</span>-->
 				<f:setLocale value="en_CA" />
-				<f:formatNumber value="${requestScope.albumResult.price}"
-					type="currency" />
+				<f:formatNumber type="currency" >${requestScope.albumResult.price}"</f:formatNumber>
 			</p>
 			<p class="product-desc">Mauris viverra cursus ante laoreet
 				eleifend. Donec vel fringilla ante. Aenean finibus velit id urna
@@ -72,11 +69,6 @@
 						<option value="value">2</option>
 						<option value="value">3</option>
 						<option value="value">4</option>
-					</select> <select name="select" id="productColor">
-						<option value="value">Color: Black</option>
-						<option value="value">Color: White</option>
-						<option value="value">Color: Red</option>
-						<option value="value">Color: Purple</option>
 					</select>
 				</div>
 				<!-- Cart & Favourite Box -->
