@@ -203,4 +203,10 @@ public class PurchaseOrder {
 		return poitem.retrieveMostPopular();
 	}
 
+	public Map<String, POBean> retrieveProcessedByMonth(String month) throws SQLException {
+		// TODO Auto-generated method stub
+		return po.retrieveProcessedPOByMonth(month);
+	}
+	
+	
 }
