@@ -19,7 +19,12 @@ import model.MusicStore;
 import model.PurchaseOrder;
 
 /**
+ * REST endpoints
+ * 
  * Servlet implementation class Api
+ * 
+ * @author alanyork
+ * 
  */
 @WebServlet({"/api","/api/products/*", "/api/orders/*"})
 public class Api extends HttpServlet {

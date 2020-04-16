@@ -17,6 +17,8 @@ import bean.AlbumBean;
 import model.MusicStore;
 
 /**
+ * Human-readable product catalogue
+ * 
  * Servlet implementation class Shop
  */
 @WebServlet({ "/Shop", "/shop", "/shop/*", "/Shop/*" })

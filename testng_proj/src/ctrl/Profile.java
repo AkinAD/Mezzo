@@ -18,21 +18,27 @@ import bean.ProfileBean;
 import model.UserModel;
 
 /**
+ * Profile page
+ * 
  * Servlet implementation class Profile
  * 
  * @author alanyork
  */
 @WebServlet({ "/Profile", "/profile" })
 public class Profile extends HttpServlet {
-	private static final String PHONE = "phone";
-	private static final String POSTAL = "postal";
-	private static final String COUNTRY = "country";
-	private static final String PROVINCE = "province";
-	private static final String STREET = "street";
+	private static final String PARAM_PHONE = "phone";
+	private static final String PARAM_POSTAL = "postal";
+	private static final String PARAM_COUNTRY = "country";
+	private static final String PARAM_PROVINCE = "province";
+	private static final String PARAM_STREET = "street";
+	public static final String PARAM_CAUSE = "cause";
+	
 	private static final String BILL_ADDR = "BillAddr";
 	private static final String CUR_PROFILE = "CurProfile";
-	private static final long serialVersionUID = 1L;
+	
 	private static final String PROFILE_PAGE = "profile.jsp";
+	
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -60,12 +66,12 @@ public class Profile extends HttpServlet {
 		UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
 		String curUsername = SessionManagement.getBoundUsername(request.getSession());
 
-		
-		String streetParam = request.getParameter(STREET);
-		String provParam = request.getParameter(PROVINCE);
-		String cuntParam = request.getParameter(COUNTRY);
-		String postParam = request.getParameter(POSTAL);
-		String phonParam = request.getParameter(PHONE);
+		// Logic in case of updates
+		String streetParam = request.getParameter(PARAM_STREET);
+		String provParam = request.getParameter(PARAM_PROVINCE);
+		String cuntParam = request.getParameter(PARAM_COUNTRY);
+		String postParam = request.getParameter(PARAM_POSTAL);
+		String phonParam = request.getParameter(PARAM_PHONE);
 		
 		boolean isBillUpdateSubmission;
 		String[] upBillSubmitParams = {streetParam,provParam,cuntParam,postParam};		
@@ -82,7 +88,9 @@ public class Profile extends HttpServlet {
 			}
 		}
 		
-		displayPage(request, response, curUsername, uModel);
+		// Page display
+		retrieveProfileBilling(request, response, curUsername, uModel);
+		request.getRequestDispatcher(PROFILE_PAGE).forward(request, response);
 	}
 
 	/**
@@ -95,23 +103,43 @@ public class Profile extends HttpServlet {
 		doGet(request, response);
 	}
 
-	protected void displayPage(HttpServletRequest request, HttpServletResponse response, String curUsername,
+	/**
+	 * Retrieves the AddressBean for the billing address,
+	 * places it in request scope with Profile.BILL_ADDR
+	 * as the key.
+	 * 
+	 * Also, retrieves the ProfileBean for the user
+	 * bound to the current session and places it
+	 * inside a single-element map with "fname, lname"
+	 * as the key. This is placed in the request scope
+	 * with key Profile.CUR_PROFILE.
+	 * 
+	 * @param request
+	 * @param response
+	 * @param curUsername
+	 * @param uModel
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private static void retrieveProfileBilling(HttpServletRequest request, HttpServletResponse response, String curUsername,
 			UserModel uModel) throws ServletException, IOException {
 		AddressBean billingAddress;
 		try {
 			billingAddress = uModel.retrieveBillingAddressByUsername(curUsername);
 		} catch (Exception e) {
 			billingAddress = new AddressBean("", "", "", "", "", "", "");
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Profile: Failed to retrieve billing address");
 		}
 		request.setAttribute(BILL_ADDR, billingAddress);
 
+		// Why is this single object in a collection?
+		// Because it interfaces with another collaborator's code  
 		Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 		try {
 			data = uModel.retrieveAccountByUsername(curUsername);
 			ProfileBean curProfile = data.values().iterator().next();
-			request.setAttribute(CUR_PROFILE, curProfile);
-			request.getRequestDispatcher(PROFILE_PAGE).forward(request, response);			
+			request.setAttribute(CUR_PROFILE, curProfile);					
 		} catch (Exception e) {
 			throw new ServletException(); // This is probably our fault
 		}		

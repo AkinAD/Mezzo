@@ -6,11 +6,13 @@ import java.util.regex.Pattern;
 
 import bean.AccountBean;
 import bean.AddressBean;
+import bean.CheckoutProfileBean;
 import bean.ProfileBean;
 import dao.AddressDAO;
 import dao.UserDAO;
 
 /**
+ * Profile/account model
  * 
  * @author akinad1
  *
@@ -92,7 +94,13 @@ public class UserModel {
 			}
 		}
 	
-	public Map<String, ProfileBean> retrieveAccountByUsername(String username) throws Exception {
+	/**
+	 * 
+	 * @param username
+	 * @return
+	 * A map with a single element that is the ProfileBean. Empty if not found.
+	 */
+	public Map<String, ProfileBean> retrieveAccountByUsername(String username) throws IllegalArgumentException, SQLException {
 		if (username.length() < 2 || username.equals("")) {
 			Error = "Sorry, this is not a valid username";
 			throw new IllegalArgumentException();
@@ -117,6 +125,13 @@ public class UserModel {
 		}
 		Error="";
 		return addressDao.retrieveBillingAddr(username);
+	}
+	
+	public CheckoutProfileBean retrieveCheckoutProfileByUsername(String username) throws Exception {
+		CheckoutProfileBean returnValue = new CheckoutProfileBean();
+		returnValue.setBillingAddress(retrieveBillingAddressByUsername(username));
+		returnValue.setProfile(retrieveAccountByUsername(username).values().iterator().next());
+		return returnValue;
 	}
 	
 	/**

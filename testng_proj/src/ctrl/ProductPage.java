@@ -15,11 +15,15 @@ import bean.ReviewBean;
 import model.MusicStore;
 
 /**
+ * Single product page
+ * 
+ * User should be logged in to access review functionality.
+ * 
  * Servlet implementation class ProductPage
  * 
  * @author alanyork
  */
-@WebServlet({ "/ProductPage" })
+@WebServlet({ "/ProductPage", "/productPage" })
 public class ProductPage extends HttpServlet {
 
 	private static final String REV_STAR_FILLS = "revStarFills";

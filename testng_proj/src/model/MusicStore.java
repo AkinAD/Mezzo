@@ -9,7 +9,12 @@ import bean.AlbumBean;
 import bean.ReviewBean;
 import dao.AlbumDAO;
 import dao.ReviewDAO;
-
+/**
+ * Catalogue model
+ * 
+ * @author alanyork
+ *
+ */
 public class MusicStore {
 	private AlbumDAO alDao;
 	private ReviewDAO revDao;

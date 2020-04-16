@@ -3,6 +3,7 @@ package filter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -32,9 +33,9 @@ import ctrl.SessionManagement;
 import model.UserModel;
 
 /**
- * Servlet Filter implementation class AuthFilter.
+ * Access control monitor
  * 
- * Acts as an access control monitor.
+ * Servlet Filter implementation class AuthFilter.
  * 
  * @author alanyork
  */
@@ -71,9 +72,6 @@ public class AuthFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-		
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		HttpServletResponse httpResp = (HttpServletResponse) response;
 		
@@ -94,6 +92,10 @@ public class AuthFilter implements Filter {
 		List<String> authenticatedAccess = new ArrayList<String>();
 		pathAccessMatrix.put("/profile", authenticatedAccess);
 		pathAccessMatrix.put("/Profile", authenticatedAccess);
+		pathAccessMatrix.put("/checkout", authenticatedAccess);
+		pathAccessMatrix.put("/Checkout", authenticatedAccess);
+		pathAccessMatrix.put("/pay", authenticatedAccess);
+		pathAccessMatrix.put("/Pay", authenticatedAccess);
 		
 		// Access controlled paths require auth
 		// Fail-unsafe default
@@ -101,8 +103,9 @@ public class AuthFilter implements Filter {
 		authRequired = authRequired || accessControlledPath;
 		
 		// Reviewing requires auth
-		boolean addReviewPath = httpReq.getServletPath().equals("/ProductPage");
-		addReviewPath = addReviewPath && (httpReq.getParameter("review") != null);
+		String[] reviewPaths = {"/ProductPage", "/productPage"};
+		boolean addReviewPath = Arrays.asList(reviewPaths).contains(httpReq.getServletPath());
+		addReviewPath = addReviewPath && (httpReq.getParameter("rating") != null);
 		authRequired = authRequired || addReviewPath;
 		
 		// Check for authorization

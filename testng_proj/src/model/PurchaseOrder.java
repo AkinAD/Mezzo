@@ -5,17 +5,32 @@ import java.util.*;
 
 import dao.*;
 import bean.*;
+import ctrl.SessionManagement;
 
+/**
+ * PurchaseOrder model
+ * 
+ * @author alanyork
+ *
+ */
 public class PurchaseOrder {
 
 	private PODAO po;
 	private POItemDAO poitem;
+	private AddressDAO addressDao;
+	private UserModel userModel;
 	private static final PurchaseOrder INSTANCE = new PurchaseOrder();
+	
+	public static final String ORDER_PROC = "PROCESSED";
+	public static final String ORDER_FAIL = "DENIED";
+	public static final String ORDER_ORDER = "ORDERD";
 
 	private PurchaseOrder() {
 		try {
 			po = new PODAO();
 			poitem = new POItemDAO();
+			addressDao = new AddressDAO();
+			userModel = UserModel.getInstance();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,14 +82,14 @@ public class PurchaseOrder {
 	 * 
 	 * @param pobean
 	 *            - pobean that need to be stored
-	 * @param books
+	 * @param albums
 	 *            - from shopping cart, ShoppingCart.getBooks()
 	 * @return PO_id for pobean
 	 * @throws Exception
 	 */
-	public String updatePO(POBean pobean, Map<String, Integer> books) throws Exception {
+	public String updatePO(POBean pobean, Map<String, Integer> albums) throws Exception {
 		po.updatePO(pobean);
-		poitem.updateItem(pobean.getPO_id(), books);
+		poitem.updateItem(pobean.getPO_id(), albums);
 		return pobean.getPO_id();
 	}
 
@@ -208,5 +223,38 @@ public class PurchaseOrder {
 		return po.retrieveProcessedPOByMonth(month);
 	}
 	
-	
+	/*
+	public int insertShippingAddress(String username, String street, String province, String country, String zip, String phone) throws IllegalArgumentException, SQLException {
+		String errorMsg = "";
+		if (username.length() < 2 || username.equals("")) {
+			errorMsg = "Invalid field";
+		} else if (userModel.retrieveAccountByUsername(username).isEmpty()) {
+			errorMsg = "Invalid field";
+		} else if (street == null || street.isEmpty() || street.length() > 100) {
+			errorMsg = "Invalid field";
+		} else if (province == null || province.isEmpty() || province.length() > 25) {
+			errorMsg = "Invalid field";
+		} else if (country == null || country.isEmpty() || country.length() > 24) {
+			errorMsg = "Invalid field";
+		} else if (zip == null || zip.isEmpty() || zip.length() > 20) {
+			errorMsg = "Invalid field";
+		} else if (!(phone == null || phone.isEmpty()) && phone.length() > 20) {
+			errorMsg = "Invalid field";
+		}
+		if (!errorMsg.isEmpty()) {
+			throw new IllegalArgumentException(errorMsg);
+		}
+		
+		AddressBean inAddr = new AddressBean(username, street, province, country, zip, phone, "Shipping");
+		int curAddr = addressDao.retrieveAddrByBean(inAddr);
+		if (curAddr == 0) {
+			// Address does not exist in DB
+			// Insert address
+			curAddr = addressDao.updateAddr(inAddr);
+			curAddr = addressDao.retrieveAddrByBean(inAddr);
+		}
+		
+		return curAddr;
+	}
+	*/
 }

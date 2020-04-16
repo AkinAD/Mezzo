@@ -28,7 +28,8 @@ public class AddressDAO {
 	}
 
 	/**
-	 * Return the only billing address of this customer
+	 * Returns the billing address of this customer
+	 * Customers must have a billing address.
 	 * 
 	 * @param username
 	 * @return the only billing address of this customer
@@ -51,6 +52,8 @@ public class AddressDAO {
 			String phone = r.getString("PHONE");
 			String type = r.getString("ADDRTYPE");
 			address = new AddressBean(addrusername, street, province, country, zip, phone, type);
+		} else {
+			throw new IllegalStateException();
 		}
 		r.close();
 		p.close();

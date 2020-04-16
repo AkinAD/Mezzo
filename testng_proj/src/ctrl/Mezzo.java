@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import model.ShoppingCart;
 
 /**
+ * Homepage, see also web.xml
+ * 
  * Servlet implementation class Mezzo
  */
 @WebServlet({"", "/home", "/Home"})

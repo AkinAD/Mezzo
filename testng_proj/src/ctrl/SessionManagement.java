@@ -6,12 +6,15 @@ import model.ShoppingCart;
 
 /**
  * 
+ * Utility class for the management of session storage data
+ * 
  * @author alanyork
  *
  */
 public class SessionManagement {
 	private static final String MEZZO_USERNAME = "MezzoUsername";
 	private static final String MEZZO_CART = "MezzoCart";
+	private static final String FAIL_CTR = "failCounter";
 
 	public static void bindUser(HttpSession session, String username) {
 		session.setAttribute(MEZZO_USERNAME, username);
@@ -26,6 +29,11 @@ public class SessionManagement {
 		return (String) session.getAttribute(MEZZO_USERNAME);
 	}
 
+	/**
+	 * Binds a new cart to the session
+	 * @param session
+	 * @throws ClassNotFoundException
+	 */
 	public static void bindCart(HttpSession session) throws ClassNotFoundException {
 		ShoppingCart cart = new ShoppingCart();
 		session.setAttribute(MEZZO_CART, cart);
@@ -59,5 +67,13 @@ public class SessionManagement {
 			SessionManagement.bindCart(session);
 		}
 		return (ShoppingCart) session.getAttribute(MEZZO_CART);
+	}
+	
+	public static int getFailCounter(HttpSession session) {
+		return (int) session.getAttribute(FAIL_CTR);		
+	}
+	
+	public static void setFailCounter(HttpSession session, int value) {
+		session.setAttribute(FAIL_CTR, value);		
 	}
 }

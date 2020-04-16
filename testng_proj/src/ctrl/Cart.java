@@ -19,6 +19,8 @@ import model.MusicStore;
 import model.ShoppingCart;
 
 /**
+ * Shopping cart page
+ * 
  * Servlet implementation class Cart
  */
 @WebServlet({ "/Cart", "/cart", "/Cart/*", "/cart/*" })

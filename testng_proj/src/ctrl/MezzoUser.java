@@ -24,6 +24,8 @@ import filter.AuthFilter.AuthCauseDeserializer;
 import model.UserModel;
 
 /**
+ * Login/registration page
+ * 
  * Servlet implementation class MezzoUser
  * @author akinad1
  * @author alanyork

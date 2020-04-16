@@ -22,6 +22,10 @@ import model.MusicStore;
 import model.PurchaseOrder;
 
 /**
+ * Admin/analytics pages
+ * 
+ * User should be logged in to use this.
+ * 
  * Servlet implementation class Admin
  */
 @WebServlet({ "/Admin", "/admin" })

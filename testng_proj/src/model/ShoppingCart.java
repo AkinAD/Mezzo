@@ -9,7 +9,8 @@ import bean.AlbumBean;
 import bean.CartItemBean;
 
 /**
- * Shopping Cart model class
+ * Shopping Cart model
+ * 
  */
 public class ShoppingCart implements Serializable {
 	private static final long serialVersionUID = -4099230588224841965L;

@@ -26,6 +26,8 @@ import model.MusicStore;
 import model.ShoppingCart;
 
 /**
+ * Cart filter, implements cart functionality throughout the app
+ * 
  * Servlet Filter implementation class CartFilter
  * 
  * @author alanyork
@@ -33,9 +35,9 @@ import model.ShoppingCart;
  */
 @WebFilter({ "/*" })
 public class CartFilter implements Filter {
-	private static final String CART_TOTAL = "cartTotal";
-	private static final String CART_TOTAL_QTY = "cartTotalQty";
-	private static final String CART_ITEMS = "cartItems";
+	public static final String CART_TOTAL = "cartTotal";
+	public static final String CART_TOTAL_QTY = "cartTotalQty";
+	public static final String CART_ITEMS = "cartItems";
 	
 	private static final String PARAM_QUANTITY = "quantity";
 	private static final String PARAM_DELETE = "delete";
@@ -126,7 +128,7 @@ public class CartFilter implements Filter {
 				cart.updateQuantity(changeAid, changeQty);
 			} catch (Exception e) {
 				// Failed to update cart
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 

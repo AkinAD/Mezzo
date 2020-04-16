@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSessionListener;
 import ctrl.SessionManagement;
 
 /**
+ * 
  * Application Lifecycle Listener implementation class MezzoSessionListener
  *
  * @author alanyork
@@ -37,6 +38,8 @@ public class MezzoSessionListener implements HttpSessionListener, HttpSessionAtt
 				e.printStackTrace();
 			}
     	}
+    	
+    	SessionManagement.setFailCounter(arg0.getSession(), 0);
     }
 
 	/**
