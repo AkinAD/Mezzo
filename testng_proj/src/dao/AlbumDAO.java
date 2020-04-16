@@ -156,8 +156,11 @@ public class AlbumDAO {
 					preparedStatement.close();
 					System.out.println("successfully updated db with new album " + title);
 				}
+				preparedStatement.close();
+				con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
+				
 				System.out.println("DB Failure On Album addition");
 //			return "DB Failure On Album addition";
 			}

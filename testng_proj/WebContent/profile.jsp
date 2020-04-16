@@ -25,6 +25,9 @@
 <!-- Core Style CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/res/css/core-style.css" />
+	
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"/>
 
 
 </head>
@@ -65,10 +68,10 @@
 				<!-- <div class="location"></div>-->
 				<div class="bottom">
 					<div class="cust">
-						<i class="material-icons">Person</i> <span class="user">${requestScope.CurProfile.privilege}</span>
+						<i class="fa fa-user" aria-hidden="true">&#160;</i><span class="user">${requestScope.CurProfile.privilege}</span>
 					</div>
 					<div class="cust">
-						<i class="material-icons">Email</i> <span class="email"><c:out
+						<i class="fa fa-envelope" aria-hidden="true">&#160;</i><span class="email"><c:out
 								value="${requestScope.CurProfile.email}" /> </span>
 					</div>
 				</div>

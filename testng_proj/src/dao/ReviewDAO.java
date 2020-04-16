@@ -103,7 +103,7 @@ public class ReviewDAO {
 			returnValue = p.executeUpdate();
 			p.close();
 		}
-		
+		execRes.close();
 		con.close();
 		
 		return returnValue;

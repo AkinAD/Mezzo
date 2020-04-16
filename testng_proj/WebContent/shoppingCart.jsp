@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
-	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
-		pageEncoding="ISO-8859-1" session="false"/>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1" session="false" />
 	<jsp:output doctype-root-element="html"
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
-<html xmlns="http://www.w3.org/1999/xhtml">
+	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/open-iconic-bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/res/css/animate.css"/>
@@ -132,22 +135,25 @@
 		<!-- ##### START header area  ##### -->
 	<jsp:include page="footer.jsp" />
     <!-- ##### END  header area ##### -->
-    
-    
-	<!-- <script src="${pageContext.request.contextPath}/res/js/jquery.min.js">;</script>
-	<script src="${pageContext.request.contextPath}/res/js/jquery-migrate-3.0.1.min.js">;</script>
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+	<script
+		src="${pageContext.request.contextPath}/res/js/jquery/jquery-2.2.4.min.js">
+		;
+	</script>
+	<!-- Popper js -->
 	<script src="${pageContext.request.contextPath}/res/js/popper.min.js">;</script>
-	<script src="${pageContext.request.contextPath}/res/js/bootstrap.min.js">;</script>
-	<script src="js/jquery.easing.1.3.js">;</script>
-	<script src="js/jquery.waypoints.min.js">;</script>
-	<script src="js/jquery.stellar.min.js">;</script>
-	<script src="js/owl.carousel.min.js">;</script>
-	<script src="js/jquery.magnific-popup.min.js">;</script>
-	<script src="js/aos.js">;</script>
-	<script src="js/jquery.animateNumber.min.js">;</script>
-	<script src="js/bootstrap-datepicker.js">;</script>
-	<script src="js/scrollax.min.js">;</script> -->
-	
+	<!-- Bootstrap js -->
+	<script
+		src="${pageContext.request.contextPath}/res/js/bootstrap.min.js">;</script>
+	<!-- Plugins js -->
+	<script src="${pageContext.request.contextPath}/res/js/plugins.js">;</script>
+	<!-- Classy Nav js -->
+	<script
+		src="${pageContext.request.contextPath}/res/js/classy-nav.min.js">;</script>
+	<!-- Active js -->
+	<script src="${pageContext.request.contextPath}/res/js/active.js">;</script>
+    
+
 			<script src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
 	
 

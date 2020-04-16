@@ -1,8 +1,10 @@
 package ctrl;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,13 +45,25 @@ public class Checkout extends HttpServlet {
     public Checkout() {
         super();
     }
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		// this.getServletContext().setAttribute("MS", MusicStore.getInstance());
+		this.getServletContext().setAttribute("UM", UserModel.getInstance());
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Handle page display
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
 		String curUsername = SessionManagement.getBoundUsername(request.getSession());
+		retrieveProfileBilling(request, response, curUsername, uModel);
+//		request.getRequestDispatcher(PROFILE_PAGE).forward(request, response);
 
 		try {
 			CheckoutProfileBean payProfile = userModel.retrieveCheckoutProfileByUsername(curUsername);
@@ -70,4 +84,28 @@ public class Checkout extends HttpServlet {
 		doGet(request, response);
 	}
 
+	
+	private static void retrieveProfileBilling(HttpServletRequest request, HttpServletResponse response, String curUsername,
+			UserModel uModel) throws ServletException, IOException {
+		AddressBean billingAddress;
+		try {
+			billingAddress = uModel.retrieveBillingAddressByUsername(curUsername);
+		} catch (Exception e) {
+			billingAddress = new AddressBean("", "", "", "", "", "", "");
+			//e.printStackTrace();
+			System.out.println("Profile: Failed to retrieve billing address");
+		}
+		request.setAttribute(BILL_ADDR, billingAddress);
+
+		// Why is this single object in a collection?
+		// Because it interfaces with another collaborator's code  
+		Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
+		try {
+			data = uModel.retrieveAccountByUsername(curUsername);
+			ProfileBean curProfile = data.values().iterator().next();
+			request.setAttribute(CUR_PROFILE, curProfile);					
+		} catch (Exception e) {
+			throw new ServletException(); // This is probably our fault
+		}		
+	}
 }

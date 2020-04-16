@@ -104,7 +104,7 @@
 				<!--                </div>-->
 				<!-- Cart Area -->
 				<div class="cart-area"><!--ajaxCart('/testng_proj/cart/Ajax');return false;  -->
-					<a href="#" id="essenceCartBtn"><img src="${pageContext.request.contextPath}/res/img/core-img/bag.svg"
+					<a href="cart" id="essenceCartBtn"><img src="${pageContext.request.contextPath}/res/img/core-img/bag.svg"
 						alt=""/><span>${requestScope.cartTotalQty}</span><!-- content --></a>
 				</div>
 			</div>

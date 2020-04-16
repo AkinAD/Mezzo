@@ -42,7 +42,7 @@ public class Cart extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("test.jsp").forward(request, response);
+		request.getRequestDispatcher("shoppingCart.jsp").forward(request, response);
 	}
 
 	/**

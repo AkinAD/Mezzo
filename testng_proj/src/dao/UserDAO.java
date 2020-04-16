@@ -129,6 +129,8 @@ public class UserDAO {
 			preparedStatement.close();
 			return true;
 		}
+		con.close();
+		preparedStatement.close();
 		return false;
 	}
 
