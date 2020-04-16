@@ -112,7 +112,6 @@
 		</div>
 	</header>
 	<!-- ##### Header Area End ##### -->
-			<script src="${pageContext.request.contextPath}/res/js/cart.js">;</script>
 	
 	
 	<!-- ##### START Cart area  ##### -->
