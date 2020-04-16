@@ -139,7 +139,7 @@ public class Admin extends HttpServlet {
 			System.out.println(request.getAttribute("report"));
 			
 			Map<String, Map<String, POBean>> monthlyProcessed = new HashMap<String, Map<String, POBean>>(); //<month, <PO_ID, POBean>>: month and all processed PO 
-			Map<String, Map<String, Integer>> monthlySales = new HashMap<String, Map<String, Integer>>();
+			Map<String, Map<Integer, Integer>> monthlySales = new HashMap<String, Map<Integer, Integer>>();
 			
 			for (int m = 1; m <13; m++) {
 				String month = Integer.toString(m);
@@ -165,7 +165,7 @@ public class Admin extends HttpServlet {
 			//UC A3: provide annoymized reports w/ user buying statistics 
 		//	request.setAttribute("anonymizedpo", POAccessor.retrieveAllPO());
 			
-			Map<POBean, Map<String, Integer>> allPO = PO.retrieveAllPO();
+			Map<POBean, Map<Integer, Integer>> allPO = PO.retrieveAllPO();
 			Map<String, Map<String, Float>> total = new HashMap<String, Map<String, Float>>();
 			Map<String, Map<String, Float>> anon = new HashMap<String, Map<String, Float>>();
 //			for (POBean po : allPO.keySet()) {

@@ -24,17 +24,17 @@ public class POItemDAO {
 
 	/**
 	 * Update POItem by giving PO_id from POBean and a map stored bid and quantity
-	 * for each book
+	 * for each album
 	 * 
 	 * @param PO_id
-	 * @param books
+	 * @param albums
 	 * @throws SQLException
 	 */
-	public void updateItem(String PO_id, Map<String, Integer> books) throws SQLException {
+	public void updateItem(String PO_id, Map<Integer, Integer> albums) throws SQLException {
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = null;
-		for (String bid : books.keySet()) {
-			String query = "INSERT INTO POITEM VALUES ('" + PO_id + "', '" + bid + "', " + books.get(bid) + ")";
+		for (int aid : albums.keySet()) {
+			String query = "INSERT INTO POITEM VALUES ('" + PO_id + "', '" + aid + "', " + albums.get(aid) + ")";
 			p = con.prepareStatement(query);
 			p.executeUpdate();
 		}
@@ -43,22 +43,23 @@ public class POItemDAO {
 	}
 
 	/**
-	 * Return Map with BID and Quantity for each book
+	 * Return Map with AID and Quantity for each album
 	 * 
 	 * @param PO_id
-	 * @return Map with BID and Quantity for each book
+	 * @return Map with AID and Quantity for each album
 	 * @throws SQLException
 	 */
-	public Map<String, Integer> retrieveItemByID(String PO_id) throws SQLException {
-		String query = "select * from POItem where PO_ID='" + PO_id + "'";
-		Map<String, Integer> map = new HashMap<String, Integer>();
+	public Map<Integer, Integer> retrieveItemByID(String PO_id) throws SQLException {
+		String query = "select * from POItem where PO_ID=?";
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
+		p.setString(1, PO_id);
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
-			String bid = r.getString("BID");
+			int  aid = r.getInt("BID");
 			int quantity = r.getInt("QUANTITY");
-			map.put(bid, quantity);
+			map.put(aid, quantity);
 		}
 		r.close();
 		p.close();
@@ -67,26 +68,27 @@ public class POItemDAO {
 	}
 
 	/**
-	 * Return the ordered item information for a book in a particular Purchase order
+	 * Return the ordered item information for an album in a particular Purchase order
 	 * 
 	 * @param POID
-	 * @param bookID
-	 * @return Return the ordered item information for a book in a particular
+	 * @param AID
+	 * @return Return the ordered item information for an album in a particular
 	 *         Purchase order
 	 * @throws SQLException
 	 */
-	public POItemBean retrieveItem(String POID, String bookID) throws SQLException {
-		String query = "select P.ID, P.BID, P.PRICE from POITEM P where P.ID = " + Integer.parseInt(POID)
-				+ " and P.BID = '" + bookID + "'";
+	public POItemBean retrieveItem(String POID, int AID) throws SQLException {
+		String query = "select P.po_id, P.AID, P.QUANTITY from POITEM P where P.po_id = ? and P.AID = ?";
 		POItemBean POItem = null;
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
+		p.setString(1, POID);
+		p.setInt(2, AID);
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
 			String PO_id = r.getString("PO_ID");
-			String bid = r.getString("BID");
+			int aid = r.getInt("AID");
 			int quantity = r.getInt("QUANTITY");
-			POItem = new POItemBean(PO_id, bid, quantity);
+			POItem = new POItemBean(PO_id, aid, quantity);
 		}
 		r.close();
 		p.close();
@@ -100,22 +102,21 @@ public class POItemDAO {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Map<String, POItemBean> retrievePOItemWithAlbum(int aid) throws SQLException {
+	public Map<String, POItemBean> retrievePOItemWithAlbum(int AID) throws SQLException {
 		String query = "SELECT PO_ID, AID, QUANTITY FROM POITEM WHERE AID = ?";
 		Map<String, POItemBean> returnValue = new TreeMap<String,POItemBean>();
 
 		Connection con = this.ds.getConnection();
-		
 		PreparedStatement p = con.prepareStatement(query);
-		p.setInt(1, aid);
+		p.setInt(1, AID);
 		
 		ResultSet r = p.executeQuery();
 		
 		while (r.next()) {
 			String PO_id = r.getString("PO_ID");
-			String bid = r.getString("AID");
+			int aid = r.getInt("AID");
 			int quantity = r.getInt("QUANTITY");
-			POItemBean curItem = new POItemBean(PO_id, bid, quantity);
+			POItemBean curItem = new POItemBean(PO_id, aid, quantity);
 			returnValue.put(PO_id, curItem);
 		}
 		
@@ -127,28 +128,28 @@ public class POItemDAO {
 	}
 
 	/**
-	 * Return books with sold quantity that has been ordered in this period (from
+	 * Return albums with sold quantity that has been ordered in this period (from
 	 * start to end)
 	 * 
 	 * @param start - starting date in String with format 'yyyymmdd', given date is
 	 *              included
 	 * @param end   - ending date in String with format 'yyyymmdd', given date is
 	 *              included
-	 * @return Return all book that has been ordered in this period with quantity
+	 * @return Return all albums that have been ordered in this period with quantity
 	 * @throws SQLException
 	 */
-	public Map<String, Integer> retrieveOrderHistory(String start, String end) throws SQLException {
-		String query = "select POItem.bid, sum(POItem.quantity) as \"QUANTITY\" from POItem, PO where POItem.PO_id=PO.PO_id and PO.status<>'DENIED' and POItem.PO_id >= (select min(PO_id) from POItem where PO_id like '"
+	public Map<Integer, Integer> retrieveOrderHistory(String start, String end) throws SQLException {
+		String query = "select POItem.aid, sum(POItem.quantity) as \"QUANTITY\" from POItem, PO where POItem.PO_id=PO.PO_id and PO.status<>'DENIED' and POItem.PO_id >= (select min(PO_id) from POItem where PO_id like '"
 				+ start + "%') and POItem.PO_id <= (select max(PO_id) from POItem where PO_id like '" + end
-				+ "%') group by POItem.bid";
-		Map<String, Integer> map = new HashMap<String, Integer>();
+				+ "%') group by POItem.aid";
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
-			String bid = r.getString("BID");
+			int aid = r.getInt("AID");
 			int quantity = r.getInt("QUANTITY");
-			map.put(bid, quantity);
+			map.put(aid, quantity);
 		}
 		r.close();
 		p.close();
@@ -157,21 +158,21 @@ public class POItemDAO {
 	}
 
 	/**
-	 * Return the most popular book from the first order
+	 * Return the most popular album of all time
 	 * 
-	 * @return the most popular book
+	 * @return the most popular album
 	 * @throws SQLException
 	 */
-	public Map<String, Integer> retrieveMostPopular() throws SQLException {
-		String query = "select bid, Q from (select POItem.bid, sum(POItem.quantity) as \"Q\" from POItem, PO where POItem.PO_id=PO.PO_id and PO.status<>'DENIED' group by POItem.bid) as M where Q=(select max(Q) from (select POItem.bid, sum(POItem.quantity) as \"Q\" from POItem, PO where POItem.PO_id=PO.PO_id and PO.status<>'DENIED' group by POItem.bid) as M)";
-		Map<String, Integer> map = new HashMap<String, Integer>();
+	public Map<Integer, Integer> retrieveMostPopular() throws SQLException {
+		String query = "select aid, Q from (select POItem.bid, sum(POItem.quantity) as \"Q\" from POItem, PO where POItem.PO_id=PO.PO_id and PO.status<>'DENIED' group by POItem.aid) as M where Q=(select max(Q) from (select POItem.aid, sum(POItem.quantity) as \"Q\" from POItem, PO where POItem.PO_id=PO.PO_id and PO.status<>'DENIED' group by POItem.aid) as M)";
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
-			String bid = r.getString("BID");
+			int aid = r.getInt("AID");
 			int quantity = r.getInt("Q");
-			map.put(bid, quantity);
+			map.put(aid, quantity);
 		}
 		r.close();
 		p.close();

@@ -50,9 +50,9 @@ public class PurchaseOrder {
 	 * @return Map<POBean, Map<String, Integer>>
 	 * @throws Exception
 	 */
-	public Map<POBean, Map<String, Integer>> retrievePO(String username) throws Exception {
+	public Map<POBean, Map<Integer, Integer>> retrievePO(String username) throws Exception {
 		Map<String, POBean> pobean = po.retrievePOByUser(username);
-		Map<POBean, Map<String, Integer>> result = new HashMap<POBean, Map<String, Integer>>();
+		Map<POBean, Map<Integer, Integer>> result = new HashMap<POBean, Map<Integer, Integer>>();
 		for (String key : pobean.keySet()) {
 			result.put(pobean.get(key), poitem.retrieveItemByID(key));
 		}
@@ -68,9 +68,9 @@ public class PurchaseOrder {
 	 * @return Map<POBean, Map<String, Integer>>
 	 * @throws Exception
 	 */
-	public Map<POBean, Map<String, Integer>> retrieveAllPO() throws Exception {
+	public Map<POBean, Map<Integer, Integer>> retrieveAllPO() throws Exception {
 		Map<String, POBean> pobean = po.retrieveAll();
-		Map<POBean, Map<String, Integer>> result = new HashMap<POBean, Map<String, Integer>>();
+		Map<POBean, Map<Integer, Integer>> result = new HashMap<POBean, Map<Integer, Integer>>();
 		for (String key : pobean.keySet()) {
 			result.put(pobean.get(key), poitem.retrieveItemByID(key));
 		}
@@ -87,7 +87,7 @@ public class PurchaseOrder {
 	 * @return PO_id for pobean
 	 * @throws Exception
 	 */
-	public String updatePO(POBean pobean, Map<String, Integer> albums) throws Exception {
+	public String updatePO(POBean pobean, Map<Integer, Integer> albums) throws Exception {
 		po.updatePO(pobean);
 		poitem.updateItem(pobean.getPO_id(), albums);
 		return pobean.getPO_id();
@@ -163,7 +163,7 @@ public class PurchaseOrder {
 	 * @return Map with BookBean and Quantity for each book
 	 * @throws SQLException
 	 */
-	public Map<String, Integer> retrieveItemByID(String PO_id) throws SQLException {
+	public Map<Integer, Integer> retrieveItemByID(String PO_id) throws SQLException {
 		return poitem.retrieveItemByID(PO_id);
 	}
 	
@@ -187,8 +187,8 @@ public class PurchaseOrder {
 	 *         Purchase order
 	 * @throws SQLException
 	 */
-	public POItemBean retrieveItem(String POID, String bookID) throws SQLException {
-		return poitem.retrieveItem(POID, bookID);
+	public POItemBean retrieveItem(String POID, int aid) throws SQLException {
+		return poitem.retrieveItem(POID, aid);
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class PurchaseOrder {
 	 *         quantity
 	 * @throws SQLException
 	 */
-	public Map<String, Integer> retrieveOrderHistory(String start, String end) throws SQLException {
+	public Map<Integer, Integer> retrieveOrderHistory(String start, String end) throws SQLException {
 		return poitem.retrieveOrderHistory(start, end);
 	}
 
@@ -214,7 +214,7 @@ public class PurchaseOrder {
 	 * @return the most popular book
 	 * @throws SQLException
 	 */
-	public Map<String, Integer> retrieveMostPopular() throws SQLException {
+	public Map<Integer, Integer> retrieveMostPopular() throws SQLException {
 		return poitem.retrieveMostPopular();
 	}
 

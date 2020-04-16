@@ -53,10 +53,11 @@ public class PODAO {
 	 * @throws SQLException
 	 */
 	public POBean retrievePOByID(String PO_id) throws SQLException {
-		String query = "SELECT * from PO where po_id = '" + PO_id + "'";
+		String query = "SELECT * from PO where po_id = ?";
 		POBean po = null;
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
+		p.setString(1, PO_id);
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
 			String username = r.getString("USERNAME");

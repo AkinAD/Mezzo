@@ -133,9 +133,9 @@ public class Pay extends HttpServlet {
 			} catch (ClassNotFoundException e) {
 				throw new ServletException();
 			}
-			Map<String,Integer> cartMap = new HashMap<String,Integer>();
+			Map<Integer,Integer> cartMap = new HashMap<Integer,Integer>();
 			cart.getAlbums().entrySet().stream().forEach(
-				(curItem) -> cartMap.put(curItem.getKey().toString(), curItem.getValue())
+				(curItem) -> cartMap.put(curItem.getKey(), curItem.getValue())
 			);
 
 			try {

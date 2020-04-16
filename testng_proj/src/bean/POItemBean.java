@@ -5,20 +5,20 @@ package bean;
  */
 public class POItemBean {
 	private String PO_id;
-	private String bid;
+	private int aid;
 	private int quantity;
 	
 	/**
 	 * Sets the purchase order id, bid, and quantity
 	 * 
 	 * @param pO_id
-	 * @param bid
+	 * @param aid
 	 * @param quantity
 	 */
-	public POItemBean(String pO_id, String bid, int quantity) {
+	public POItemBean(String pO_id, int aid, int quantity) {
 		super();
 		this.setPO_id(pO_id);
-		this.setBid(bid);
+		this.setAid(aid);
 		this.setQuantity(quantity);
 	}
 	
@@ -41,8 +41,8 @@ public class POItemBean {
 	/**
 	 * @return the bid
 	 */
-	public String getBid() {
-		return bid;
+	public int getAid() {
+		return aid;
 	}
 
 	/**
@@ -50,8 +50,8 @@ public class POItemBean {
 	 * 
 	 * @param bid
 	 */
-	public void setBid(String bid) {
-		this.bid = bid;
+	public void setAid(int aid) {
+		this.aid = aid;
 	}
 
 	
