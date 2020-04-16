@@ -123,6 +123,7 @@ public class ShoppingCart implements Serializable {
 		for (Integer x : albums.keySet()) {
 			AlbumBean curAlbum = this.getAlbum(x);
 			CartItemBean curBean = new CartItemBean(albums.get(x),curAlbum);
+			curBean.setEffectivePrice(this.getTotalPriceByAlbum(x));
 			returnValue.put(x, curBean);
 		}
 		return returnValue;
