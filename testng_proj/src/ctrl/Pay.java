@@ -159,7 +159,12 @@ public class Pay extends HttpServlet {
 			}
 		} else {
 			// Purchase succeeded
-			request.setAttribute(PURCHASE_FAIL_REASON, null);
+			try {
+				SessionManagement.bindCart(curSession);
+				request.setAttribute(PURCHASE_FAIL_REASON, null);
+			} catch (ClassNotFoundException e) {
+				throw new ServletException();
+			}			
 		}
 	}
 
