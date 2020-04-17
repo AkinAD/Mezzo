@@ -67,11 +67,11 @@
 				<div class="select-box d-flex mt-50 mb-30">
 					<span style="text-align: center; padding-top: 20px;">Quantity</span>
 					<div action="" class="number-input" style="padding: 10px;" >
-						<button onclick="this.nextElementSibling.stepDown();">-</button>
+						<button onclick="this.nextElementSibling.stepDown();" type="button">-</button>
 						<input name="addQuantity" type="number" class="cartItemQuantity"
 							min="1" step="1" value="1" required="required"/>
 						<button onclick="this.previousElementSibling.stepUp();"
-							class="plus">+</button>
+							class="plus" type="button">+</button>
 					</div>
 					<!-- <select name="select" id="productSize" class="mr-5">
 						<option value="value">1</option>
