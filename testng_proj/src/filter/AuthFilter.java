@@ -129,11 +129,11 @@ public class AuthFilter implements Filter {
 					chain.doFilter(request, response);
 				} else {
 					System.out.println("AuthFilter: Access Denied");
-					httpResp.setStatus(403);
+					httpResp.sendError(403);
 				}
 			} catch (Exception e) {
 				System.out.println("AuthFilter: Error");
-				httpResp.setStatus(403);
+				httpResp.sendError(401);
 				e.printStackTrace();
 			}
 		} else {
