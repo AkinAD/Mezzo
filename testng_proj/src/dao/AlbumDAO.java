@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.naming.InitialContext;
@@ -50,6 +52,21 @@ public class AlbumDAO {
 			String albumID = Integer.toString(r.getInt("AID"));
 			rv.put(albumID, new AlbumBean(r.getInt("AID"), r.getString("artist"), r.getString("title"),
 					r.getString("category"), r.getFloat("price"), r.getString("picture")));
+		}
+		r.close();
+		p.close();
+		con.close();
+		return rv;
+	}
+	
+	public List<String> retrieveAllCats() throws SQLException {
+		String query = "select * from Category";
+		ArrayList<String> rv = new ArrayList<String>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()) {
+			rv.add(r.getString("category"));
 		}
 		r.close();
 		p.close();

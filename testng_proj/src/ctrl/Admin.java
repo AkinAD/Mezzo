@@ -1,6 +1,7 @@
 package ctrl;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,6 +43,7 @@ public class Admin extends HttpServlet {
 	private String error = "";
 
 	private static final String CUR_PROFILE = "CurProfile";
+	private static final String ALBUM_CATS = "albumCats";
 
 	
     /**
@@ -85,6 +87,11 @@ public class Admin extends HttpServlet {
 		if(request.getParameter("addAlbum") == null)
 		{
 			// DO NOTHING
+			try {
+				request.setAttribute(ALBUM_CATS, MS.retrieveAllCats());
+			} catch (SQLException e) {
+				throw new ServletException();
+			}
 			request.getRequestDispatcher("/admin.jsp").forward(request, response);
 		}
 		else if(request.getParameter("addAlbum") != null)
