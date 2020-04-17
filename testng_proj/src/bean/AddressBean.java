@@ -2,6 +2,11 @@ package bean;
 
 /**
  * Address Bean
+ * 
+ * Can this really be considered a bean when
+ * it has no zero-param ctor?
+ * 
+ * I don't really know or care.
  */
 public class AddressBean {
 

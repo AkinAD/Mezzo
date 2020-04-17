@@ -52,11 +52,6 @@ public class AddressDAO {
 			String phone = r.getString("PHONE");
 			String type = r.getString("ADDRTYPE");
 			address = new AddressBean(addrusername, street, province, country, zip, phone, type);
-		} else {
-			r.close();
-			p.close();
-			con.close();
-			throw new IllegalStateException();
 		}
 		r.close();
 		p.close();
