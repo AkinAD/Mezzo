@@ -62,7 +62,7 @@
 						</div>
 
 						<form action="pay" method="post" id="payForm">
-				
+
 							<div class="col-12 mb-3">
 								<label for="street_address">Street Address + City <span>*</span></label>
 								<input name="street" type="text" class="form-control mb-3"
@@ -74,8 +74,8 @@
 							<div class="col-12 mb-3">
 								<label for="country">Country <span>*</span></label> <input
 									name="street" type="text" class="form-control mb-3"
-									id="street_address" value=""
-									placeholder="Jamaica" required="required" />
+									id="street_address" value="" placeholder="Jamaica"
+									required="required" />
 							</div>
 
 							<div class="col-12 mb-3">
@@ -123,9 +123,9 @@
 							</div>
 							<div class="col-12 mb-3">
 								<label for="street_address">Exp Year <span>*</span></label> <input
-									name="cardExpYe" type="number" 
-									class="form-control mb-3 small" id="street_address" value=""
-									placeholder="2020" required="required" />
+									name="cardExpYe" type="number" class="form-control mb-3 small"
+									id="street_address" value="" placeholder="2020"
+									required="required" />
 							</div>
 
 							<div class="col-12">
@@ -146,20 +146,22 @@
 
 						<div class="cart-page-heading">
 							<h5>Your Order</h5>
-							<p>The Details</p>
+							<p>Give us your money please</p>
 						</div>
 
 						<ul class="order-details-form mb-4">
-							<li><span>Product</span> <span>Total</span></li>
-							<li><span>Cocktail Yellow dress</span> <span>$59.90</span></li>
-							<li><span>Subtotal</span> <span>$59.90</span></li>
-							<li><span>Shipping</span> <span>Free</span></li>
-							<li><span>Total</span> <span>$59.90</span></li>
+							<li><span>Total</span> <span><f:setLocale value="en_CA" /><f:formatNumber
+									value="${requestScope.cartTotal}"
+									type="currency" /></span></li>
 						</ul>
-
-
-						<button form="payForm" class="btn essence-btn">Place
-							Order</button>
+						<c:choose>
+							<c:when test="${requestScope.cartTotalQty ge 1}">
+								<button form="payForm" class="btn essence-btn">Place Order</button>								
+							</c:when>
+							<c:otherwise>
+								<a href="shop" class="btn essence-btn">Continue shopping</a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>

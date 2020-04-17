@@ -143,7 +143,7 @@ public class UserDAO {
 		ResultSet res = prepState.executeQuery();
 		if (res.next()) // if any result is returned, return false( not unique)
 		{
-			System.out.println("EMAIL NOT UNNIQUE!!!!");
+			System.out.println("UserDAO: EMAIL NOT UNNIQUE!!!!");
 			res.close();
 			con.close();
 			prepState.close();
@@ -164,7 +164,7 @@ public class UserDAO {
 		ResultSet res = prepState.executeQuery();
 		if (res.next()) // if any result is returned, return false( not unique)
 		{
-			System.out.println("USERNAME NOT UNNIQUE!!!!");
+			System.out.println("UserDAO: USERNAME NOT UNNIQUE!!!!");
 			res.close();
 			con.close();
 			prepState.close();

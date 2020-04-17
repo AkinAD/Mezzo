@@ -145,17 +145,24 @@
 							<span>Delivery</span> <span>$0.00</span>
 						</p>
 						<p class="d-flex">
-							<span>Discount</span> <span>-15%</span>
+							<span>Discount</span> <span>0%</span>
 						</p>
 						<hr />
 						<p class="d-flex total-price">
 							<span>Total</span> <span><f:setLocale value="en_CA" /> <f:formatNumber
-									value="${requestScope.cartTotal-(requestScope.cartTotal*0.15)}"
+									value="${requestScope.cartTotal}"
 									type="currency" /></span>
 						</p>
 					</div>
 					<p class="text-center">
-						<a href="checkout" class="btn essence-btn">Proceed to Checkout</a>
+						<c:choose>
+							<c:when test="${requestScope.cartTotalQty ge 1}">
+								<a href="checkout" class="btn essence-btn">Proceed to Checkout</a>
+							</c:when>
+							<c:otherwise>
+								<a href="shop" class="btn essence-btn">Continue shopping</a>
+							</c:otherwise>
+						</c:choose>						
 					</p>
 				</div>
 			</div>

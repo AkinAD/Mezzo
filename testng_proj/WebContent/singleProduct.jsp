@@ -217,7 +217,7 @@
 						<img alt=""
 							src="https://i.pinimg.com/564x/d8/69/66/d86966ce8d5c7e12cfc40b18da788d1b.jpg"
 							style="max-width: 50%;" />
-						<div>${item.value.username}says</div>
+						<div>${item.value.username} says</div>
 					</div>
 					<div class="middle">${item.value.review}</div>
 					<div class="side right">
