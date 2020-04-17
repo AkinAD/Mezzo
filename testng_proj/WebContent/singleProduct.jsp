@@ -57,9 +57,7 @@
 				<f:setLocale value="en_CA" />
 				<f:formatNumber type="currency">${requestScope.albumResult.price}</f:formatNumber>
 			</p>
-			<p class="product-desc">Mauris viverra cursus ante laoreet
-				eleifend. Donec vel fringilla ante. Aenean finibus velit id urna
-				vehicula, nec maximus est sollicitudin.</p>
+			<p class="product-desc">${requestScope.albumResult.category}</p>
 
 			<!-- Form -->
 			<form class="cart-form clearfix" method="post">
