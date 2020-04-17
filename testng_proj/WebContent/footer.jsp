@@ -99,8 +99,8 @@
 						<script>
 							document.write(new Date().getFullYear());
 						</script>
-						All rights reserved | EECS4413 from <a href="https://colorlib.com"
-							target="_blank">Colorlib</a>
+						All rights reserved | EECS4413 from Kinny <a href="https://colorlib.com"
+							target="_blank" style="color: #212529;">Colorlib</a>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</p>
 				</div>

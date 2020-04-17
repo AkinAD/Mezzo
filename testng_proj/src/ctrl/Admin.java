@@ -100,10 +100,13 @@ public class Admin extends HttpServlet {
 				MS.addAlbum(0, album_artist, album_title, album_category, album_price, album_picture);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				request.setAttribute("finalStatus", "failed");
 				e.printStackTrace();
 				error = "Failed to add Album to Database";
 				System.out.println(error);
 			}
+			request.getRequestDispatcher("/final.jsp").forward(request, response);
+
 		}
 		
 		

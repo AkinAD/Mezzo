@@ -84,6 +84,10 @@ public class AlbumDAO {
 
 	public Map<String, AlbumBean> retrieveAlbumByCat(String cat) throws SQLException {
 		String query = "select * from album where category='" + cat + "'";
+		if(cat.equals("All"))
+		{
+			query = "select * from album";
+		}
 		Map<String, AlbumBean> rv = new HashMap<String, AlbumBean>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);

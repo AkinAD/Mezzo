@@ -82,7 +82,7 @@
 									<li data-toggle="collapse" data-target="#shoes"
 										class="collapsed"><a href="#">More</a>
 										<ul class="sub-menu collapse" id="shoes">
-											<li><a href="shop">All</a></li>
+											<li><a href="shop?category=All">All</a></li>
 											<li><a href="shop?category=Funk">Funk</a></li>
 											<li><a href="shop?category=Synth-Pop">Synth-Pop</a></li>
 											<li><a href="shop?category=Electro">Electro</a></li>
@@ -167,7 +167,7 @@
 										<p>
 											<c:choose>
 												<c:when test="${(empty shopDisq)}">
-													<span>186</span> Albums found
+													<span>10</span> Albums found
 											</c:when>
 												<c:otherwise>
 													<span><c:out value="${fn:length(shopItems)}" /></span> Albums found
@@ -602,7 +602,7 @@
 						</div>
 					</div>
 					<!-- Pagination -->
-					<nav aria-label="navigation">
+					<!-- <nav aria-label="navigation">
 						<ul class="pagination mt-50 mb-70">
 							<li class="page-item"><a class="page-link" href="#"><i
 									class="fa fa-angle-left">.</i></a></li>
@@ -613,8 +613,8 @@
 							<li class="page-item"><a class="page-link" href="#">21</a></li>
 							<li class="page-item"><a class="page-link" href="#"><i
 									class="fa fa-angle-right">.</i></a></li>
-						</ul>
-					</nav>
+						</ul> 
+					</nav>-->
 				</div>
 
 				.

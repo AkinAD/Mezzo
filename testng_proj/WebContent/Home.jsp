@@ -83,7 +83,7 @@
 						class="single_catagory_area d-flex align-items-center justify-content-center bg-img"
 						style="background-image: url(${pageContext.request.contextPath}/res/img/bg-img/bg-4.jpg);">
 						<div class="catagory-content">
-							<a href="shop?category=pop">Pop</a> <!-- redirect to Search by category -->
+							<a href="shop?category=Pop">Pop</a> <!-- redirect to Search by category -->
 						</div>
 					</div>
 				</div>
