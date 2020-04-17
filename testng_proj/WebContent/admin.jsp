@@ -80,7 +80,6 @@
 							<c:forEach items="${requestScope.albumCats}" var="item">
 								<option value="${item}">${item}</option>
 							</c:forEach>
-							<option value="Synth-pop">Synth-pop</option>
 						</select> <input type="number" placeholder="Price (e.g 15.45)" step=".01"
 							name="price" /> <input type="url" name="url"
 							placeholder="Album cover Image link" />
