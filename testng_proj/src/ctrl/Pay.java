@@ -157,11 +157,13 @@ public class Pay extends HttpServlet {
 				// General failure
 				request.setAttribute(PURCHASE_FAIL_REASON, FAIL_GENERAL);
 			}
+			request.setAttribute("finalStatus", "failed");
 		} else {
 			// Purchase succeeded
 			try {
 				SessionManagement.bindCart(curSession);
 				request.setAttribute(PURCHASE_FAIL_REASON, null);
+				request.getRequestDispatcher("/final.jsp").forward(request, response);
 			} catch (ClassNotFoundException e) {
 				throw new ServletException();
 			}			

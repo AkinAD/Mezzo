@@ -69,6 +69,7 @@ public class Checkout extends HttpServlet {
 			CheckoutProfileBean payProfile = userModel.retrieveCheckoutProfileByUsername(curUsername);
 			request.setAttribute(BILL_ADDR, payProfile.getBillingAddress());
 			request.setAttribute(CUR_PROFILE, payProfile.getProfile());
+			request.getRequestDispatcher("payment.jsp").forward(request, response);
 		} catch (Exception e) {
 			//e.printStackTrace();
 			//Cannot proceed without billing and other profile information

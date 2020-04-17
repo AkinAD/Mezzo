@@ -75,7 +75,15 @@
 								value="${requestScope.CurProfile.email}" /> </span>
 					</div>
 				</div>
-
+				
+					<c:if test="${param['cause'] eq 'BadBillingInfo'}">
+				<div class="alert">
+					<span class="closebtn"
+						onclick="this.parentElement.style.display='none';">x</span>
+					<strong>Bad Billing Info!</strong> Please enter and update your billing Address then return to the cart!
+				</div>
+			</c:if>
+			
 			<h5>Billing Details</h5>
 			
 				<FORM action="profile" method="POST">

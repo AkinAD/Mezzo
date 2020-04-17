@@ -22,6 +22,9 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/res/css/review.css" />
+	
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/res/css/styles_other.css" />
 </head>
 <body>
 	<!-- ##### Footer Area Start ##### -->
@@ -47,13 +50,12 @@
 
 		<!-- Single Product Description -->
 		<div class="single_product_desc clearfix">
-			<span>${requestScope.albumResult.artist}</span> <a href="cart">
-				<h2>${requestScope.albumResult.title}</h2>
-			</a>
+			<span>${requestScope.albumResult.artist}</span>
+			<h2>${requestScope.albumResult.title}</h2>
 			<p class="product-price">
 				<!-- <span class="old-price">$65.00</span>-->
 				<f:setLocale value="en_CA" />
-				<f:formatNumber type="currency" >${requestScope.albumResult.price}</f:formatNumber>
+				<f:formatNumber type="currency">${requestScope.albumResult.price}</f:formatNumber>
 			</p>
 			<p class="product-desc">Mauris viverra cursus ante laoreet
 				eleifend. Donec vel fringilla ante. Aenean finibus velit id urna
@@ -63,9 +65,15 @@
 			<form class="cart-form clearfix" method="post">
 				<!-- Select Box -->
 				<div class="select-box d-flex mt-50 mb-30">
-				 <span style=" text-align: center; padding-top: 20px;">Quantity</span>
-					<input type="number" min="0" name="addQuantity" class="select-box option mr-5" style="font-size:2em" placeholder="Quantity" value="1" required="required" />
- 				   <!-- <select name="select" id="productSize" class="mr-5">
+					<span style="text-align: center; padding-top: 20px;">Quantity</span>
+					<div action="" class="number-input" style="padding: 10px;" >
+						<button onclick="this.nextElementSibling.stepDown();">-</button>
+						<input name="addQuantity" type="number" class="cartItemQuantity"
+							min="1" step="1" value="1" required="required"/>
+						<button onclick="this.previousElementSibling.stepUp();"
+							class="plus">+</button>
+					</div>
+					<!-- <select name="select" id="productSize" class="mr-5">
 						<option value="value">1</option>
 						<option value="value">2</option>
 						<option value="value">3</option>
@@ -75,8 +83,9 @@
 				<!-- Cart & Favourite Box -->
 				<div class="cart-fav-box d-flex align-items-center">
 					<!-- Cart -->
-					<button type="submit" name="addToCart" value="${requestScope.albumResult.aid}"
-						class="btn essence-btn">Add to cart</button>
+					<button type="submit" name="addToCart"
+						value="${requestScope.albumResult.aid}" class="btn essence-btn">Add
+						to cart</button>
 					<!-- Favourite -->
 					<div class="product-favourite ml-4">
 						<a href="#" class="favme fa fa-heart">&#160;</a>
@@ -87,17 +96,19 @@
 			<div class="d-flex align-items-center">
 				<h6>Rate this Album!</h6>
 				<div>
-					<form action="ProductPage?aid=${requestScope.albumResult.aid}" method="POST">
+					<form action="ProductPage?aid=${requestScope.albumResult.aid}"
+						method="POST">
 						<div class="rating">
-							<input type="hidden" value="${requestScope.albumResult.aid}" name="aid"/>
-							<input type="radio" name="rating" id="r1" class="star" value="5" />
-							<label for="r1">&#160;</label> <input type="radio" name="rating"
-								id="r2" class="star" value="4" /> <label for="r2">&#160;</label>
-							<input type="radio" name="rating" id="r3" class="star" value="3" />
-							<label for="r3"> &#160;</label> <input type="radio" name="rating"
-								id="r4" class="star" value="2" /> <label for="r4">&#160;</label>
-							<input type="radio" name="rating" id="r5" class="star" value="1" />
-							<label for="r5">&#160; </label>
+							<input type="hidden" value="${requestScope.albumResult.aid}"
+								name="aid" /> <input type="radio" name="rating" id="r1"
+								class="star" value="5" /> <label for="r1">&#160;</label> <input
+								type="radio" name="rating" id="r2" class="star" value="4" /> <label
+								for="r2">&#160;</label> <input type="radio" name="rating"
+								id="r3" class="star" value="3" /> <label for="r3">
+								&#160;</label> <input type="radio" name="rating" id="r4" class="star"
+								value="2" /> <label for="r4">&#160;</label> <input type="radio"
+								name="rating" id="r5" class="star" value="1" /> <label for="r5">&#160;
+							</label>
 							<div class="rev-box">
 								<h6 class="review" for="review">Leave a Review!</h6>
 								<TEXTAREA class="review" col="60" rows="100" name="review"
@@ -130,8 +141,10 @@
 				</c:choose>
 
 			</c:forEach>
-			<p><f:formatNumber maxFractionDigits="1">${requestScope.avgRevScore}</f:formatNumber> average based on
-				${requestScope.revCount} reviews.</p>
+			<p>
+				<f:formatNumber maxFractionDigits="1">${requestScope.avgRevScore}</f:formatNumber>
+				average based on ${requestScope.revCount} reviews.
+			</p>
 			<hr style="border: 3px solid #f1f1f1" />
 			<div class="revRow">
 				<div class="side">
@@ -204,13 +217,15 @@
 						<img alt=""
 							src="https://i.pinimg.com/564x/d8/69/66/d86966ce8d5c7e12cfc40b18da788d1b.jpg"
 							style="max-width: 50%;" />
-						<div>${item.value.username} says</div>
+						<div>${item.value.username}says</div>
 					</div>
 					<div class="middle">${item.value.review}</div>
 					<div class="side right">
 						<div>
-								${item.value.rating}
-								<c:forEach begin="1" end="${item.value.rating}"><span class="fa fa-star checked">&#160;</span></c:forEach>
+							${item.value.rating}
+							<c:forEach begin="1" end="${item.value.rating}">
+								<span class="fa fa-star checked">&#160;</span>
+							</c:forEach>
 						</div>
 					</div>
 
