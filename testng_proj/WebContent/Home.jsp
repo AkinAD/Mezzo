@@ -79,8 +79,7 @@
 				</div>
 				<!-- Single Catagory -->
 				<div class="col-12 col-sm-6 col-md-4">
-					<div
-						class="single_catagory_area d-flex align-items-center justify-content-center bg-img"
+					<div class="single_catagory_area d-flex align-items-center justify-content-center bg-img"
 						style="background-image: url(${pageContext.request.contextPath}/res/img/bg-img/bg-4.jpg);">
 						<div class="catagory-content">
 							<a href="shop?category=Pop">Pop</a> <!-- redirect to Search by category -->
