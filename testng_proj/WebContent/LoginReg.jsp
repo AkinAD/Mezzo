@@ -124,11 +124,11 @@
 								<input type="password" name="password" id="password"
 									placeholder="Password" />
 							</div>
-							<div class="form-group">
-								<!-- Remember me? -->
+							<!-- <div class="form-group">
+								Remember me?
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                <label for="remember-me" class="label-agree-term"><span><span>.<!-- content --></span></span> Remember me</label>
-                            </div>
+                                <label for="remember-me" class="label-agree-term"><span><span>.content</span></span> Remember me</label>
+                            </div> -->
 							<div class="form-group form-button">
 								<!-- Log-in -->
 								<input type="submit" name="signin" id="signin"

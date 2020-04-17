@@ -151,10 +151,26 @@
 
 						<ul class="order-details-form mb-4">
 							<li><span>Product</span> <span>Total</span></li>
-							<li><span>Cocktail Yellow dress</span> <span>$59.90</span></li>
-							<li><span>Subtotal</span> <span>$59.90</span></li>
+							<c:forEach var="current" items="${requestScope.cartItems}">
+								
+								<li><span>${current.item.title} <span style="color:#ff084e;"> x${current.qty}</span> </span>
+									<span><f:setLocale value="en_CA" />
+										<f:formatNumber value="${current.effectivePrice}" type="currency" />
+									</span>
+								</li>
+								
+							</c:forEach>
+							<li><span>Subtotal</span>
+								<span><f:setLocale value="en_CA" />
+									<f:formatNumber value="${requestScope.cartTotal}" type="currency" />
+								</span>
+							</li>
 							<li><span>Shipping</span> <span>Free</span></li>
-							<li><span>Total</span> <span>$59.90</span></li>
+							<li><span>Total</span> 
+								<span><f:setLocale value="en_CA" />
+										<f:formatNumber value="${requestScope.cartTotal}" type="currency" />
+								</span>
+							</li>
 						</ul>
 
 

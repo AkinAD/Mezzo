@@ -68,11 +68,10 @@
 								<ul class="dropdown">
 									<li><a href="home">Home</a></li>
 									<li><a href="shop">Shop</a></li>
-									<li><a href="payment.jsp">Checkout</a></li>
-									<li><a href="admin">Admin</a></li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="checkout">Checkout</a></li>
+									<li><a href="mailto:mrspence004@gmail.com?Subject=Hello%20From%20The%20Mezzo%20Store" target="_top">Contact</a></li>
 								</ul></li>
-							<li><a href="contact">Contact</a></li>
+							<li><a href="admin">Admin</a></li>
 						</ul>
 					</div>
 					<!-- Nav End -->
@@ -93,7 +92,7 @@
 				</div>
 				<!-- Favourite Area -->
 				<div class="favourite-area">
-					<a href="#"><img src="${pageContext.request.contextPath}/res/img/core-img/heart.svg" alt=""/><!-- content --></a>
+					<!-- <a href="#"><img src="${pageContext.request.contextPath}/res/img/core-img/heart.svg" alt=""/>&#160;</a>-->
 				</div>
 				<!-- User Login Info -->
 				<!--                <div class="classynav">-->

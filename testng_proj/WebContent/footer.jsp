@@ -21,8 +21,8 @@
 						<!-- Footer Menu -->
 						<div class="footer_menu">
 							<ul>
-								<li><a href="shop.html">Shop</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="shop">Shop</a></li>
+								<li><a href="mailto:mrspence004@gmail.com?Subject=Hello%20From%20The%20Mezzo%20Store" target="_top">Contact</a></li>
 							</ul>
 						</div>
 					</div>
@@ -31,12 +31,12 @@
 				<div class="col-12 col-md-6">
 					<div class="single_widget_area mb-30">
 						<ul class="footer_widget_menu">
-							<li><a href="#">Order Status</a></li>
-							<li><a href="#">Payment Options</a></li>
-							<li><a href="#">Shipping and Delivery</a></li>
-							<li><a href="#">Guides</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Terms of Use</a></li>
+							<li><a href="https://github.com/AkinAD">Akin</a></li>
+							<li><a href="https://github.com/domainabusers">Alan</a></li>
+							<li><a href="https://github.com/ayaAllan">Aya</a></li>
+							<li><a href="https://github.com/cima369">Dave</a></li>
+							<!-- <li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Terms of Use</a></li> -->
 						</ul>
 					</div>
 				</div>
@@ -45,7 +45,7 @@
 			<div class="row align-items-end">
 				<!-- Single Widget Area -->
 				<div class="col-12 col-md-6">
-					<div class="single_widget_area">
+					<!-- <div class="single_widget_area">
 						<div class="footer_heading mb-30">
 							<h6>Subscribe</h6>
 						</div>
@@ -55,39 +55,39 @@
 									placeholder="Your email here" />
 								<button type="submit" class="submit">
 									<i class="fa fa-long-arrow-right" aria-hidden="true">
-										<!--  Some content -->&#160; 
+										 Some content&#160; 
 									</i>
 								</button>
 							</form>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<!-- Single Widget Area -->
 				<div class="col-12 col-md-6">
-					<div class="single_widget_area">
+					<!-- <div class="single_widget_area">
 						<div class="footer_social_area">
 							<a href="#" data-toggle="tooltip" data-placement="top"
-								title="Facebook"><i class="fa fa-facebook"
+								title="Facebook"><i class="fa fa-github"
 								aria-hidden="true">
-									<!--  Some content -->&#160; 
+									 Some content&#160; 
 							</i></a> <a href="#" data-toggle="tooltip" data-placement="top"
 								title="Instagram"><i class="fa fa-instagram"
 								aria-hidden="true">
-									<!--  Some content -->&#160; 
+									 Some content&#160; 
 							</i></a> <a href="#" data-toggle="tooltip" data-placement="top"
 								title="Twitter"><i class="fa fa-twitter" aria-hidden="true">
-									<!--  Some content -->&#160; 
+									 Some content&#160; 
 							</i></a> <a href="#" data-toggle="tooltip" data-placement="top"
 								title="Pinterest"><i class="fa fa-pinterest"
 								aria-hidden="true">
-									<!--  Some content -->&#160; 
+									 Some content&#160; 
 							</i></a> <a href="#" data-toggle="tooltip" data-placement="top"
 								title="Youtube"><i class="fa fa-youtube-play"
 								aria-hidden="true">
-									<!--  Some content -->&#160; 
+									 Some content&#160; 
 							</i></a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 

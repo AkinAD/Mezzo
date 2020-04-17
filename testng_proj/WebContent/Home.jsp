@@ -142,11 +142,11 @@
 									src="${pageContext.request.contextPath}/res/img/product-img/mj_thriller.jpg"
 									alt="" />
 								<!-- Favourite -->
-								<div class="product-favourite">
+								<!-- <div class="product-favourite">
 									<a href="#" class="favme fa fa-heart">
-										<!--  Some content -->&#160;
+										 Some content&#160;
 									</a>
-								</div>
+								</div> -->
 							</div>
 							</a>
 							<!-- Product Description -->
@@ -178,12 +178,12 @@
 								<img class="hover-img"
 									src="${pageContext.request.contextPath}/res/img/product-img/ACDC_BackInBlack.jpg"
 									alt="" />
-								<!-- Favourite -->
-								<div class="product-favourite">
+								 <!-- Favourite -->
+								<!-- <div class="product-favourite">
 									<a href="#" class="favme fa fa-heart">
-										<!--  Some content -->&#160;
+										 Some content&#160;
 									</a>
-								</div>
+								</div> -->
 							</div>
 							</a>
 							<!-- Product Description -->
@@ -221,11 +221,11 @@
 								</div>
 
 								<!-- Favourite -->
-								<div class="product-favourite">
+								<!-- <div class="product-favourite">
 									<a href="#" class="favme fa fa-heart">
-										<!--  Some content -->&#160;
+										 Some content&#160;
 									</a>
-								</div>
+								</div> -->
 							</div>
 							</a>
 							<!-- Product Description -->
@@ -266,11 +266,11 @@
 								</div>
 
 								<!-- Favourite -->
-								<div class="product-favourite">
+								<!-- <div class="product-favourite">
 									<a href="#" class="favme fa fa-heart">
-										<!--  Some content -->&#160;
-									</a>
-								</div>
+										 Some content&#160;
+									</a> 
+								</div> -->
 							</div>
 							</a>
 							<!-- Product Description -->

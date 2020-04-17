@@ -93,8 +93,6 @@
 											<li><a href="shop?category=Hard%20Rock">Hard Rock</a></li>
 											<li><a href="shop?category=Punk%20rock">Punk rock</a></li>
 											<li><a href="shop?category=Reggae">Reggae</a></li>
-											<li><a href="shop?categoryIndie">Indie</a></li>
-
 										</ul></li>
 								</ul>
 							</div>
@@ -214,9 +212,9 @@
 													<span>-30%</span>
 												</div>
 												<!-- Favourite -->
-												<div class="product-favourite">
+												<!-- <div class="product-favourite">
 													<a href="#" class="favme fa fa-heart">&#160;</a>
-												</div>
+												</div> -->
 											</div>
 											</a>
 											<!-- Product Description -->
@@ -254,9 +252,9 @@
 													alt="" />
 
 												<!-- Favourite -->
-												<div class="product-favourite">
+												<!-- <div class="product-favourite">
 													<a href="#" class="favme fa fa-heart">&#160;</a>
-												</div>
+												</div> -->
 											</div>
 											</a>
 											<!-- Product Description -->
@@ -297,9 +295,9 @@
 												</div>
 											
 												<!-- Favourite -->
-												<div class="product-favourite">
+												<!-- <div class="product-favourite">
 													<a href="#" class="favme fa fa-heart">&#160;</a>
-												</div>
+												</div> -->
 											</div>
 											</a>
 											<!-- Product Description -->
@@ -336,9 +334,9 @@
 													alt="" />
 
 												<!-- Favourite -->
-												<div class="product-favourite">
+												<!-- <div class="product-favourite">
 													<a href="#" class="favme fa fa-heart">&#160;</a>
-												</div>
+												</div> -->
 											</div>
 											</a>
 											<!-- Product Description -->
@@ -379,9 +377,9 @@
 												</div>
 
 												<!-- Favourite -->
-												<div class="product-favourite">
+												<!-- <div class="product-favourite">
 													<a href="#" class="favme fa fa-heart">&#160;</a>
-												</div>
+												</div> -->
 											</div>
 											</a>
 											<!-- Product Description -->
@@ -419,9 +417,9 @@
 													alt="" />
 
 												<!-- Favourite -->
-												<div class="product-favourite">
+												<!-- <div class="product-favourite">
 													<a href="addToCart=6" class="favme fa fa-heart">&#160;</a>
-												</div>
+												</div> -->
 											</div>
 											</a>
 											<!-- Product Description -->
@@ -462,9 +460,9 @@
 												</div>
 
 												<!-- Favourite -->
-												<div class="product-favourite">
+												<!-- <div class="product-favourite">
 													<a href="#" class="favme fa fa-heart">&#160;</a>
-												</div>
+												</div> -->
 											</div>
 											</a>
 											<!-- Product Description -->
@@ -499,9 +497,9 @@
 													alt="" />
 
 												<!-- Favourite -->
-												<div class="product-favourite">
+												<!-- <div class="product-favourite">
 													<a href="#" class="favme fa fa-heart">&#160;</a>
-												</div>
+												</div> -->
 											</div>
 
 											<!-- Product Description -->
@@ -537,9 +535,9 @@
 													alt="" />
 
 												<!-- Favourite -->
-												<div class="product-favourite">
+												<!-- <div class="product-favourite">
 													<a href="#" class="favme fa fa-heart">&#160;</a>
-												</div>
+												</div> -->
 											</div>
 											</a>
 											<!-- Product Description -->
@@ -573,9 +571,9 @@
 													<!-- Hover Thumb -->
 													<img class="hover-img" src="${myurl}" alt="" />
 													<!-- Favourite -->
-													<div class="product-favourite">
-														<a href="#" class="favme fa fa-heart">&#160;</a> <!-- getuser.addfavorite -->
-													</div>
+													<!-- <div class="product-favourite">
+														<a href="#" class="favme fa fa-heart">&#160;</a> getuser.addfavorite
+													</div> -->
 												</div>
 												</a>
 												<!-- Product Description -->

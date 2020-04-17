@@ -113,15 +113,14 @@
 					</fieldset>
 					<button class="btn essence-btn small-btn">Update Address</button>
 				</FORM>
-
+				<br/>
 
 			<a href="logout" class="btn essence-btn"> <i
 				class="material-icons"
 				style="font-size: 1rem; position: relative; top: 0.2rem;">logout</i>
 				Log out
 			</a>
-
-
+			<br/>
 		</div>
 
 
