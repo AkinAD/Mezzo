@@ -150,16 +150,9 @@ FOREIGN KEY(username) REFERENCES Customer(username) ON DELETE CASCADE);
 
 INSERT INTO Profile (username, fname, lname, email, privilege) VALUES 
 	('akinAd', 'Akin', 'Adewale', 'akin.pjadewale@yahoo.com', 'admin'),
-	('hughM', 'Hugh', 'Mungus', 'hugh.mungus@example.com', 'customer'),
-	('mj420', 'Mary', 'Jane', 'mj420@stone.com', 'customer');
-
-INSERT INTO Profile (username, email, privilege) VALUES 
-	('adamB', 'adamB@example.com', 'partner'),
-	('ayaAb', 'aya_ab@example.com', 'admin');
-
-INSERT INTO Profile(username,privilege) VALUES
-	('alanT', 'admin'),
-	('cimaa', 'admin');
+	('alanT', 'Alan', 'Taxell', 'hugh.mungus@example.com', 'admin'),
+	('ayaAb', 'Aya', 'Ai', 'mj420@stone.com', 'admin');
+	('cimaa', 'Dave', 'LeClerc', 'mj420@stone.com', 'admin');
 
 SELECT * FROM Profile;
 

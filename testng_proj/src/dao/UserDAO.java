@@ -66,7 +66,7 @@ public class UserDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("DB Failure On account creation ");
+			System.out.println("UserDAO: DB Failure On account creation ");
 		}
 
 		return "Oops.. Something went wrong there..!"; // On failure, send a message from here.
@@ -101,7 +101,7 @@ public class UserDAO {
 		ResultSet res = prepState.executeQuery();
 		if (res.next()) {
 			String pass = res.getString("PASSWORD");
-			System.out.println(pass);
+			System.out.println("UserDAO: "+pass);
 			res.close();
 			con.close();
 			prepState.close();
