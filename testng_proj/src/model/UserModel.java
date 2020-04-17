@@ -167,7 +167,12 @@ public class UserModel {
 		}
 		Error="";
 		
-		AddressBean curAddr = retrieveBillingAddressByUsername(username);
+		// Retrieve current billing address or make a new one if non-existent
+		AddressBean curAddr;
+		curAddr = retrieveBillingAddressByUsername(username);
+		if (curAddr == null) {
+			curAddr = new AddressBean(username, "", "", "", "", "", AddressBean.BILLING);
+		}		
 		
 		curAddr.setStreet(street);
 		curAddr.setProvince(province);
