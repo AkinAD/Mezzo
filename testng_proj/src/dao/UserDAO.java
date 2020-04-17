@@ -66,7 +66,7 @@ public class UserDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("DB Failure On account creation ");
+			System.out.println("UserDAO: DB Failure On account creation ");
 		}
 
 		return "Oops.. Something went wrong there..!"; // On failure, send a message from here.
@@ -101,7 +101,7 @@ public class UserDAO {
 		ResultSet res = prepState.executeQuery();
 		if (res.next()) {
 			String pass = res.getString("PASSWORD");
-			System.out.println(pass);
+			System.out.println("UserDAO: "+pass);
 			res.close();
 			con.close();
 			prepState.close();
@@ -143,7 +143,7 @@ public class UserDAO {
 		ResultSet res = prepState.executeQuery();
 		if (res.next()) // if any result is returned, return false( not unique)
 		{
-			System.out.println("EMAIL NOT UNNIQUE!!!!");
+			System.out.println("UserDAO: EMAIL NOT UNNIQUE!!!!");
 			res.close();
 			con.close();
 			prepState.close();
@@ -164,7 +164,7 @@ public class UserDAO {
 		ResultSet res = prepState.executeQuery();
 		if (res.next()) // if any result is returned, return false( not unique)
 		{
-			System.out.println("USERNAME NOT UNNIQUE!!!!");
+			System.out.println("UserDAO: USERNAME NOT UNNIQUE!!!!");
 			res.close();
 			con.close();
 			prepState.close();

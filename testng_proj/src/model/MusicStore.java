@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -178,5 +179,9 @@ public class MusicStore {
 		}
 		
 		return alDao.retrieveBySearch(parameter);
+	}
+	
+	public List<String> retrieveAllCats() throws SQLException {
+		return alDao.retrieveAllCats();
 	}
 }

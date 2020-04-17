@@ -1,6 +1,7 @@
 package ctrl;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,6 +43,7 @@ public class Admin extends HttpServlet {
 	private String error = "";
 
 	private static final String CUR_PROFILE = "CurProfile";
+	private static final String ALBUM_CATS = "albumCats";
 
 	
     /**
@@ -72,6 +74,8 @@ public class Admin extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
+		MS = (MusicStore) this.getServletContext().getAttribute("MS");
+		PO = (PurchaseOrder) this.getServletContext().getAttribute("PO");
 		String curUsername = SessionManagement.getBoundUsername(request.getSession());
 		Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 		try {
@@ -85,6 +89,11 @@ public class Admin extends HttpServlet {
 		if(request.getParameter("addAlbum") == null)
 		{
 			// DO NOTHING
+			try {
+				request.setAttribute(ALBUM_CATS, MS.retrieveAllCats());
+			} catch (SQLException e) {
+				throw new ServletException();
+			}
 			request.getRequestDispatcher("/admin.jsp").forward(request, response);
 		}
 		else if(request.getParameter("addAlbum") != null)
@@ -109,9 +118,6 @@ public class Admin extends HttpServlet {
 
 		}
 		
-		
-		MS = (MusicStore) this.getServletContext().getAttribute("MS");
-		PO = (PurchaseOrder) this.getServletContext().getAttribute("PO");
 		//PAY = (Payment) this.getServletContext().getAttribute("PAY");
 
 		// Retrieve DAOs from context scope.

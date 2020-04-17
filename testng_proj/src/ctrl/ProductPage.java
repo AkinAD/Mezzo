@@ -117,7 +117,7 @@ public class ProductPage extends HttpServlet {
 			request.getRequestDispatcher(PRODUCTPAGE).forward(request, response);
 		} catch (Exception e) {
 			// I call this a pro gamer move
-			response.setStatus(400); // If something goes wrong it's because you're not dank enough
+			response.sendError(400); // If something goes wrong it's because you're not dank enough
 			e.printStackTrace();
 		}
 	}

@@ -82,9 +82,8 @@
 									<li data-toggle="collapse" data-target="#shoes"
 										class="collapsed"><a href="#">More</a>
 										<ul class="sub-menu collapse" id="shoes">
-											<li><a href="shop?category=All">All</a></li>
 											<li><a href="shop?category=Funk">Funk</a></li>
-											<li><a href="shop?category=Synth-Pop">Synth-Pop</a></li>
+											<li><a href="shop?category=Synth-pop">Synth-pop</a></li>
 											<li><a href="shop?category=Electro">Electro</a></li>
 											<li><a href="shop?category=Indie">Indie</a></li>
 											<li><a href="shop?category=Disco">Disco</a></li>
@@ -94,6 +93,8 @@
 											<li><a href="shop?category=Punk%20rock">Punk rock</a></li>
 											<li><a href="shop?category=Reggae">Reggae</a></li>
 										</ul></li>
+									<li><a
+										href="shop?category=All">All</a></li>
 								</ul>
 							</div>
 						</div>

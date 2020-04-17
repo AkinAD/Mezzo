@@ -31,14 +31,17 @@ public class POItemDAO {
 	 * @throws SQLException
 	 */
 	public void updateItem(String PO_id, Map<Integer, Integer> albums) throws SQLException {
+		String query = "INSERT INTO POITEM VALUES (?, ?, ?)";
 		Connection con = this.ds.getConnection();
-		PreparedStatement p = null;
+		PreparedStatement p;
 		for (int aid : albums.keySet()) {
-			String query = "INSERT INTO POITEM VALUES ('" + PO_id + "', '" + aid + "', " + albums.get(aid) + ")";
 			p = con.prepareStatement(query);
+			p.setString(1, PO_id);
+			p.setInt(2, aid);
+			p.setInt(3, albums.get(aid));
 			p.executeUpdate();
-		}
-		p.close();
+			p.close();
+		}		
 		con.close();
 	}
 

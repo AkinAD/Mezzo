@@ -63,7 +63,7 @@ public class UserModel {
 			Error = "Password must be at least 6 characters long!";
 			throw new IllegalArgumentException();
 		} else {
-			System.out.println("Seems all is well with the inputs...");
+			System.out.println("UserModel: Seems all is well with the inputs...");
 			Error = "";
 			AccountBean newUser = new AccountBean(fname, lname, userName, email, password);
 			return userDao.registerUser(newUser);
@@ -194,7 +194,7 @@ public class UserModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			Error = "Email not unique!";
-			System.out.println("Email not unique!");
+			System.out.println("UserModel: Email not unique!");
 
 			return false;
 		}
@@ -207,7 +207,7 @@ public class UserModel {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("UserName  not unique!");
+			System.out.println("UserModel: UserName not unique!");
 			Error = "UserName  not unique!";
 			return false;
 		}

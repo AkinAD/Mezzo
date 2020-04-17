@@ -95,25 +95,28 @@ public class MezzoUser extends HttpServlet {
 			//System.out.println("THIS SHOULD ONLY PRINT ONCE");
 			
 			// Add the user to the data store
+			boolean succReg = true;
 			try {
 				uModel.registerUser(fname, lname, username, email, password);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("MezzoUser: FAILED TO REGISTER USER" + uModel.getError());
+				succReg = false;
 			}
 			Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 			Map<String, List<String>> profile = new HashMap<String, List<String>>();
 
-			// Verify the user has been added to the data store
+			// Verify the user has been added to the data store			
 			try {
 				data = uModel.retrieveAccountByUsername(username);
 			} catch (Exception e) {
 				System.out.println("MezzoUser: Failure to populate user.. goodluck tracing this one");
 				e.printStackTrace();
+				succReg = false;
 			}
 			
 			// this the part where you display error. or do nothing tbh
-			if (uModel.getError().equals("")) {
+			if (succReg) {
 				// Successful registration
 				profile = populateUser(data);
 				request.setAttribute("profile", profile);
@@ -128,9 +131,7 @@ public class MezzoUser extends HttpServlet {
 				System.out.println("MezzoUser: there Was an Error in Register: ##");
 				System.out.println(uModel.getError());
 			}
-		}
-		
-		else if (request.getParameter("signup") == null && (request.getParameter("signin")!= null || request.getParameter("signin").equals("Login"))) {
+		} else if (request.getParameter("signup") == null && (request.getParameter("signin")!= null || request.getParameter("signin").equals("Login"))) {
 			// Login submission
 			
 			String username = request.getParameter("username");
@@ -201,7 +202,7 @@ public class MezzoUser extends HttpServlet {
 				
 				request.setAttribute("error", uModel.getError());
 				System.out.println("MezzoUser: there Was an Error in Log in : " + uModel.getError());
-				response.setStatus(403);
+				response.setStatus(401);
 				request.getRequestDispatcher(LoginReg).forward(request, response);				
 			}
 		}

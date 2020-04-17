@@ -8,8 +8,9 @@
 		username="brg59346"
 		password="vxwc^kn8fdqrvpfh" 
 		initialSize="1" 
-		maxActive="5" 
-		maxIdle="3"
+		maxActive="1" 
+		maxIdle="1"
+		minIdle="1"
 		driverClassName="com.ibm.db2.jcc.DB2Driver"
 		url="jdbc:db2://dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net:50000/BLUDB" />
 	<ResourceLink global="jdbc/Db2-4413" name="jdbc/Db2-4413"

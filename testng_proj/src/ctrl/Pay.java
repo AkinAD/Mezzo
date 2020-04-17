@@ -34,6 +34,12 @@ import model.UserModel;
  */
 @WebServlet({ "/Pay", "/pay" })
 public class Pay extends HttpServlet {	
+	private static final String PAID_PAGE = "/final.jsp";
+
+	private static final String FAIL_STATUS_FAILED = "failed";
+
+	private static final String FINAL_STATUS = "finalStatus";
+
 	private static final long serialVersionUID = 1L;
 	
 	private static final String PARAM_PHONE = "phone";
@@ -49,8 +55,11 @@ public class Pay extends HttpServlet {
 	
 	private static final String PURCHASE_FAIL_REASON = "failReason";
 	
-	private static final String FAIL_GENERAL = "general";
+	private static enum FAIL_REASON {NO_REASON,BAD_EXPIRY,INTENTIONAL,CART_EMPTY};
+	
 	private static final String FAIL_INTENTIONAL = "intentional";
+	private static final String FAIL_EXPIRED = "expCard";
+	private static final String FAIL_CART_EMPTY = "emptyCart";
 	
 	private PurchaseOrder purchaseOrder = PurchaseOrder.getInstance();
 	private UserModel userModel = UserModel.getInstance();
@@ -68,7 +77,7 @@ public class Pay extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean failNow = false;
-		boolean ohCrap = false;
+		FAIL_REASON failReason = FAIL_REASON.NO_REASON;
 		HttpSession curSession = request.getSession();
 		String curUsername = SessionManagement.getBoundUsername(curSession);
 		ProfileBean curProfile;
@@ -101,6 +110,7 @@ public class Pay extends HttpServlet {
 			YearMonth presentedMonth = YearMonth.now().withYear(expYe).withMonth(expMo);
 			if (currentMonth.isAfter(presentedMonth)) {
 				failNow = true;
+				failReason = FAIL_REASON.BAD_EXPIRY;
 			} else {
 				failNow = false;
 			}
@@ -110,11 +120,24 @@ public class Pay extends HttpServlet {
 			failNow = true;
 		}
 
+		// Check if cart is empty
+		try {
+			if (SessionManagement.getCart(curSession).getAlbumCount() <= 0) {
+				failReason = FAIL_REASON.CART_EMPTY;
+				failNow = true;
+			}
+		} catch (ClassNotFoundException e1) {
+			failReason = FAIL_REASON.NO_REASON;
+			failNow = true;
+		}
+		
 		// Fail every 3 payments
 		if (SessionManagement.getFailCounter(curSession) >= 2) {
 			SessionManagement.setFailCounter(curSession, 0);
 			failNow = true;
-			ohCrap = true;
+			failReason = FAIL_REASON.INTENTIONAL;
+		} else {
+			SessionManagement.setFailCounter(curSession, SessionManagement.getFailCounter(curSession)+1);
 		}
 
 		if (!failNow) {
@@ -150,23 +173,33 @@ public class Pay extends HttpServlet {
 		
 		if (failNow) {
 			// Purchase failed
-			if (ohCrap) {
-				// Intentional failure
+			switch(failReason) {
+			case INTENTIONAL:
 				request.setAttribute(PURCHASE_FAIL_REASON, FAIL_INTENTIONAL);
-			} else {
-				// General failure
-				request.setAttribute(PURCHASE_FAIL_REASON, FAIL_GENERAL);
+				break;
+			case BAD_EXPIRY:
+				request.setAttribute(PURCHASE_FAIL_REASON, FAIL_EXPIRED);
+				break;
+			case CART_EMPTY:
+				request.setAttribute(PURCHASE_FAIL_REASON, FAIL_CART_EMPTY);
+				break;
+			default:
+				request.setAttribute(PURCHASE_FAIL_REASON, null);
+				break;
 			}
-			request.setAttribute("finalStatus", "failed");
+			
+			request.setAttribute(FINAL_STATUS, FAIL_STATUS_FAILED);
+			//System.out.println("Pay: Fail");
+			request.getRequestDispatcher(PAID_PAGE).forward(request, response);
 		} else {
 			// Purchase succeeded
 			try {
 				SessionManagement.bindCart(curSession);
 				request.setAttribute(PURCHASE_FAIL_REASON, null);
-				request.getRequestDispatcher("/final.jsp").forward(request, response);
+				request.getRequestDispatcher(PAID_PAGE).forward(request, response);
 			} catch (ClassNotFoundException e) {
 				throw new ServletException();
-			}			
+			}
 		}
 	}
 

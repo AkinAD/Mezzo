@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0" xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt">
 	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1" session="false" />
 	<jsp:output doctype-root-element="html"
@@ -75,25 +77,10 @@
 						<input type="text" placeholder="Artist" name="artist" /> <input
 							type="text" placeholder="Title" name="title" /> <select
 							id="category" name="category">
-							<option value="Hip-hop">Hip-hop</option>
-							<option value="Rap">Rap</option>
-							<option value="Jazz">Jazz</option>
-							<option value="Pop">Pop</option>
-							<option value="Folk">Folk</option>
-							<option value="Rock">Rock</option>
-							<option value="Blues">Blues</option>
-							<option value="Heavy metal">Heavy metal</option>
-							<option value="RnB">RnB</option>
-							<option value="Hard Rock">Hard Rock</option>
-							<option value="Punk rock">Punk rock</option>
-							<option value="Reggae">Reggae</option>
-							<option value="Disco">Disco</option>
-							<option value="Gospel">Gospel</option>
-							<option value="Indie">Indie</option>
-							<option value="Electro">Electro</option>
-							<option value="Funk">Funk</option>
-							<option value="Synth-pop">Synth-pop</option>
-						</select> <input type="number" placeholder="Price (e.g 15.45)" step=".15"
+							<c:forEach items="${requestScope.albumCats}" var="item">
+								<option value="${item}">${item}</option>
+							</c:forEach>
+						</select> <input type="number" placeholder="Price (e.g 15.45)" step=".01"
 							name="price" /> <input type="url" name="url"
 							placeholder="Album cover Image link" />
 						<button class="button" name="addAlbum" value="true">Update
