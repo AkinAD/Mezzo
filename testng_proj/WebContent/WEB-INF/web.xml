@@ -10,4 +10,29 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <error-page>
+    <error-code>400</error-code>
+    <location>/res/error/my400.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>401</error-code>
+    <location>/res/error/my401.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/res/error/my403.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/res/error/my404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/res/error/my500.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/res/error/myException.jsp</location>
+  </error-page>
+  
 </web-app>
