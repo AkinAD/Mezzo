@@ -93,7 +93,7 @@
 							<option value="Electro">Electro</option>
 							<option value="Funk">Funk</option>
 							<option value="Synth-pop">Synth-pop</option>
-						</select> <input type="number" placeholder="Price (e.g 15.45)" step=".15"
+						</select> <input type="number" placeholder="Price (e.g 15.45)" step=".01"
 							name="price" /> <input type="url" name="url"
 							placeholder="Album cover Image link" />
 						<button class="button" name="addAlbum" value="true">Update

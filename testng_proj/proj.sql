@@ -59,7 +59,15 @@ INSERT INTO Album (aid, artist, title, category, price, picture) VALUES
 (11, 'Porter Robinson', 'Virtual Self', 'Electro', 13.37, 'https://images.genius.com/76de6a7d3e8b560fc944440b78ec383e.960x960x1.jpg');
 (12, 'Crystal Castles', 'Crimewave', 'Electro', 9.11, 'https://upload.wikimedia.org/wikipedia/en/c/c7/Crimewave.jpg');
 (13, 'i_o', 'Let Me Go', 'Electro', 6.9, 'https://images.genius.com/439b8ece8100e9db0f3128f5bf8a9c87.500x500x1.jpg');
-(14, 'Deadmau5', 'while(1<2)', 'Electro', 10.2, 'https://upload.wikimedia.org/wikipedia/en/d/d7/Deadmau5_-_while_%2812%29.png');
+(14, 'Deadmau5', 'while(1<2)', 'Electro', 10.2, 'https://upload.wikimedia.org/wikipedia/en/d/d7/Deadmau5_-_while_%2812%29.png'),
+(15, 'Deadmau5', 'Random Album Title', 'Electro', 15.2, 'https://upload.wikimedia.org/wikipedia/en/7/7a/RandomAlbumTitle.png'),
+(16, 'Above and Beyond', 'Sirens of the Sea', 'Electro', 10.2, 'https://upload.wikimedia.org/wikipedia/en/f/f5/OceanLab-LP-300.jpg'),
+(17, 'Pendulum', 'Immersion', 'Electro', 10.2, 'https://upload.wikimedia.org/wikipedia/en/2/29/Pendulum_immersion_artwork.jpg'),
+(18, 'Above and Beyond', 'Above and Beyond - Alchemy (i_o remix)', 'Electro', 10.33, 'https://i1.sndcdn.com/artworks-000035558713-tfx95i-t500x500.jpg'),
+(19, 'i_o', 'Rootkit', 'Electro', 10.2, 'https://i1.sndcdn.com/artworks-000343434987-75u05f-t500x500.jpg');
+
+
+--INSERT INTO Album (aid, artist, title, category, price, picture) VALUES 
 
 SELECT * FROM ALBUM;
 
