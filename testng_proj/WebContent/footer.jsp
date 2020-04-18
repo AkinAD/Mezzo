@@ -31,10 +31,10 @@
 				<div class="col-12 col-md-6">
 					<div class="single_widget_area mb-30">
 						<ul class="footer_widget_menu">
-							<li><a href="https://github.com/AkinAD">Akin</a></li>
-							<li><a href="https://github.com/domainabusers">Alan</a></li>
-							<li><a href="https://github.com/ayaAllan">Aya</a></li>
-							<li><a href="https://github.com/cima369">Dave</a></li>
+							<li><a href="https://github.com/AkinAD" target="_blank">Akin</a></li>
+							<li><a href="https://github.com/domainabusers" target="_blank">Alan</a></li>
+							<li><a href="https://github.com/ayaAllan" target="_blank">Aya</a></li>
+							<li><a href="https://github.com/cima369" target="_blank">Dave</a></li>
 							<!-- <li><a href="#">Privacy Policy</a></li>
 							<li><a href="#">Terms of Use</a></li> -->
 						</ul>

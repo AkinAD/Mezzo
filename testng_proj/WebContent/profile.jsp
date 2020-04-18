@@ -42,7 +42,7 @@
 				class="material-icons"
 				style="text-align: center; position: relative; top: 0.3rem;">keyboard_backspace</i>To
 				Store
-			</a> <SPAN></SPAN> -->
+			</a> <SPAN></SPAN> -->&#160;
 		</div>
 		<div id="profile">
 			<div class="image">

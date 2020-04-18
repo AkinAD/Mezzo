@@ -27,7 +27,7 @@
 					<!-- close btn -->
 					<div class="classycloseIcon">
 						<div class="cross-wrap">
-							<span class="top">&#160; </span><span class="bottom"><!-- content --></span>
+							<span class="top">&#160; </span><span class="bottom"><!-- content -->&#160; </span>
 						</div>
 					</div>
 					<!-- Nav Start -->
@@ -93,16 +93,15 @@
 				<!-- Favourite Area -->
 				<div class="favourite-area">
 					<!-- <a href="#"><img src="${pageContext.request.contextPath}/res/img/core-img/heart.svg" alt=""/>&#160;</a>-->
+					&#160; 
 				</div>
 				<!-- User Login Info -->
 				<!--                <div class="classynav">-->
 				<div class="user-login-info ">
-					<!--       choose block right here to either display current user login or redirect to acoount page                 -->
-					<a href="profile"><img src="${pageContext.request.contextPath}/res/img/core-img/user.svg" alt=""/><!-- content --></a>
+					<a href="profile"><img src="${pageContext.request.contextPath}/res/img/core-img/user.svg" alt="" style="top: 0px;"/>&#160;</a>
 				</div>
-				<!--                </div>-->
 				<!-- Cart Area -->
-				<div class="cart-area"><!--ajaxCart('/testng_proj/cart/Ajax');return false;  -->
+				<div class="cart-area">
 					<a href="cart" id="essenceCartBtn"><img src="${pageContext.request.contextPath}/res/img/core-img/bag.svg"
 						alt=""/><span>${requestScope.cartTotalQty}</span><!-- content --></a>
 				</div>

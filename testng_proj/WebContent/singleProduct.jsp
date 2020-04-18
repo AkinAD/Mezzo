@@ -110,7 +110,7 @@
 							<div class="rev-box">
 								<h6 class="review" for="review">Leave a Review!</h6>
 								<TEXTAREA class="review" col="60" rows="100" name="review"
-									placeholder="Great Tracks!"><!-- Comment --></TEXTAREA>
+									placeholder="Great Tracks!"><!-- Comment -->&#160;</TEXTAREA>
 								<button class="btn essence-btn">Submit</button>
 							</div>
 
