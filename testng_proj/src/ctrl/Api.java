@@ -123,12 +123,12 @@ public class Api extends HttpServlet {
 	 * Its first-level subpaths (album IDs) correspond to the respective album.
 	 * The JSON document produced by these endpoints contain the following entries:
 	 * <ul>
-	 * <li>aid</li>
-	 * <li>artist</li>
-	 * <li>title</li>
-	 * <li>category</li>
-	 * <li>price</li>
-	 * <li>picture</li>
+	 * <li>aid - Album ID</li>
+	 * <li>artist - Album artist name</li>
+	 * <li>title - Album title</li>
+	 * <li>category - Album genre</li>
+	 * <li>price - Album price</li>
+	 * <li>picture - Album cover art</li>
 	 * </ul>
 	 * 
 	 * @param request
