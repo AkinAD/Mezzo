@@ -223,6 +223,10 @@ public class PurchaseOrder {
 		return po.retrieveProcessedPOByMonth(month);
 	}
 	
+	/**
+	 * @return Array of books sold per month
+	 * @throws SQLException
+	 */
 	public int[] retrieveBooksPerMonth() throws SQLException {
 		return po.retrieveBooksPerMonth();
 	}

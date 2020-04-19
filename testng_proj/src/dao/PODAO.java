@@ -247,7 +247,7 @@ public class PODAO {
 	 * @throws SQLException
 	 */
 	public int[] retrieveBooksPerMonth() throws SQLException {
-		int[] bookMonths = new int[12];
+		int[] bookMonths = new int[12]; 
 		String query = "SELECT * from PO";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
