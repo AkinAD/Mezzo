@@ -10,7 +10,6 @@ import ctrl.SessionManagement;
 /**
  * PurchaseOrder model
  * 
- * @author alanyork
  *
  */
 public class PurchaseOrder {
