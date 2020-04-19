@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.naming.InitialContext;
@@ -188,6 +190,27 @@ public class AddressDAO {
 			return id;
 	}
 
+	/**
+	 * @return user names and the billing ZIP associated with the user name 
+	 * @throws SQLException
+	 */
+	public Map<String, String> retrieveUserNameZip() throws SQLException {
+		Map<String, String> usernameZip = new HashMap<String, String>();
+		String query = "SELECT * from ADDRESS where ADDRTYPE = 'Billing'";
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()) {
+			String userName = r.getString("USERNAME");
+			String zip = r.getString("ZIP");
+			usernameZip.put(userName, zip);
+		}
+		r.close();
+		p.close();
+		con.close();
+		return usernameZip;
+	}
+	
 	/*
 	 * public Map<String, AddressBean> retrieveAll() throws SQLException { String
 	 * query = "SELECT * from ADDRESS"; Map<String, AddressBean> rv = new

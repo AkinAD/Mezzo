@@ -48,7 +48,7 @@ public class DiffAdmin extends HttpServlet {
 			int[] arr = po.retrieveAlbumsPerMonth();
 			request.setAttribute("apm", arr); // apm - albums per month
 
-			// A2
+		/*	// A2
 			request.setAttribute("mostsold", po.getTopThree()); // most sold albums
 
 			String mostPopular = po.getMostPopular();
@@ -56,6 +56,15 @@ public class DiffAdmin extends HttpServlet {
 
 			String[] topThree = po.getTopThree();
 			System.out.printf("one: %s  two: %s  three: %s \n", topThree[0], topThree[1], topThree[2]);
+			*/
+			
+			//A3
+			Map<String, String> zipPurchaseCount = po.getZipPurchaseCount();
+			for (String zip : zipPurchaseCount.keySet()) {
+				System.out.printf("Zip: %s  PurchaseCount: %s \n", zip, zipPurchaseCount.get(zip));
+			}
+			
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

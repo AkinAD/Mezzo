@@ -277,6 +277,29 @@ public class PurchaseOrder {
 
 		return topThree;
 	}
+	
+	/**
+	 * @return a billing ZIP and purchase count associated with that ZIP
+	 * @throws SQLException
+	 */
+	public Map<String, String> getZipPurchaseCount() throws SQLException {
+		Map<String, String> usernameZip = this.addressDao.retrieveUserNameZip();
+		ArrayList<String> userNames = new ArrayList<String>(usernameZip.keySet());
+		ArrayList<String> zips = new ArrayList<String>(usernameZip.values());
+		ArrayList<Integer> purchaseCount = new ArrayList<Integer>();
+		Map<String, String> zipPurchaseCount = new HashMap<String, String>();
+		for(String users : userNames) {
+			purchaseCount.add(po.retrievePurchaseCount(users));
+		}
+		for (int i = 0; i < purchaseCount.size(); i++) {
+			if (zipPurchaseCount.containsKey(zips.get(i))) {
+				zipPurchaseCount.put(zips.get(i), Integer.toString(purchaseCount.get(i) + Integer.parseInt(zipPurchaseCount.get(zips.get(i)))));
+			} else {
+				zipPurchaseCount.put(zips.get(i), Integer.toString(purchaseCount.get(i)));
+			}
+		}
+		return zipPurchaseCount;
+	}
 
 	/*
 	 * public int insertShippingAddress(String username, String street, String

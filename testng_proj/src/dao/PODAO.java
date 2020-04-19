@@ -304,4 +304,23 @@ public class PODAO {
 		con.close();
 		return title;
 	}
+	
+	/**
+	 * @param userName
+	 * @return the purchase count associated with the user name
+	 * @throws SQLException
+	 */
+	public int retrievePurchaseCount (String userName) throws SQLException {
+		int purchaseCount = 0;
+		String query = "select * from PO where USERNAME = '" + userName + "'";
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while(r.next())
+			purchaseCount++;
+		r.close();
+		p.close();
+		con.close();
+		return purchaseCount;
+	}
 }
