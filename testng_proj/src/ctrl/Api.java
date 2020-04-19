@@ -23,7 +23,7 @@ import model.PurchaseOrder;
  * 
  * Servlet implementation class Api
  * 
- * @author alanyork
+ * @author Alanyork
  * 
  */
 @WebServlet({"/api","/api/products/*", "/api/orders/*"})

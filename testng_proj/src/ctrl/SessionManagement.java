@@ -16,10 +16,19 @@ public class SessionManagement {
 	private static final String MEZZO_CART = "MezzoCart";
 	private static final String FAIL_CTR = "failCounter";
 
+	/**
+	 * Binds a new User to the session
+	 * @param session
+	 * @param username
+	 */
 	public static void bindUser(HttpSession session, String username) {
 		session.setAttribute(MEZZO_USERNAME, username);
 	}
-
+	
+	/**
+	 * Unbind existing user from session (logout)
+	 * @param session
+	 */
 	public static void unbindUser(HttpSession session) {
 		session.removeAttribute(MEZZO_USERNAME);
 		session.invalidate();
@@ -42,11 +51,20 @@ public class SessionManagement {
 	public static void bindCart(HttpSession session, ShoppingCart cart) {
 		session.setAttribute(MEZZO_CART, cart);
 	}
-
+	
+	/**
+	 * Unbind cart upon completion of order process
+	 * @param session
+	 */
 	public static void unbindCart(HttpSession session) {
 		session.removeAttribute(MEZZO_CART);
 	}
-
+	
+	/**
+	 * Create new cart for current session
+	 * @param session
+	 * @param cart
+	 */
 	public static void replaceCart(HttpSession session, ShoppingCart cart) {
 		SessionManagement.unbindCart(session);
 		SessionManagement.bindCart(session,cart);
@@ -69,10 +87,20 @@ public class SessionManagement {
 		return (ShoppingCart) session.getAttribute(MEZZO_CART);
 	}
 	
+	/**
+	 * 
+	 * @param session
+	 * @return
+	 */
 	public static int getFailCounter(HttpSession session) {
 		return (int) session.getAttribute(FAIL_CTR);		
 	}
 	
+	/**
+	 * 
+	 * @param session
+	 * @param value
+	 */
 	public static void setFailCounter(HttpSession session, int value) {
 		session.setAttribute(FAIL_CTR, value);		
 	}

@@ -31,6 +31,8 @@ import model.UserModel;
  * Displays whether or not the transaction was successful
  * 
  * Servlet implementation class Pay
+ * 
+ * @author Alan
  */
 @WebServlet({ "/Pay", "/pay" })
 public class Pay extends HttpServlet {	

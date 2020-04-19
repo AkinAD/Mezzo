@@ -36,7 +36,6 @@ public class Checkout extends HttpServlet {
 	private static final String BILL_ADDR = "BillAddr";
 	private static final String CUR_PROFILE = "CurProfile";
 	
-	
 	private UserModel userModel = UserModel.getInstance();
 	
     /**
@@ -58,12 +57,10 @@ public class Checkout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
 		String curUsername = SessionManagement.getBoundUsername(request.getSession());
 		retrieveProfileBilling(request, response, curUsername, uModel);
-//		request.getRequestDispatcher(PROFILE_PAGE).forward(request, response);
 
 		try {
 			CheckoutProfileBean payProfile = userModel.retrieveCheckoutProfileByUsername(curUsername);
@@ -85,7 +82,6 @@ public class Checkout extends HttpServlet {
 		doGet(request, response);
 	}
 
-	
 	private static void retrieveProfileBilling(HttpServletRequest request, HttpServletResponse response, String curUsername,
 			UserModel uModel) throws ServletException, IOException {
 		AddressBean billingAddress;
@@ -99,7 +95,8 @@ public class Checkout extends HttpServlet {
 		request.setAttribute(BILL_ADDR, billingAddress);
 
 		// Why is this single object in a collection?
-		// Because it interfaces with another collaborator's code  
+		// Because it interfaces with another collaborator's code. 
+		//Collaborator
 		Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 		try {
 			data = uModel.retrieveAccountByUsername(curUsername);

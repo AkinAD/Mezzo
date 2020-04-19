@@ -20,6 +20,7 @@ import model.MusicStore;
  * Human-readable product catalogue
  * 
  * Servlet implementation class Shop
+ * @author Akin, Alan
  */
 @WebServlet({ "/Shop", "/shop", "/shop/*", "/Shop/*" })
 public class Shop extends HttpServlet {
@@ -28,7 +29,6 @@ public class Shop extends HttpServlet {
 	private String category = "category";
 	private String error = "";
 	private String search = "search";
-	private String page = "page";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -42,36 +42,38 @@ public class Shop extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		try {
+			//Singleton access to Music store object
 			this.getServletContext().setAttribute("MS", MusicStore.getInstance());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	/**
+	 * Handles parsing variations to VIEW based on shop params
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		MS = (MusicStore) this.getServletContext().getAttribute("MS");
 		Map<String, AlbumBean> data = new HashMap<String, AlbumBean>();
 		Map<String, List<String>> out = new HashMap<String, List<String>>();
-
+		
+		//Load default Shop VIEW page
 		if (request.getParameter(category) == null && request.getParameter(search) == null) {
 			request.getRequestDispatcher("/shop.jsp").forward(request, response);
-		} else if (request.getParameter(category) != null && request.getParameter(search) == null) {
+		} 
+		
+		//Parse Shop VIEW based on provided Category /Genre
+		else if (request.getParameter(category) != null && request.getParameter(search) == null) {
 			System.out.println("it got here- Shop by category");
 			
 			try {
 				data = MS.retrievAlbumsByCat(request.getParameter(category));
 				String cat = request.getParameter(category);
-				System.out.println("the value of category is: " + cat);
 				data = MS.retrievAlbumsByCat(cat);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				error = "bad cat?";
 			}
@@ -87,16 +89,15 @@ public class Shop extends HttpServlet {
 			request.setAttribute("shopItems", out);
 			request.getRequestDispatcher("/shop.jsp").forward(request, response);
 		}
+		
+		//Parse Search Result data to VIEW
 		else if(request.getParameter(search) != null && request.getParameter(category) == null)
 		{
-			System.out.println("it got here- Shop by search");
-			System.out.println(search);
 			try {
 				data = MS.retrieveAlbumByGodKnowsWhat(request.getParameter(search));
 				String srch = request.getParameter(search);
 				System.out.println("the value of search is: " + srch);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				error = "bad search param?";
 			}
@@ -107,42 +108,17 @@ public class Shop extends HttpServlet {
 			else {
 				System.out.println("there Was an Error");
 			}
-			
 			request.setAttribute("shopDisq", "search");
 			request.setAttribute("shopItems", out);
 			request.getRequestDispatcher("/shop.jsp").forward(request, response);
 		}
-		else if(request.getParameter(page) != null && request.getParameter(category) == null && request.getParameter(search) == null)
-		{
-			System.out.println("it got here- Shop by search");
-			System.out.println(search);
-			try {
-				data = MS.retrieveAlbumByGodKnowsWhat(request.getParameter(search));
-				String srch = request.getParameter(search);
-				System.out.println("the value of search is: " + srch);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				error = "bad search param?";
-			}
-			
-			if (error.equals("")) {
-				putData(data, out);
-			} 
-			else {
-				System.out.println("there Was an Error");
-			}
-			
-			request.setAttribute("shopDisq", "search");
-			request.setAttribute("shopItems", out);
-			request.getRequestDispatcher("/shop.jsp").forward(request, response);
-		}
-
-		
-	
-
 	}
-
+	
+	/**
+	 * Populate Outpul string to be parsed to view based on Bean object
+	 * @param data
+	 * @param out
+	 */
 	private void putData(Map<String, AlbumBean> data, Map<String, List<String>> out )
 	{
 		

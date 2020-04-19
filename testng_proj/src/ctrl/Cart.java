@@ -22,6 +22,7 @@ import model.ShoppingCart;
  * Shopping cart page
  * 
  * Servlet implementation class Cart
+ * @author Akin
  */
 @WebServlet({ "/Cart", "/cart", "/Cart/*", "/cart/*" })
 public class Cart extends HttpServlet {
@@ -37,6 +38,7 @@ public class Cart extends HttpServlet {
 	}
 
 	/**
+	 * Solely handles redirecting to the cart VIEW
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

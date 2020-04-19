@@ -32,7 +32,6 @@ public class AlbumDAO {
 	 */
 	public AlbumDAO() throws ClassNotFoundException {
 		try {
-			// ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/New_Derby");
 			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413"); // USE THIS TO DEBUG LOCALLY
 //			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
 
@@ -65,6 +64,11 @@ public class AlbumDAO {
 		return rv;
 	}
 	
+	/**
+	 * 
+	 * @return List of all ALbum Categories / Genres
+	 * @throws SQLException
+	 */
 	public List<String> retrieveAllCats() throws SQLException {
 		String query = "select * from Category";
 		ArrayList<String> rv = new ArrayList<String>();

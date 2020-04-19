@@ -55,7 +55,6 @@ public class MezzoUser extends HttpServlet {
 	// We ran out of time to fix this
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		// Retrieve callback for auth challenge login flow
 		String callbackParam = request.getParameter(AuthFilter.CALLBACK_PARAM);
@@ -132,8 +131,8 @@ public class MezzoUser extends HttpServlet {
 				System.out.println(uModel.getError());
 			}
 		} else if (request.getParameter("signup") == null && (request.getParameter("signin")!= null || request.getParameter("signin").equals("Login"))) {
-			// Login submission
 			
+			// Login submission
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			
@@ -198,8 +197,8 @@ public class MezzoUser extends HttpServlet {
 				
 			} 
 			else {
-				// Unsuccessful login
 				
+				// Unsuccessful login
 				request.setAttribute("error", uModel.getError());
 				System.out.println("MezzoUser: there Was an Error in Log in : " + uModel.getError());
 				response.setStatus(401);
@@ -210,13 +209,16 @@ public class MezzoUser extends HttpServlet {
 		
 
 	}
-
+	/**
+	 *  Prepare Profile bean data for parsing to VIEW
+	 * @param data
+	 * @return
+	 */
 	private Map<String, List<String>> populateUser(Map<String, ProfileBean> data) {
 		Map<String, List<String>> profile = new HashMap<String, List<String>>();
 		for (String stuff : data.keySet()) {
 			List<String> tmp = new ArrayList<String>();
 			tmp.add(data.get(stuff).getUserName());
-			// delete line below
 			System.out.println(data.get(stuff).getUserName());
 
 			tmp.add(data.get(stuff).getFname());

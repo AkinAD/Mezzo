@@ -176,9 +176,7 @@ public class Admin extends HttpServlet {
 				e.printStackTrace();
 			}
 			request.getRequestDispatcher("/final.jsp").forward(request, response);
-
 		}
-	
 		
 	}
 

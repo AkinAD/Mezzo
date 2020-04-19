@@ -14,6 +14,7 @@ import model.ShoppingCart;
  * Homepage, see also web.xml
  * 
  * Servlet implementation class Mezzo
+ * @author Akin
  */
 @WebServlet({"", "/home", "/Home"})
 public class Mezzo extends HttpServlet {
@@ -32,15 +33,7 @@ public class Mezzo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getRequestDispatcher("/Home.jsp").forward(request, response);
-		HttpSession session = request.getSession();
-
-		// Get cart object.
-		//ShoppingCart cart = SessionManagement.getCart(request.getSession());
-		//request.getSession().setAttribute("cart", cart);
-		// Clear shopping cart.
-		//cart.emptyCart();
 	}
 
 	/**

@@ -28,7 +28,6 @@ public class ReviewDAO {
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	/**
@@ -67,7 +66,7 @@ public class ReviewDAO {
 	}
 	
 	/**
-	 * 
+	 * Create review entry with username rating and review for a particular Album with ID aid
 	 * @param aid
 	 * @param username
 	 * @param rating
