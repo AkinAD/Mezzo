@@ -59,6 +59,7 @@ public class DiffAdmin extends HttpServlet {
 			*/
 			
 			//A3
+			request.setAttribute("zpc", po.getZipPurchaseCount()); // zpc - zip purchase count
 			Map<String, String> zipPurchaseCount = po.getZipPurchaseCount();
 			for (String zip : zipPurchaseCount.keySet()) {
 				System.out.printf("Zip: %s  PurchaseCount: %s \n", zip, zipPurchaseCount.get(zip));
