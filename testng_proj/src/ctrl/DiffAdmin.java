@@ -43,7 +43,7 @@ public class DiffAdmin extends HttpServlet {
 			throws ServletException, IOException {
 		ServletContext context = this.getServletContext();
 		final String adminPage = "/admin.jsp";
-		try {
+		try { 
 			PurchaseOrder po = (PurchaseOrder) context.getAttribute(this.purchaseOrder);
 			int[] arr = po.retrieveAlbumsPerMonth();
 			request.setAttribute("apm", arr); // apm - albums per month

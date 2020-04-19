@@ -277,7 +277,7 @@ public class PurchaseOrder {
 
 		return topThree;
 	}
-	
+	 
 	/**
 	 * @return a billing ZIP and purchase count associated with that ZIP
 	 * @throws SQLException
