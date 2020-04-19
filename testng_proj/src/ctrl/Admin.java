@@ -29,6 +29,7 @@ import model.PurchaseOrder;
  * User should be logged in to use this.
  * 
  * Servlet implementation class Admin
+ * @author Akin, Alan, Aya, Dave
  */
 @WebServlet({ "/Admin", "/admin" })
 public class Admin extends HttpServlet {
@@ -50,9 +51,6 @@ public class Admin extends HttpServlet {
 	private static final String PURCHASE_ORDER = "PO";
 	private final String ADMIN_PAGE = "/admin.jsp";
 
-
-
-	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -77,7 +75,9 @@ public class Admin extends HttpServlet {
 
 	}   
 	/**
+	 * Handles data passed to and from admin page view
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @throws ServletException IOException
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// BEGIN SETUP
@@ -88,6 +88,7 @@ public class Admin extends HttpServlet {
 		String curUsername = SessionManagement.getBoundUsername(request.getSession());
 		Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 		
+		//RETRIEV ECURRENT ADMIN USER
 		try {
 			data = uModel.retrieveAccountByUsername(curUsername);
 			ProfileBean curProfile = data.values().iterator().next();
@@ -96,6 +97,7 @@ public class Admin extends HttpServlet {
 			throw new ServletException(); // This is probably our fault
 		}	
 		
+		//ANALYTICS
 		try {
 			PurchaseOrder po = (PurchaseOrder) context.getAttribute(PURCHASE_ORDER);
 			int[] arr = po.retrieveAlbumsPerMonth();
@@ -105,30 +107,35 @@ public class Admin extends HttpServlet {
 			String[] topThree = po.getTopThree();
 			System.out.printf("one: %s  two: %s  three: %s \n", topThree[0], topThree[1], topThree[2]);
 			request.setAttribute("topThree", topThree); // most sold albums
-
 			String mostPopular = po.getMostPopular();
 			request.setAttribute("mostPopular", mostPopular); // most sold albums
 			
+			//A3
+			request.setAttribute("zipPurchaseCount", po.getZipPurchaseCount()); // zpc - zip purchase count
+			Map<String, String> zipPurchaseCount = po.getZipPurchaseCount();
+			for (String zip : zipPurchaseCount.keySet()) {
+				System.out.printf("Zip: %s  PurchaseCount: %s \n", zip, zipPurchaseCount.get(zip));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+		//POPULATE ALBUM CATEGORIES 
 		try {
 			request.setAttribute(ALBUM_CATS, MS.retrieveAllCats());
 		} catch (SQLException e) {
 			throw new ServletException();
 		}
 		
-		if(request.getParameter("addAlbum") == null &&request.getParameter("updateRole") == null)
+		if(request.getParameter("addAlbum") == null && request.getParameter("updateRole") == null)
 		{
 			// DO NOTHING		
 			request.getRequestDispatcher(ADMIN_PAGE).forward(request, response); //END SETUP
 
 		}
 		//END SETUP
-			
 		
-		
+		//ADD NEW ALBUM TO STORE
 		else if(request.getParameter("addAlbum") != null)
 		{
 			String album_artist = request.getParameter(artist);
@@ -150,6 +157,7 @@ public class Admin extends HttpServlet {
 
 		}
 		
+		//UPDATE USER ROLE/PRIVILEGE
 		if(request.getParameter("updateRole") != null)
 		{
 			String user = request.getParameter(USER);
@@ -170,95 +178,7 @@ public class Admin extends HttpServlet {
 			request.getRequestDispatcher("/final.jsp").forward(request, response);
 
 		}
-		
-		
-		/* 
-		 * bELOW HERE IDK WHATS HAPPENING -- AKIN
-		 * 
-		 * */
-		
-		
-		
-		
-		
-		//PAY = (Payment) this.getServletContext().getAttribute("PAY");
-
-		// Retrieve DAOs from context scope.
-		//POAccessor = new POData();
-		
-		//Current Date to get report period
-//		Date date = new Date();
-//		SimpleDateFormat YMformate = new SimpleDateFormat("yyyyMM");
-//		SimpleDateFormat YMDformate = new SimpleDateFormat("yyyyMMdd");
-		
-		try {
-			//UC A1: generate report w/ albums sold each month
-			/*
-			Map<String, Integer> report = POAccessor.retrieveOrderHistory(YMformate.format(date)+"01", YMDformate.format(date));
-			for (String bid: report.keySet())
-				System.out.println("bid:"+bid+", quantity:"+report.get(bid));
-			*/
-			//UC A3: Set all PO records as attribute.
-		//	request.setAttribute("anonymizedpo", POAccessor.retrieveAllPO());
-			/*
-			Map<POBean, Map<String, Integer>> map = POAccessor.retrieveAllPO();
-			for (POBean key : map.keySet()) {
-				System.out.println("***" + key.toString());
-				for (String bid : map.get(key).keySet()) {
-					System.out.println("book: " + bid + ", quantity: " + map.get(key).get(bid));
-					*/
-			
-//			System.out.println(request.getAttribute("report"));
-//			
-//			Map<String, Map<String, POBean>> monthlyProcessed = new HashMap<String, Map<String, POBean>>(); //<month, <PO_ID, POBean>>: month and all processed PO 
-//			Map<String, Map<Integer, Integer>> monthlySales = new HashMap<String, Map<Integer, Integer>>();
-//			
-//			for (int m = 1; m <13; m++) {
-//				String month = Integer.toString(m);
-//				if (month.length() == 1) { //if its "6" for june make it "06"
-//					month = "0"+month;
-//				}
-//				System.out.println(month);
-//				if (!monthlyProcessed.containsKey(month)) {
-//					monthlyProcessed.put(month, new HashMap<String, POBean>());
-//				}
-//				monthlyProcessed.get(month).putAll(PO.retrieveProcessedByMonth(month));
-//			}
-//			
-//			for (String month: monthlyProcessed.keySet()) {
-//				for (Map<String, POBean> po: monthlyProcessed.values()) {
-//					for (String po_ID: po.keySet()) {
-//						monthlySales.put(month, PO.retrieveItemByID(po_ID));
-//					}
-//				}
-//			} //data SHOULD now have (month, <aID, quantity>)
-			
-			
-			//UC A3: provide annoymized reports w/ user buying statistics 
-		//	request.setAttribute("anonymizedpo", POAccessor.retrieveAllPO());
-			
-//			Map<POBean, Map<Integer, Integer>> allPO = PO.retrieveAllPO();
-//			Map<String, Map<String, Float>> total = new HashMap<String, Map<String, Float>>();
-//			Map<String, Map<String, Float>> anon = new HashMap<String, Map<String, Float>>();
-//			for (POBean po : allPO.keySet()) {
-//				 Map<String, Integer> idNq = PO.retrieveItemByID(po.getPO_id()); //idnq = <albumID, quantity>
-//				 for (String aid : idNq.keySet()) {
-//					 if (!total.containsKey(aid)) {
-//						 total.put(aid, new HashMap<String, String>());
-//					 }
-//					total.get(po.getUsername()).put(MS.retrieveAlbumByID(Integer.parseInt(aid)).getPrice()*idNq.get(aid)));
-//				 } //POtotal should have a mapping of PO and its total cost
-//			} // anon should have (***, (zipcode, 
-//			anon.put(user.replaceAll(".*", "*"), ( (PAY.retrieveBillingAddr(user)).getZip(), POtotal.get() ));
-			//anon.put(po.getUsername().replaceAll(".*", "*"), ( (PAY.retrieveBillingAddr(po.getUsername())).getZip(), POtotal.get(po) ));
-
-			//Forward to page
-			//request.getRequestDispatcher("/admin.jsp").forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-			
+	
 		
 	}
 

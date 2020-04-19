@@ -82,13 +82,15 @@
 		<a class="card" href="#!">
 			<div class="front"
 				style="background-image: url(//source.unsplash.com/300x403);">
-				<p>Site Analytics -A3 (Listeners) Annomized Reports</p>
+				<p>Site Analytics -A3 (Listeners) Anonymized  Reports</p>
 			</div>
 			<div class="back">
 				<div>
+					<p>User purchase count based on Zip Code </p>
 					<ol>
-						<li>Something : ahhhh</li>
-						<li>Someone : ooouuuu</li>
+						<c:forEach items="${requestScope.zipPurchaseCount}" var="ZPC">
+							<li>${ZPC.key} : ${ZPC.value}</li>
+						</c:forEach>
 					</ol>
 					<button class="button" onClick="history.go(0)">Refresh Page</button>
 				</div>
