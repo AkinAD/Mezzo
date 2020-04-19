@@ -247,7 +247,7 @@ public class PurchaseOrder {
 	/**
 	 * @return the top three most sold album title or simply most sold if less than
 	 *         3 albums were sold
-	 * @throws SQLException
+	 * @throws SQLException 
 	 */
 	public String[] getTopThree() throws SQLException {
 		Map<String, Integer> aidCount = po.retrieveAidCount();
