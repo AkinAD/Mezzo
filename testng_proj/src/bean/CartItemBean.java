@@ -5,6 +5,12 @@ public class CartItemBean {
 	private AlbumBean item;
 	private float effectivePrice;
 	
+	/**
+	 * Initializes cart item
+	 * 
+	 * @param qty
+	 * @param item
+	 */
 	public CartItemBean(int qty, AlbumBean item){
 		this.qty = qty;
 		this.item = item;
@@ -18,7 +24,9 @@ public class CartItemBean {
 		return qty;
 	}
 	/**
-	 * @param qty the qty to set
+	 * Sets quantity of item
+	 * 
+	 * @param qty 
 	 */
 	public void setQty(int qty) {
 		this.qty = qty;
@@ -30,6 +38,8 @@ public class CartItemBean {
 		return item;
 	}
 	/**
+	 * Sets item to the give item
+	 * 
 	 * @param item the item to set
 	 */
 	public void setItem(AlbumBean item) {
@@ -44,6 +54,8 @@ public class CartItemBean {
 	}
 
 	/**
+	 * Sets the effective price given
+	 * 
 	 * @param effectivePrice the effectivePrice to set
 	 */
 	public void setEffectivePrice(float effectivePrice) {

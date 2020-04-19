@@ -53,7 +53,7 @@ public class ShoppingCart implements Serializable {
 	}
 
 	/**
-	 * Remove album from the shopping cart
+	 * Remove album from the shopping cart given an album ID
 	 * 
 	 * @param aid
 	 */
@@ -130,6 +130,8 @@ public class ShoppingCart implements Serializable {
 	}
 
 	/**
+	 * Retrieves an album given an ID
+	 * 
 	 * @param aid
 	 * @return
 	 * the Album according to album id.
@@ -148,6 +150,8 @@ public class ShoppingCart implements Serializable {
 	}
 
 	/**
+	 * Gets artist name given an album ID
+	 * 
 	 * @param aid
 	 * @return the artist name of the album
 	 * @throws SQLException
@@ -157,6 +161,8 @@ public class ShoppingCart implements Serializable {
 	}
 	
 	/**
+	 * Gets album title given an album ID
+	 * 
 	 * @param aid
 	 * @return the title of the album
 	 * @throws SQLException
@@ -166,6 +172,8 @@ public class ShoppingCart implements Serializable {
 	}
 	
 	/**
+	 * Gets category of an album given an ID
+	 * 
 	 * @param aid
 	 * @return the category of the album
 	 * @throws SQLException
@@ -175,6 +183,8 @@ public class ShoppingCart implements Serializable {
 	}
 	
 	/**
+	 * Gets price of an album given an ID
+	 * 
 	 * @param aid
 	 * @return the price of the album
 	 * @throws SQLException
@@ -194,6 +204,7 @@ public class ShoppingCart implements Serializable {
 
 	
 	/**
+	 * Gets total cost of an album given its quantity in the cart
 	 * 
 	 * @param AID album id of an album.
 	 * @return the unit price times quantity of the given album in cart.
@@ -213,6 +224,9 @@ public class ShoppingCart implements Serializable {
 		return totalPrice;
 	}
 	
+	/**
+	 * Clears cart
+	 */
 	public void emptyCart(){
 		this.albums.clear();
 	}

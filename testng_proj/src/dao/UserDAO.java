@@ -22,7 +22,7 @@ import bean.ProfileBean;
 public class UserDAO {
 	private DataSource ds;
 	/**
-	 * Clas constructor, set up initial database connection
+	 * Class constructor, set up initial database connection
 	 * @throws ClassNotFoundException
 	 */
 	public UserDAO() throws ClassNotFoundException {

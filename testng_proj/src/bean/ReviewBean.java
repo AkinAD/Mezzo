@@ -17,7 +17,9 @@ public class ReviewBean {
 		return aid;
 	}
 	/**
-	 * @param aid the aid to set
+	 * Sets album ID to given ID
+	 * 
+	 * @param aid 
 	 */
 	public void setAid(int aid) {
 		this.aid = aid;
@@ -29,7 +31,9 @@ public class ReviewBean {
 		return username;
 	}
 	/**
-	 * @param username the username to set
+	 * Sets username to given username
+	 * 
+	 * @param username 
 	 */
 	public void setUsername(String username) {
 		this.username = username;
@@ -41,7 +45,9 @@ public class ReviewBean {
 		return rating;
 	}
 	/**
-	 * @param rating the rating to set
+	 * Sets album rating to given rating
+	 * 
+	 * @param rating 
 	 */
 	public void setRating(int rating) {
 		this.rating = rating;
@@ -53,12 +59,17 @@ public class ReviewBean {
 		return review;
 	}
 	/**
-	 * @param review the review to set
+	 * Sets album review to user-given review
+	 * 
+	 * @param review 
 	 */
 	public void setReview(String review) {
 		this.review = review;
 	}
 	
+	/**
+	 * Print out the username and their review
+	 */
 	public String toString() {
 		return username + ": " + review;
 	}

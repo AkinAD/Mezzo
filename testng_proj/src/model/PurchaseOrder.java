@@ -24,6 +24,9 @@ public class PurchaseOrder {
 	public static final String ORDER_FAIL = "DENIED";
 	public static final String ORDER_ORDER = "ORDERD";
 
+	/**
+	 * Initializes purchase order 
+	 */
 	private PurchaseOrder() {
 		try {
 			po = new PODAO();
@@ -36,6 +39,9 @@ public class PurchaseOrder {
 		}
 	}
 
+	/**
+	 * @return instance of purchase order
+	 */
 	public static PurchaseOrder getInstance() {
 		return INSTANCE;
 	}
@@ -209,12 +215,21 @@ public class PurchaseOrder {
 		return poitem.retrieveMostPopular();
 	}
 
+	/**
+	 * NOT USED
+	 * 
+	 * @param month
+	 * @return
+	 * @throws SQLException
+	 */
 	public Map<String, POBean> retrieveProcessedByMonth(String month) throws SQLException {
 		// TODO Auto-generated method stub
 		return po.retrieveProcessedPOByMonth(month);
 	}
 
 	/**
+	 * Retrieves all albums sold given a month 
+	 * 
 	 * @return Array of albums sold per month
 	 * @throws SQLException
 	 */
@@ -223,6 +238,8 @@ public class PurchaseOrder {
 	}
 
 	/**
+	 * Retrieves an album's title given an album ID
+	 * 
 	 * @param aid - album id
 	 * @return title of the album purchased
 	 * @throws NumberFormatException
@@ -232,7 +249,7 @@ public class PurchaseOrder {
 		return po.retrieveAlbumTitle(aid);
 	}
 
-	/**
+	/**	  
 	 * @return the most sold album title
 	 * @throws SQLException
 	 */

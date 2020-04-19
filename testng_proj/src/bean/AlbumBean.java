@@ -112,11 +112,19 @@ public class AlbumBean {
 		this.price = price;
 	}
 
+	/**
+	 * @return picture of album 
+	 */
 	public String getPicture() {
-		//maybe generage image here;
+		//maybe generate image here;
 		return picture;
 	}
 
+	/**
+	 * Sets the picture of the album
+	 * 
+	 * @param picture
+	 */
 	public void setPicture(String picture) {
 		//maybe generate image here
 		this.picture = picture;

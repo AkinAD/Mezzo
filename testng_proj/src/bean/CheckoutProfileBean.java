@@ -11,7 +11,9 @@ public class CheckoutProfileBean {
 		return profile;
 	}
 	/**
-	 * @param profile the profile to set
+	 * Set profile to the given profile
+	 * 
+	 * @param profile 
 	 */
 	public void setProfile(ProfileBean profile) {
 		this.profile = profile;
@@ -23,7 +25,9 @@ public class CheckoutProfileBean {
 		return billingAddress;
 	}
 	/**
-	 * @param billingAddress the billingAddress to set
+	 * Sets the billing address
+	 * 
+	 * @param billingAddress 
 	 */
 	public void setBillingAddress(AddressBean billingAddress) {
 		this.billingAddress = billingAddress;

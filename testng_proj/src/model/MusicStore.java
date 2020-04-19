@@ -22,6 +22,9 @@ public class MusicStore {
 	private static MusicStore instance;
 	private static String Error = "";
 
+	/**
+	 * Initializes the music store
+	 */
 	private MusicStore() {
 		try {
 			this.alDao = new AlbumDAO();
@@ -32,6 +35,10 @@ public class MusicStore {
 		}
 	}
 
+	/**
+	 * @return an instance of the store and its albums
+	 * @throws ClassNotFoundException
+	 */
 	public static MusicStore getInstance() throws ClassNotFoundException {
 		if (instance == null) {
 			instance = new MusicStore();
@@ -40,6 +47,13 @@ public class MusicStore {
 		return instance;
 	}
 
+	/**
+	 * (name typo)Retrieves an album given an album ID
+	 * 
+	 * @param aid
+	 * @return album of given ID 
+	 * @throws Exception
+	 */
 	public Map<String, AlbumBean> retrievAlbum(int aid) throws Exception {
 		if (aid < 0 || aid > 10000) {
 			throw new IllegalArgumentException();
@@ -49,10 +63,24 @@ public class MusicStore {
 	}
 	
 	
+	/**
+	 * Retrieves album by id as well??? This method isn't called anywhere, remove?
+	 * 
+	 * @param aid
+	 * @return 
+	 * @throws Exception
+	 */
 	public AlbumBean retrieveAlbumByID(int aid) throws Exception {
 		return alDao.retrieveAlbum(aid);
 	}
 	
+	/**
+	 * Retrieves an album's reviews given an album ID
+	 * 
+	 * @param aid
+	 * @return album's reviews 
+	 * @throws Exception
+	 */
 	public Map<String, ReviewBean> retrieveReviews(int aid) throws Exception {
 		if (aid < 0 || aid > 10000) {
 			throw new IllegalArgumentException();
@@ -61,6 +89,15 @@ public class MusicStore {
 		return revDao.retrieveReviews(aid);
 	}
 	
+	/**
+	 * Adds a review to an album given the following parameters:
+	 * 
+	 * @param aid
+	 * @param username
+	 * @param rating
+	 * @param review
+	 * @throws Exception
+	 */
 	public void putReview(int aid, String username, int rating, String review) throws Exception {
 		// We ran out of time to implement protections against XSS, CSRF, SQL injection, etc.
 		String sanitUser = sanitizeForSql(username);
@@ -90,11 +127,15 @@ public class MusicStore {
 		}
 	}
 
+	/**
+	 * @return error status 
+	 */
 	public String getError() {
 		return Error;
 	}
 
 	/**
+	 * 
 	 * 
 	 * @param namePrefix
 	 * @return
@@ -110,11 +151,29 @@ public class MusicStore {
 		return returnPrefix;
   }
   
+	/**
+	 * Retrieves album(s) given a category 
+	 * 
+	 * @param cat
+	 * @return albums that belong to given category 
+	 * @throws SQLException
+	 */
 	public Map<String, AlbumBean> retrievAlbumsByCat(String cat) throws SQLException {
 		// TODO Auto-generated method stub
 		return alDao.retrieveAlbumByCat(cat);
 	}
 	
+	/**
+	 * Adds album to music store's inventory with the following parameters:
+	 * 
+	 * @param aid
+	 * @param artist
+	 * @param title
+	 * @param category
+	 * @param price
+	 * @param picture
+	 * @throws Exception
+	 */
 	public void addAlbum(int aid, String artist, String title, String category, Float price, String picture) throws Exception
 	{	
 		aid = 0; // this will be set dynamically by the Album DAO 
@@ -149,10 +208,19 @@ public class MusicStore {
 		}
 	}
 	
+	/**
+	 * Checks that a string-typed number has 2 decimal places
+	 * 
+	 * @param string
+	 * @return true if given string has 2 decimal places
+	 */
 	public static boolean isNumberWith2Decimals(String string) {
 	    return string.matches("^\\d+\\.\\d{2}$");
 	  }
 	
+	/**
+	 * 
+	 */
 	private static final String URL_REGEX =
 			"^((((https?|ftps?|gopher|telnet|nntp)://)|(mailto:|news:))" +
 			"(%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@&=+$,A-Za-z0-9])+)" +
@@ -160,6 +228,12 @@ public class MusicStore {
 
 	private static final Pattern URL_PATTERN = Pattern.compile(URL_REGEX);
 
+	/**
+	 * Validates URL by insuring it's not null and that the given string fits URL pattern
+	 * 
+	 * @param url
+	 * @return true if given string is a valid URL
+	 */
 	public static boolean urlValidator(String url) {
 
 		if (url == null) {
@@ -170,6 +244,13 @@ public class MusicStore {
 		return matcher.matches();
 	}
 
+	/**
+	 * ?? whats the paramter?
+	 * 
+	 * @param parameter
+	 * @return
+	 * @throws SQLException
+	 */
 	public Map<String, AlbumBean> retrieveAlbumByGodKnowsWhat(String parameter) throws SQLException {
 		// TODO Auto-generated method stub
 		if(parameter.equals("") || parameter == null)
@@ -181,6 +262,12 @@ public class MusicStore {
 		return alDao.retrieveBySearch(parameter);
 	}
 	
+	/**
+	 * Retrieves all categories available at this store
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<String> retrieveAllCats() throws SQLException {
 		return alDao.retrieveAllCats();
 	}

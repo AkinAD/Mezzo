@@ -28,6 +28,9 @@ public class UserModel {
 	private UserDAO userDao;
 	private AddressDAO addressDao;
 	
+	/**
+	 * Initializes the user
+	 */
 	public UserModel() {
 		try {
 			this.userDao = new UserDAO();
@@ -37,10 +40,24 @@ public class UserModel {
 		}
 	}
 	
+	/**
+	 * @return instance of user
+	 */
 	public static UserModel getInstance() {
 		return INSTANCE;
 	}
 	
+	/**
+	 * Register a new user given the following parameters:
+	 * 
+	 * @param fname
+	 * @param lname
+	 * @param userName
+	 * @param email
+	 * @param password
+	 * @return string indicating success or failure of registration 
+	 * @throws Exception
+	 */
 	public String registerUser(String fname, String lname, String userName, String email, String password)
 			throws Exception {
 		if (fname == null || fname.equals("") || lname == null || lname.equals(""))// do validation
@@ -71,6 +88,14 @@ public class UserModel {
 
 	}
 
+	/**
+	 * 
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 * @throws Exception
+	 */
 	public Map<String, ProfileBean> loginUser(String username, String password) throws Exception {
 	
 			if (!isUniqueUsername(username)) // if usenrame already exists in db
@@ -127,6 +152,13 @@ public class UserModel {
 		return addressDao.retrieveBillingAddr(username);
 	}
 	
+	/**
+	 * Retrieves the checkout profile of the given user
+	 * 
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
 	public CheckoutProfileBean retrieveCheckoutProfileByUsername(String username) throws Exception {
 		CheckoutProfileBean returnValue = new CheckoutProfileBean();
 		returnValue.setBillingAddress(retrieveBillingAddressByUsername(username));
@@ -187,6 +219,12 @@ public class UserModel {
 		addressDao.updateAddr(curAddr);
 	}
 	
+	/**
+	 * Checks if given email is unique
+	 * 
+	 * @param email
+	 * @return false if email not unique
+	 */
 	private boolean isUniqueEmail(String email) {
 		try {
 			return userDao.uniqueEmail(email);
@@ -200,6 +238,12 @@ public class UserModel {
 		}
 	}
 
+	/**
+	 * Checks if given username is unique
+	 * 
+	 * @param userName
+	 * @return false if username not unique
+	 */
 	private boolean isUniqueUsername(String userName) {
 		// TODO Auto-generated method stub
 		try {
@@ -213,6 +257,12 @@ public class UserModel {
 		}
 	}
 	
+	/**
+	 * Checks if given email is valid
+	 * 
+	 * @param email
+	 * @return false if email invalid
+	 */
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." + "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
 				+ "A-Z]{2,7}$";
@@ -223,6 +273,9 @@ public class UserModel {
 		return pat.matcher(email).matches();
 	}
 
+	/**
+	 * @return error status
+	 */
 	public Object getError() {
 		return Error;
 	}
@@ -246,6 +299,12 @@ public class UserModel {
 		return returnPrefix;
 	}
 
+	/**
+	 * @param user
+	 * @param POWER
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean updatePrivilege(String user, String POWER) throws SQLException {
 		if(user == null || user.isEmpty())
 		{
