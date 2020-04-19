@@ -229,6 +229,51 @@ public class PurchaseOrder {
 	public int[] retrieveAlbumsPerMonth() throws SQLException {
 		return po.retrieveAlbumsPerMonth();
 	}
+	
+	/**
+	 * @return top two purchased album names or nothing if there are less than 2 purchases
+	 * @throws SQLException
+	 */
+	private String[] retrieveTwoPopular() throws SQLException {
+		String[] twoPopular = new String[2];
+		Map<String, Integer> aidCount = po.retrieveAidCount();
+		if (aidCount.size() < 2)
+			return new String[] { "Nothing Popular" };
+		String[] aid = new String[aidCount.size()]; 
+		aid = aidCount.keySet().toArray(aid);
+		twoPopular[0] = this.retrieveAlbumTitle(aid[aid.length - 1]);
+		twoPopular[1] = this.retrieveAlbumTitle(aid[aid.length - 2]);
+		return twoPopular;
+	}
+	
+	/**
+	 * @return top five purchased album names or calls retrieveTwoPopular if less than 5 purchases were made
+	 * @throws SQLException
+	 */
+	public String[] retrieveTopFive() throws SQLException {
+		String[] topFive = new String[5];
+		Map<String, Integer> aidCount = po.retrieveAidCount();
+		if (aidCount.size() < 5)
+			return this.retrieveTwoPopular();
+		String[] aid = new String[aidCount.size()]; 
+		aid = aidCount.keySet().toArray(aid);
+		topFive[0] = this.retrieveAlbumTitle(aid[aid.length - 1]);
+		topFive[1] = this.retrieveAlbumTitle(aid[aid.length - 2]);
+		topFive[2] = this.retrieveAlbumTitle(aid[aid.length - 3]);
+		topFive[3] = this.retrieveAlbumTitle(aid[aid.length - 4]);
+		topFive[4] = this.retrieveAlbumTitle(aid[aid.length - 5]);
+		return topFive;
+	}
+	
+	/**
+	 * @param aid - album id
+	 * @return title of the album purchased
+	 * @throws NumberFormatException
+	 * @throws SQLException
+	 */
+	private String retrieveAlbumTitle(String aid) throws NumberFormatException, SQLException {
+		return po.retrieveAlbumTitle(aid);
+	}
 	/*
 	public int insertShippingAddress(String username, String street, String province, String country, String zip, String phone) throws IllegalArgumentException, SQLException {
 		String errorMsg = "";

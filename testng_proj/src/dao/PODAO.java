@@ -4,6 +4,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.*;
 
+import bean.AlbumBean;
 import bean.POBean;
 
 import java.sql.Connection;
@@ -261,4 +262,46 @@ public class PODAO {
 		return albuMonths;
 	}
 
+	/**
+	 * @return a map of album id and the purchase count of that album
+	 * @throws SQLException
+	 */
+	public Map<String, Integer> retrieveAidCount() throws SQLException {
+		Map<String, Integer> aidCount = new HashMap<String, Integer>();
+		String query = "SELECT * from PO";
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()) {
+			String aid = r.getString("A_ID");
+			if (aidCount.containsKey(aid))
+				aidCount.put(aid, aidCount.get(aid)+1);
+			else
+				aidCount.put(aid, 1);
+		}
+		r.close();
+		p.close();
+		con.close();
+		return aidCount;
+	}
+	
+	/**
+	 * @param aid - album id
+	 * @return album title given the album id
+	 * @throws SQLException
+	 */
+	public String retrieveAlbumTitle(String aid) throws SQLException {
+		String title = "";
+		String query = "select * from album where aid=" + aid;
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()) {
+			title = r.getString("title");
+		}
+		r.close();
+		p.close();
+		con.close();
+		return title;
+	}
 }
