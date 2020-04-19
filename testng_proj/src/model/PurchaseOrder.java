@@ -224,11 +224,11 @@ public class PurchaseOrder {
 	}
 	
 	/**
-	 * @return Array of books sold per month
+	 * @return Array of albums sold per month
 	 * @throws SQLException
 	 */
-	public int[] retrieveBooksPerMonth() throws SQLException {
-		return po.retrieveBooksPerMonth();
+	public int[] retrieveAlbumsPerMonth() throws SQLException {
+		return po.retrieveAlbumsPerMonth();
 	}
 	/*
 	public int insertShippingAddress(String username, String street, String province, String country, String zip, String phone) throws IllegalArgumentException, SQLException {

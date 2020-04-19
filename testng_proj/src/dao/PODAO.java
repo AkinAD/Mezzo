@@ -243,22 +243,22 @@ public class PODAO {
 	}
 	
 	/**
-	 * @return an array of book counts per month
+	 * @return an array of albums counts per month
 	 * @throws SQLException
 	 */
-	public int[] retrieveBooksPerMonth() throws SQLException {
-		int[] bookMonths = new int[12]; 
+	public int[] retrieveAlbumsPerMonth() throws SQLException {
+		int[] albuMonths = new int[12]; 
 		String query = "SELECT * from PO";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
 		while (r.next()) {
-			bookMonths[Integer.valueOf(r.getString("PO_DATE").substring(4, 6)) - 1]++;
+			albuMonths[Integer.valueOf(r.getString("PO_DATE").substring(4, 6)) - 1]++;
 		}
 		r.close();
 		p.close();
 		con.close();
-		return bookMonths;
+		return albuMonths;
 	}
 
 }

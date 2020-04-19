@@ -43,13 +43,8 @@ public class DiffAdmin extends HttpServlet {
 		final String adminPage = "/admin.jsp";
 		try {
 			PurchaseOrder po = (PurchaseOrder) context.getAttribute(this.purchaseOrder);
-			String bpm = ""; // bpm - books per month
-			int[] arr = po.retrieveBooksPerMonth();
-			for (int i = 0; i < 12; i++) {
-				bpm += Integer.toString(arr[i]) + ";";
-			}
-			System.out.print(bpm);
-			request.getSession().setAttribute("bpm", bpm);
+			int[] arr = po.retrieveAlbumsPerMonth();
+			context.setAttribute("apm", arr); // apm - albums per month
 			
 		} catch (Exception e) {
 			e.printStackTrace();
