@@ -23,7 +23,6 @@ public class ReviewDAO {
 	
 	public ReviewDAO() {
 		try {
-			//ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/New_Derby");
 //			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
 			ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413");
 		} catch (NamingException e) {
@@ -67,6 +66,15 @@ public class ReviewDAO {
 		return returnVal;
 	}
 	
+	/**
+	 * 
+	 * @param aid
+	 * @param username
+	 * @param rating
+	 * @param review
+	 * @return status of success or failure
+	 * @throws SQLException
+	 */
 	public int createReview(int aid, String username, int rating, String review) throws SQLException {
 		String searchExistQuery = "SELECT COUNT(*) AS revs FROM Review WHERE aid=? AND username=?";
 		String insertQuery = "INSERT INTO Review (aid, username, rating, review) VALUES (?,?,?,?)";		

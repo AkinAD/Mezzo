@@ -14,9 +14,17 @@ import javax.sql.DataSource;
 import bean.AccountBean;
 import bean.ProfileBean;
 
+/**
+ * @author Akin Adewale
+ *
+ */
+
 public class UserDAO {
 	private DataSource ds;
-
+	/**
+	 * Clas constructor, set up initial database connection
+	 * @throws ClassNotFoundException
+	 */
 	public UserDAO() throws ClassNotFoundException {
 		try {
 			//ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/New_Derby");
@@ -27,6 +35,13 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Add new user Entry to Database based on provided AccountBean
+	 * @param registerBean
+	 * @return String indicating success or failure 
+	 * @throws SQLException
+	 */
 
 	public String registerUser(AccountBean registerBean) throws SQLException {
 		String firstName = registerBean.getFname();
@@ -74,7 +89,12 @@ public class UserDAO {
 		return "Oops.. Something went wrong there..!"; // On failure, send a message from here.
 	}
 
-	// https://tableplus.com/blog/2018/09/sql-server-insert-into-table-with-value-select-from-another-table.html
+	/**
+	 *  After Account entry has been made, create entry in Customer table based on existing user in Account  table
+	 * @param username
+	 * @return true or false  Based on success or failure of the method
+	 * @throws SQLException
+	 */
 	private boolean createCustomer(String username) throws SQLException {
 		Connection con = this.ds.getConnection();
 		String query = "INSERT INTO Customer (username, password) select account.username, account.password "
@@ -95,7 +115,14 @@ public class UserDAO {
 		preparedStatement.close();
 		return false;
 	}
-
+	
+	/**
+	 * Retrieve user password for logging in
+	 * @param username
+	 * @return password string for validation
+	 * @throws Exception
+	 */
+	
 	public String getUserPass(String username) throws Exception {
 		Connection con = this.ds.getConnection();
 		String query = "SELECT password FROM account WHERE username = ?";
@@ -116,7 +143,12 @@ public class UserDAO {
 		prepState.close();
 		throw new Exception("Password not found");
 	}
-
+	/**
+	 *  Create Profile entry in Database after successful account creation
+	 * @param username
+	 * @return true or false  Based on success or failure of the method
+	 * @throws SQLException
+	 */
 	private boolean createProfile(String username) throws SQLException {
 		Connection con = this.ds.getConnection();
 		String query = "INSERT INTO Profile (username, fname, lname, email, privilege) select account.username, account.fname, account.lname, account.email, 'customer'"
@@ -138,6 +170,13 @@ public class UserDAO {
 		return false;
 	}
 
+	/**
+	 * Prevent users from registering with an existing email address
+	 * @param email
+	 * @return true if email is unique false otherwise
+	 * @throws SQLException
+	 * @throws IllegalArgumentException
+	 */
 	public boolean uniqueEmail(String email) throws SQLException, IllegalArgumentException {
 		Connection con = this.ds.getConnection();
 		String query = "SELECT email FROM account WHERE email = ?";
@@ -158,7 +197,13 @@ public class UserDAO {
 		prepState.close();
 		return true;
 	}
-
+	
+	/**
+	 * Prevent users from registering with an existing username
+	 * @param userName
+	 * @return true if username is unique false otherwise
+	 * @throws SQLException
+	 */
 	public boolean uniqueUserName(String userName) throws SQLException {
 		Connection con = this.ds.getConnection();
 		String query = "SELECT username FROM account WHERE username = ?";
@@ -179,7 +224,13 @@ public class UserDAO {
 		prepState.close();
 		return true;
 	}
-
+	
+	/**
+	 * Retrieve User Data from provided username
+	 * @param username
+	 * @return Map with key FULLNAME and value ProfileBean 
+	 * @throws SQLException
+	 */
 	public Map<String, ProfileBean> retrieveByUsername(String username) throws SQLException {
 		String query = "select * from Profile where username='" + username + "'";
 		Map<String, ProfileBean> rv = new HashMap<String, ProfileBean>();
@@ -196,7 +247,14 @@ public class UserDAO {
 		con.close();
 		return rv;
 	}
-
+	
+	/**
+	 * Retrieve User Data from provided email
+	 * @param email
+	 * @return Map with key FULLNAME and value ProfileBean 
+	 * @throws SQLException
+	 */
+	
 	public Map<String, ProfileBean> retrieveByEmail(String email) throws SQLException {
 		String query = "select * from Profile where email='" + email + "'";
 		Map<String, ProfileBean> rv = new HashMap<String, ProfileBean>();
@@ -214,6 +272,13 @@ public class UserDAO {
 		return rv;
 	}
 	
+	/**
+	 * Assign new Priviledge to existing User
+	 * @param username
+	 * @param role
+	 * @return true if successful, false otherwise
+	 * @throws SQLException
+	 */
 	public boolean updatePrivilege(String username, String role) throws SQLException{
 		String query = "update Profile SET privilege=? where username=?";
 		Map<String, ProfileBean> rv = new HashMap<String, ProfileBean>();
