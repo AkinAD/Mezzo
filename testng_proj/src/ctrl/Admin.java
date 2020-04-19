@@ -41,6 +41,8 @@ public class Admin extends HttpServlet {
 	private String title = "title";
 	private String price = "price";
 	private String url = "url";
+	private String USER = "user";
+	private String POWER_LEVEL = "privilege";
 	private String error = "";
 
 	private static final String CUR_PROFILE = "CurProfile";
@@ -78,42 +80,55 @@ public class Admin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// BEGIN SETUP
 		UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
 		MS = (MusicStore) this.getServletContext().getAttribute("MS");
 		PO = (PurchaseOrder) this.getServletContext().getAttribute("PO");
 		ServletContext context = this.getServletContext();
 		String curUsername = SessionManagement.getBoundUsername(request.getSession());
 		Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
+		
 		try {
 			data = uModel.retrieveAccountByUsername(curUsername);
 			ProfileBean curProfile = data.values().iterator().next();
 			request.setAttribute(CUR_PROFILE, curProfile);
 		} catch (Exception e) {
 			throw new ServletException(); // This is probably our fault
-		}		
-
-		if(request.getParameter("addAlbum") == null)
-		{
-			// DO NOTHING
-			try {
-				request.setAttribute(ALBUM_CATS, MS.retrieveAllCats());
-			} catch (SQLException e) {
-				throw new ServletException();
-			}
-
-			try {
-				PurchaseOrder po = (PurchaseOrder) context.getAttribute(PURCHASE_ORDER);
-				int[] arr = po.retrieveAlbumsPerMonth();
-				request.setAttribute("apm", arr); // apm - albums per month
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			request.getRequestDispatcher(ADMIN_PAGE).forward(request, response);
-		}
+		}	
+		
+		try {
+			PurchaseOrder po = (PurchaseOrder) context.getAttribute(PURCHASE_ORDER);
+			int[] arr = po.retrieveAlbumsPerMonth();
+			request.setAttribute("apm", arr); // apm - albums per month
 			
+			// A2
+			String[] topThree = po.getTopThree();
+			System.out.printf("one: %s  two: %s  three: %s \n", topThree[0], topThree[1], topThree[2]);
+			request.setAttribute("topThree", topThree); // most sold albums
+
+			String mostPopular = po.getMostPopular();
+			request.setAttribute("mostPopular", mostPopular); // most sold albums
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			request.setAttribute(ALBUM_CATS, MS.retrieveAllCats());
+		} catch (SQLException e) {
+			throw new ServletException();
+		}
+		
+		if(request.getParameter("addAlbum") == null &&request.getParameter("updateRole") == null)
+		{
+			// DO NOTHING		
+			request.getRequestDispatcher(ADMIN_PAGE).forward(request, response); //END SETUP
+
+		}
+		//END SETUP
+			
+		
+		
 		else if(request.getParameter("addAlbum") != null)
 		{
 			String album_artist = request.getParameter(artist);
@@ -123,14 +138,34 @@ public class Admin extends HttpServlet {
 			String album_picture = request.getParameter(url);
 			
 			try {
-				System.out.println("we got here fellas -Album");
 				MS.addAlbum(0, album_artist, album_title, album_category, album_price, album_picture);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				request.setAttribute("finalStatus", "failed");
 				e.printStackTrace();
 				error = "Failed to add Album to Database";
+				request.setAttribute("error", error);				
 				System.out.println(error);
+			}
+			request.getRequestDispatcher("/final.jsp").forward(request, response);
+
+		}
+		
+		if(request.getParameter("updateRole") != null)
+		{
+			String user = request.getParameter(USER);
+			String POWER = request.getParameter(POWER_LEVEL);
+			try {
+				boolean result = uModel.updatePrivilege(user,POWER);
+				if (!result)
+				{
+					System.out.println("Failed at update privilege, possible cause: " + uModel.getError());
+					request.setAttribute("finalStatus", "failed");
+				}
+			} catch (SQLException e) {
+				System.out.println("Failed at update privilege with error: " + uModel.getError());
+				request.setAttribute("error", uModel.getError());		
+				request.setAttribute("finalStatus", "failed");
+				e.printStackTrace();
 			}
 			request.getRequestDispatcher("/final.jsp").forward(request, response);
 

@@ -245,4 +245,20 @@ public class UserModel {
 		
 		return returnPrefix;
 	}
+
+	public boolean updatePrivilege(String user, String POWER) throws SQLException {
+		if(user == null || user.isEmpty())
+		{
+			Error = "Username cannot be empty";
+			return false;
+		}
+		else if(POWER == null || POWER.isEmpty())
+		{
+			Error ="Privilege cannot be empty";
+			return false;
+		}
+		else
+		return userDao.updatePrivilege(user, POWER);
+		
+	}
 }

@@ -64,18 +64,37 @@
 		</a> <a class="card" href="#!">
 			<div class="front"
 				style="background-image: url(//source.unsplash.com/300x403);">
-				<p>Site Analytics - UC A2 (Listeners) Most popular Album</p>
+				<p>Site Analytics - A2 (Listeners) Most popular Albums</p>
+			</div>
+			<div class="back">
+				<div>
+					<p>Most Popular Album: <br/>${requestScope.mostPopular}</p>
+					<span>Top Three: </span>
+					<ol>
+						<li>${requestScope.topThree[0]}</li>
+						<li>${requestScope.topThree[1]}</li>
+						<li>${requestScope.topThree[2]}</li>
+					</ol>
+					<button class="button" onClick="history.go(0)">Refresh Page</button>
+				</div>
+			</div>
+		</a>
+		<a class="card" href="#!">
+			<div class="front"
+				style="background-image: url(//source.unsplash.com/300x403);">
+				<p>Site Analytics -A3 (Listeners) Annomized Reports</p>
 			</div>
 			<div class="back">
 				<div>
 					<ol>
-						<li>A song : Drake</li>
-						<li>Another song : Rihanna</li>
+						<li>Something : ahhhh</li>
+						<li>Someone : ooouuuu</li>
 					</ol>
-					<button class="button">Click Here</button>
+					<button class="button" onClick="history.go(0)">Refresh Page</button>
 				</div>
 			</div>
-		</a> <a class="card" href="#!">
+		</a>
+		 <a class="card" href="#!">
 			<div class="front"
 				style="background-image: url(//source.unsplash.com/300x401);">
 				<p>Add new Album to store</p>
@@ -108,8 +127,8 @@
 			</div>
 			<div class="back">
 				<div>
-					<form>
-						<input type="text" placeholder="Username" /> <select
+					<form id="userRole">
+						<input type="text" placeholder="Username" name="user"/> <select
 							id="privilege" name="privilege">
 							<option value="admin">admin</option>
 							<option value="partner">partner</option>
@@ -119,7 +138,7 @@
 					</form>
 					<p>Enter valid username and select user role</p>
 					<p class="error">...</p>
-					<button class="button">Update</button>
+					<button class="button" name="updateRole" form="userRole">Update</button>
 				</div>
 			</div>
 		</a>

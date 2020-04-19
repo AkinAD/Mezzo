@@ -64,6 +64,8 @@ public class UserDAO {
 					return "Failed to create CUSTOMER and/or Profile";
 				}
 			}
+			con.close();
+			preparedStatement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("UserDAO: DB Failure On account creation ");
@@ -89,6 +91,8 @@ public class UserDAO {
 			preparedStatement.close();
 			return true;
 		}
+		con.close();
+		preparedStatement.close();
 		return false;
 	}
 
@@ -208,6 +212,27 @@ public class UserDAO {
 		p.close();
 		con.close();
 		return rv;
+	}
+	
+	public boolean updatePrivilege(String username, String role) throws SQLException{
+		String query = "update Profile SET privilege=? where username=?";
+		Map<String, ProfileBean> rv = new HashMap<String, ProfileBean>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		p.setString(1, role);
+		p.setString(2, username);
+
+		int i = p.executeUpdate();
+
+		if (i != 0) // SUCCESS: just to ensure data has been inserted into the database
+		{
+			con.close();
+			p.close();
+			return true; //SUCCESS
+		}
+		con.close();
+		p.close();
+		return false;
 	}
 
 }
