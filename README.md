@@ -17,10 +17,10 @@ AND MORE
  blah
  
  ## Authors
-* **Akin Adewale** - [akinAd]("https://github.com/ayaAllan")
+* **Akin Adewale** - [akinAd](https://github.com/ayaAllan)
 
 * **Alan Tang**  - [alanTang](https://github.com/domainabusers)
 
-* **Aya Abu Allan**  - [ayaAllan]("https://github.com/ayaAllan")
+* **Aya Abu Allan**  - [ayaAllan](https://github.com/ayaAllan)
 
 * **Dong Jae Lee**  - [Dave](https://github.com/cima369)
