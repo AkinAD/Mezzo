@@ -270,7 +270,7 @@ public class PurchaseOrder {
 	 * @return title of the album purchased
 	 * @throws NumberFormatException
 	 * @throws SQLException
-	 */
+	 */ 
 	private String retrieveAlbumTitle(String aid) throws NumberFormatException, SQLException {
 		return po.retrieveAlbumTitle(aid);
 	}

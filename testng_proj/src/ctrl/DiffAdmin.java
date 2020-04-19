@@ -41,7 +41,7 @@ public class DiffAdmin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ServletContext context = this.getServletContext();
+		ServletContext context = this.getServletContext(); 
 		final String adminPage = "/admin.jsp";
 		try {
 			PurchaseOrder po = (PurchaseOrder) context.getAttribute(this.purchaseOrder);
