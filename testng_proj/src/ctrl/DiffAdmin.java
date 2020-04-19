@@ -41,20 +41,22 @@ public class DiffAdmin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ServletContext context = this.getServletContext(); 
+		ServletContext context = this.getServletContext();
 		final String adminPage = "/admin.jsp";
 		try {
 			PurchaseOrder po = (PurchaseOrder) context.getAttribute(this.purchaseOrder);
 			int[] arr = po.retrieveAlbumsPerMonth();
 			request.setAttribute("apm", arr); // apm - albums per month
 
+			// A2
+			request.setAttribute("mostsold", po.getTopThree()); // most sold albums
 
-			request.setAttribute("topFive", po.retrieveTopFive());
-			String topFive[] = po.retrieveTopFive();
-			 System.out.printf("most pop : %s , second : %s, thr: %s , fou: %s, fiv: %s \n",
-			 topFive[0], topFive[1], topFive[2], topFive[3], topFive[4]);
+			String mostPopular = po.getMostPopular();
+			System.out.println("most pop: " + mostPopular);
 
-			 
+			String[] topThree = po.getTopThree();
+			System.out.printf("one: %s  two: %s  three: %s \n", topThree[0], topThree[1], topThree[2]);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

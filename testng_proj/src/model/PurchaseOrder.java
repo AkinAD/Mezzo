@@ -19,7 +19,7 @@ public class PurchaseOrder {
 	private AddressDAO addressDao;
 	private UserModel userModel;
 	private static final PurchaseOrder INSTANCE = new PurchaseOrder();
-	
+
 	public static final String ORDER_PROC = "PROCESSED";
 	public static final String ORDER_FAIL = "DENIED";
 	public static final String ORDER_ORDER = "ORDERD";
@@ -35,15 +35,15 @@ public class PurchaseOrder {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static PurchaseOrder getInstance() {
 		return INSTANCE;
 	}
 
 	/**
-	 * Return Map<POBean, Map<String, Integer>>, where POBean stores information
-	 * for every PO for this user, inner map Map<String, Integer> stores each
-	 * book and quantity user ordered in this PO.
+	 * Return Map<POBean, Map<String, Integer>>, where POBean stores information for
+	 * every PO for this user, inner map Map<String, Integer> stores each book and
+	 * quantity user ordered in this PO.
 	 * 
 	 * @param username
 	 * @return Map<POBean, Map<String, Integer>>
@@ -59,9 +59,9 @@ public class PurchaseOrder {
 	}
 
 	/**
-	 * Return Map<POBean, Map<String, Integer>>, where POBean stores information
-	 * for every PO for all users, inner map Map<String, Integer> stores each
-	 * book and quantity user ordered in this PO.
+	 * Return Map<POBean, Map<String, Integer>>, where POBean stores information for
+	 * every PO for all users, inner map Map<String, Integer> stores each book and
+	 * quantity user ordered in this PO.
 	 * 
 	 * @param username
 	 * @return Map<POBean, Map<String, Integer>>
@@ -79,10 +79,8 @@ public class PurchaseOrder {
 	/**
 	 * Update a new purchase order with created POBean and map in shopping cart
 	 * 
-	 * @param pobean
-	 *            - pobean that need to be stored
-	 * @param albums
-	 *            - from shopping cart, ShoppingCart.getBooks()
+	 * @param pobean - pobean that need to be stored
+	 * @param albums - from shopping cart, ShoppingCart.getBooks()
 	 * @return PO_id for pobean
 	 * @throws Exception
 	 */
@@ -96,8 +94,7 @@ public class PurchaseOrder {
 	 * Return a Purchase Order POBean with PO_id
 	 * 
 	 * @param PO_id
-	 * @return a Purchase Order POBean with PO_id, return null is PO_id is not
-	 *         found
+	 * @return a Purchase Order POBean with PO_id, return null is PO_id is not found
 	 * @throws SQLException
 	 */
 	public POBean retrievePOByID(String PO_id) throws Exception {
@@ -128,14 +125,12 @@ public class PurchaseOrder {
 	/**
 	 * Return purchase orders within the date range from to until
 	 * 
-	 * @param start
-	 *            - starting date in String with format 'yyyymmdd', given date
-	 *            is included
-	 * @param end
-	 *            - ending date in String with format 'yyyymmdd', given date is
-	 *            included
-	 * @return purchase orders within the date range from to until, null if no
-	 *         order within those date
+	 * @param start - starting date in String with format 'yyyymmdd', given date is
+	 *              included
+	 * @param end   - ending date in String with format 'yyyymmdd', given date is
+	 *              included
+	 * @return purchase orders within the date range from to until, null if no order
+	 *         within those date
 	 * @throws SQLException
 	 */
 	public Map<String, POBean> retrievePOByDate(String start, String end) throws SQLException {
@@ -145,10 +140,9 @@ public class PurchaseOrder {
 	/**
 	 * Return purchase orders that is in the status given
 	 * 
-	 * @param status
-	 *            - "ORDERD", "PROCESSED" or "DENIED"
-	 * @return purchase orders within the date range from to until, null if no
-	 *         order within those date
+	 * @param status - "ORDERD", "PROCESSED" or "DENIED"
+	 * @return purchase orders within the date range from to until, null if no order
+	 *         within those date
 	 * @throws SQLException
 	 */
 	public Map<String, POBean> retrievePOByStatus(String status) throws SQLException {
@@ -165,9 +159,10 @@ public class PurchaseOrder {
 	public Map<Integer, Integer> retrieveItemByID(String PO_id) throws SQLException {
 		return poitem.retrieveItemByID(PO_id);
 	}
-	
+
 	/**
 	 * Returns a map of orders of an album and the corresponding POItem
+	 * 
 	 * @param aid
 	 * @return
 	 * @throws SQLException
@@ -177,8 +172,7 @@ public class PurchaseOrder {
 	}
 
 	/**
-	 * Return the ordered item information for a book in a particular Purchase
-	 * order
+	 * Return the ordered item information for a book in a particular Purchase order
 	 * 
 	 * @param POID
 	 * @param bookID
@@ -194,14 +188,11 @@ public class PurchaseOrder {
 	 * Return all book with quantity that has been ordered in this period (from
 	 * start to end)
 	 * 
-	 * @param start
-	 *            - starting date in String with format 'yyyymmdd', given date
-	 *            is included
-	 * @param end
-	 *            - ending date in String with format 'yyyymmdd', given date is
-	 *            included
-	 * @return Return all book that has been ordered in this period with
-	 *         quantity
+	 * @param start - starting date in String with format 'yyyymmdd', given date is
+	 *              included
+	 * @param end   - ending date in String with format 'yyyymmdd', given date is
+	 *              included
+	 * @return Return all book that has been ordered in this period with quantity
 	 * @throws SQLException
 	 */
 	public Map<Integer, Integer> retrieveOrderHistory(String start, String end) throws SQLException {
@@ -210,6 +201,7 @@ public class PurchaseOrder {
 
 	/**
 	 * Return the most popular book from the first order
+	 * 
 	 * @return the most popular book
 	 * @throws SQLException
 	 */
@@ -221,7 +213,7 @@ public class PurchaseOrder {
 		// TODO Auto-generated method stub
 		return po.retrieveProcessedPOByMonth(month);
 	}
-	
+
 	/**
 	 * @return Array of albums sold per month
 	 * @throws SQLException
@@ -229,83 +221,85 @@ public class PurchaseOrder {
 	public int[] retrieveAlbumsPerMonth() throws SQLException {
 		return po.retrieveAlbumsPerMonth();
 	}
-	
-	/**
-	 * @return top two purchased album names or nothing if there are less than 2 purchases
-	 * @throws SQLException
-	 */
-	private String[] retrieveTwoPopular() throws SQLException {
-		String[] twoPopular = new String[2];
-		Map<String, Integer> aidCount = po.retrieveAidCount();
-		if (aidCount.size() < 2)
-			return new String[] { "Nothing Popular" };
-		String[] aid = new String[aidCount.size()]; 
-		aid = aidCount.keySet().toArray(aid);
-		twoPopular[0] = this.retrieveAlbumTitle(aid[aid.length - 1]);
-		twoPopular[1] = this.retrieveAlbumTitle(aid[aid.length - 2]);
-		return twoPopular;
-	}
-	
-	/**
-	 * @return top five purchased album names or calls retrieveTwoPopular if less than 5 purchases were made
-	 * @throws SQLException
-	 */
-	public String[] retrieveTopFive() throws SQLException {
-		String[] topFive = new String[5];
-		Map<String, Integer> aidCount = po.retrieveAidCount();
-		if (aidCount.size() < 5)
-			return this.retrieveTwoPopular();
-		String[] aid = new String[aidCount.size()]; 
-		aid = aidCount.keySet().toArray(aid);
-		topFive[0] = this.retrieveAlbumTitle(aid[aid.length - 1]);
-		topFive[1] = this.retrieveAlbumTitle(aid[aid.length - 2]);
-		topFive[2] = this.retrieveAlbumTitle(aid[aid.length - 3]);
-		topFive[3] = this.retrieveAlbumTitle(aid[aid.length - 4]);
-		topFive[4] = this.retrieveAlbumTitle(aid[aid.length - 5]);
-		return topFive;
-	}
-	
+
 	/**
 	 * @param aid - album id
 	 * @return title of the album purchased
 	 * @throws NumberFormatException
 	 * @throws SQLException
-	 */ 
+	 */
 	private String retrieveAlbumTitle(String aid) throws NumberFormatException, SQLException {
 		return po.retrieveAlbumTitle(aid);
 	}
-	/*
-	public int insertShippingAddress(String username, String street, String province, String country, String zip, String phone) throws IllegalArgumentException, SQLException {
-		String errorMsg = "";
-		if (username.length() < 2 || username.equals("")) {
-			errorMsg = "Invalid field";
-		} else if (userModel.retrieveAccountByUsername(username).isEmpty()) {
-			errorMsg = "Invalid field";
-		} else if (street == null || street.isEmpty() || street.length() > 100) {
-			errorMsg = "Invalid field";
-		} else if (province == null || province.isEmpty() || province.length() > 25) {
-			errorMsg = "Invalid field";
-		} else if (country == null || country.isEmpty() || country.length() > 24) {
-			errorMsg = "Invalid field";
-		} else if (zip == null || zip.isEmpty() || zip.length() > 20) {
-			errorMsg = "Invalid field";
-		} else if (!(phone == null || phone.isEmpty()) && phone.length() > 20) {
-			errorMsg = "Invalid field";
-		}
-		if (!errorMsg.isEmpty()) {
-			throw new IllegalArgumentException(errorMsg);
-		}
-		
-		AddressBean inAddr = new AddressBean(username, street, province, country, zip, phone, "Shipping");
-		int curAddr = addressDao.retrieveAddrByBean(inAddr);
-		if (curAddr == 0) {
-			// Address does not exist in DB
-			// Insert address
-			curAddr = addressDao.updateAddr(inAddr);
-			curAddr = addressDao.retrieveAddrByBean(inAddr);
-		}
-		
-		return curAddr;
+
+	/**
+	 * @return the most sold album title
+	 * @throws SQLException
+	 */
+	public String getMostPopular() throws SQLException {
+		Map<String, Integer> aidCount = po.retrieveAidCount();
+		ArrayList<String> aid = new ArrayList<String>(aidCount.keySet());
+		ArrayList<Integer> count = new ArrayList<Integer>(aidCount.values());
+		int max = Collections.max(count);
+		return this.retrieveAlbumTitle(aid.get(count.indexOf(max)));
 	}
-	*/
+
+	/**
+	 * @return the top three most sold album title or simply most sold if less than
+	 *         3 albums were sold
+	 * @throws SQLException
+	 */
+	public String[] getTopThree() throws SQLException {
+		Map<String, Integer> aidCount = po.retrieveAidCount();
+		if (aidCount.size() < 3)
+			return new String[] { this.getMostPopular() };
+		String[] topThree = new String[3];
+		ArrayList<String> aid = new ArrayList<String>(aidCount.keySet());
+		ArrayList<Integer> count = new ArrayList<Integer>(aidCount.values());
+
+		int max = Collections.max(count);
+		String maxAid = aid.get(count.indexOf(max));
+		topThree[0] = this.retrieveAlbumTitle(maxAid);
+		aid.remove(aid.indexOf(maxAid));
+		count.remove(count.indexOf(max));
+
+		max = Collections.max(count);
+		maxAid = aid.get(count.indexOf(max));
+		topThree[1] = this.retrieveAlbumTitle(maxAid);
+		aid.remove(aid.indexOf(maxAid));
+		count.remove(count.indexOf(max));
+
+		max = Collections.max(count);
+		maxAid = aid.get(count.indexOf(max));
+		topThree[2] = this.retrieveAlbumTitle(aid.get(count.indexOf(max)));
+		aid.remove(aid.indexOf(maxAid));
+		count.remove(count.indexOf(max));
+
+		return topThree;
+	}
+
+	/*
+	 * public int insertShippingAddress(String username, String street, String
+	 * province, String country, String zip, String phone) throws
+	 * IllegalArgumentException, SQLException { String errorMsg = ""; if
+	 * (username.length() < 2 || username.equals("")) { errorMsg = "Invalid field";
+	 * } else if (userModel.retrieveAccountByUsername(username).isEmpty()) {
+	 * errorMsg = "Invalid field"; } else if (street == null || street.isEmpty() ||
+	 * street.length() > 100) { errorMsg = "Invalid field"; } else if (province ==
+	 * null || province.isEmpty() || province.length() > 25) { errorMsg =
+	 * "Invalid field"; } else if (country == null || country.isEmpty() ||
+	 * country.length() > 24) { errorMsg = "Invalid field"; } else if (zip == null
+	 * || zip.isEmpty() || zip.length() > 20) { errorMsg = "Invalid field"; } else
+	 * if (!(phone == null || phone.isEmpty()) && phone.length() > 20) { errorMsg =
+	 * "Invalid field"; } if (!errorMsg.isEmpty()) { throw new
+	 * IllegalArgumentException(errorMsg); }
+	 * 
+	 * AddressBean inAddr = new AddressBean(username, street, province, country,
+	 * zip, phone, "Shipping"); int curAddr = addressDao.retrieveAddrByBean(inAddr);
+	 * if (curAddr == 0) { // Address does not exist in DB // Insert address curAddr
+	 * = addressDao.updateAddr(inAddr); curAddr =
+	 * addressDao.retrieveAddrByBean(inAddr); }
+	 * 
+	 * return curAddr; }
+	 */
 }
