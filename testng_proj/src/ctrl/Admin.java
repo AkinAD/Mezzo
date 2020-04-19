@@ -9,6 +9,7 @@ import java.util.Map;
 import java.time.Month; 
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,6 +45,10 @@ public class Admin extends HttpServlet {
 
 	private static final String CUR_PROFILE = "CurProfile";
 	private static final String ALBUM_CATS = "albumCats";
+	private static final String PURCHASE_ORDER = "PO";
+	private final String ADMIN_PAGE = "/admin.jsp";
+
+
 
 	
     /**
@@ -65,6 +70,8 @@ public class Admin extends HttpServlet {
 			e.printStackTrace();
 		}
 		this.getServletContext().setAttribute("UM", UserModel.getInstance());
+		this.getServletContext().setAttribute(PURCHASE_ORDER, PurchaseOrder.getInstance());
+
 
 	}   
 	/**
@@ -76,6 +83,7 @@ public class Admin extends HttpServlet {
 		UserModel uModel = (UserModel) this.getServletContext().getAttribute("UM");
 		MS = (MusicStore) this.getServletContext().getAttribute("MS");
 		PO = (PurchaseOrder) this.getServletContext().getAttribute("PO");
+		ServletContext context = this.getServletContext();
 		String curUsername = SessionManagement.getBoundUsername(request.getSession());
 		Map<String, ProfileBean> data = new HashMap<String, ProfileBean>();
 		try {
@@ -94,8 +102,18 @@ public class Admin extends HttpServlet {
 			} catch (SQLException e) {
 				throw new ServletException();
 			}
-			request.getRequestDispatcher("/admin.jsp").forward(request, response);
+
+			try {
+				PurchaseOrder po = (PurchaseOrder) context.getAttribute(PURCHASE_ORDER);
+				int[] arr = po.retrieveAlbumsPerMonth();
+				request.setAttribute("apm", arr); // apm - albums per month
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher(ADMIN_PAGE).forward(request, response);
 		}
+			
 		else if(request.getParameter("addAlbum") != null)
 		{
 			String album_artist = request.getParameter(artist);
@@ -118,15 +136,25 @@ public class Admin extends HttpServlet {
 
 		}
 		
+		
+		/* 
+		 * bELOW HERE IDK WHATS HAPPENING -- AKIN
+		 * 
+		 * */
+		
+		
+		
+		
+		
 		//PAY = (Payment) this.getServletContext().getAttribute("PAY");
 
 		// Retrieve DAOs from context scope.
 		//POAccessor = new POData();
 		
 		//Current Date to get report period
-		Date date = new Date();
-		SimpleDateFormat YMformate = new SimpleDateFormat("yyyyMM");
-		SimpleDateFormat YMDformate = new SimpleDateFormat("yyyyMMdd");
+//		Date date = new Date();
+//		SimpleDateFormat YMformate = new SimpleDateFormat("yyyyMM");
+//		SimpleDateFormat YMDformate = new SimpleDateFormat("yyyyMMdd");
 		
 		try {
 			//UC A1: generate report w/ albums sold each month
@@ -145,38 +173,38 @@ public class Admin extends HttpServlet {
 					System.out.println("book: " + bid + ", quantity: " + map.get(key).get(bid));
 					*/
 			
-			System.out.println(request.getAttribute("report"));
-			
-			Map<String, Map<String, POBean>> monthlyProcessed = new HashMap<String, Map<String, POBean>>(); //<month, <PO_ID, POBean>>: month and all processed PO 
-			Map<String, Map<Integer, Integer>> monthlySales = new HashMap<String, Map<Integer, Integer>>();
-			
-			for (int m = 1; m <13; m++) {
-				String month = Integer.toString(m);
-				if (month.length() == 1) { //if its "6" for june make it "06"
-					month = "0"+month;
-				}
-				System.out.println(month);
-				if (!monthlyProcessed.containsKey(month)) {
-					monthlyProcessed.put(month, new HashMap<String, POBean>());
-				}
-				monthlyProcessed.get(month).putAll(PO.retrieveProcessedByMonth(month));
-			}
-			
-			for (String month: monthlyProcessed.keySet()) {
-				for (Map<String, POBean> po: monthlyProcessed.values()) {
-					for (String po_ID: po.keySet()) {
-						monthlySales.put(month, PO.retrieveItemByID(po_ID));
-					}
-				}
-			} //data SHOULD now have (month, <aID, quantity>)
+//			System.out.println(request.getAttribute("report"));
+//			
+//			Map<String, Map<String, POBean>> monthlyProcessed = new HashMap<String, Map<String, POBean>>(); //<month, <PO_ID, POBean>>: month and all processed PO 
+//			Map<String, Map<Integer, Integer>> monthlySales = new HashMap<String, Map<Integer, Integer>>();
+//			
+//			for (int m = 1; m <13; m++) {
+//				String month = Integer.toString(m);
+//				if (month.length() == 1) { //if its "6" for june make it "06"
+//					month = "0"+month;
+//				}
+//				System.out.println(month);
+//				if (!monthlyProcessed.containsKey(month)) {
+//					monthlyProcessed.put(month, new HashMap<String, POBean>());
+//				}
+//				monthlyProcessed.get(month).putAll(PO.retrieveProcessedByMonth(month));
+//			}
+//			
+//			for (String month: monthlyProcessed.keySet()) {
+//				for (Map<String, POBean> po: monthlyProcessed.values()) {
+//					for (String po_ID: po.keySet()) {
+//						monthlySales.put(month, PO.retrieveItemByID(po_ID));
+//					}
+//				}
+//			} //data SHOULD now have (month, <aID, quantity>)
 			
 			
 			//UC A3: provide annoymized reports w/ user buying statistics 
 		//	request.setAttribute("anonymizedpo", POAccessor.retrieveAllPO());
 			
-			Map<POBean, Map<Integer, Integer>> allPO = PO.retrieveAllPO();
-			Map<String, Map<String, Float>> total = new HashMap<String, Map<String, Float>>();
-			Map<String, Map<String, Float>> anon = new HashMap<String, Map<String, Float>>();
+//			Map<POBean, Map<Integer, Integer>> allPO = PO.retrieveAllPO();
+//			Map<String, Map<String, Float>> total = new HashMap<String, Map<String, Float>>();
+//			Map<String, Map<String, Float>> anon = new HashMap<String, Map<String, Float>>();
 //			for (POBean po : allPO.keySet()) {
 //				 Map<String, Integer> idNq = PO.retrieveItemByID(po.getPO_id()); //idnq = <albumID, quantity>
 //				 for (String aid : idNq.keySet()) {

@@ -42,14 +42,23 @@
 		</a> <a class="card" href="#!">
 			<div class="front"
 				style="background-image: url(//source.unsplash.com/300x403);">
-				<p>Store Stats - Book Sales per month</p>
+				<p>Store Stats - Album Sales per month</p>
 			</div>
 			<div class="back">
 				<div>
-					<p>Consectetur adipisicing elit. Possimus, praesentium?</p>
-					<p>Provident consectetur natus voluptatem quis tenetur sed
-						beatae eius sint.</p>
-					<button class="button">Click Here</button>
+					<p>January: ${requestScope.apm[0]}<br/>
+					   February: ${requestScope.apm[1]}<br/>
+					   March: ${requestScope.apm[2]}<br/>
+					   April: ${requestScope.apm[3]}<br/>
+					   May: ${requestScope.apm[4]} <br/>
+					   June: ${requestScope.apm[5]}<br/>
+					   July: ${requestScope.apm[6]}<br/>
+					   August: ${requestScope.apm[7]}<br/>
+					   September: ${requestScope.apm[8]}<br/>
+					   October: ${requestScope.apm[9]}<br/>
+					   November: ${requestScope.apm[10]}<br/>
+					   December: ${requestScope.apm[11]}</p>
+					<button class="button" onClick="history.go(0)">Refresh Page</button>
 				</div>
 			</div>
 		</a> <a class="card" href="#!">

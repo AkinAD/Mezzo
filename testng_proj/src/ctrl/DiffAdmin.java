@@ -44,7 +44,7 @@ public class DiffAdmin extends HttpServlet {
 		try {
 			PurchaseOrder po = (PurchaseOrder) context.getAttribute(this.purchaseOrder);
 			int[] arr = po.retrieveAlbumsPerMonth();
-			context.setAttribute("apm", arr); // apm - albums per month
+			request.setAttribute("apm", arr); // apm - albums per month
 			
 		} catch (Exception e) {
 			e.printStackTrace();
