@@ -223,6 +223,9 @@ public class PurchaseOrder {
 		return po.retrieveProcessedPOByMonth(month);
 	}
 	
+	public int[] retrieveBooksPerMonth() throws SQLException {
+		return po.retrieveBooksPerMonth();
+	}
 	/*
 	public int insertShippingAddress(String username, String street, String province, String country, String zip, String phone) throws IllegalArgumentException, SQLException {
 		String errorMsg = "";
