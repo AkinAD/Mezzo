@@ -15,12 +15,18 @@ import javax.sql.DataSource;
 
 import bean.AlbumBean;
 
+/**
+ * Album Database Access object 
+ * 
+ * @author Akin X Alan 
+ *
+ */
 public class AlbumDAO {
 
 	private DataSource ds;
 
 	/**
-	 * Initializes the albul data access object for data retrieval
+	 * Initializes the album data access object for data retrieval
 	 * 
 	 * @throws ClassNotFoundException
 	 */
@@ -98,7 +104,12 @@ public class AlbumDAO {
 		con.close();
 		return al;
 	}
-
+	/**
+	 * Retrieves all albums with the given category / genre
+	 * @param cat
+	 * @return retrieve a Map with aid as key and album object as value entries
+	 * @throws SQLException
+	 */
 	public Map<String, AlbumBean> retrieveAlbumByCat(String cat) throws SQLException {
 		String query = "select * from album where category='" + cat + "'";
 		if(cat.equals("All"))
@@ -119,17 +130,19 @@ public class AlbumDAO {
 		con.close();
 		return rv;
 	}
-
+	
+	/**
+	 * Retrieves all albums matching search param 'parameter' 
+	 * @param parameter
+	 * @return retrieve a Map with aid as key and album object as value entries
+	 * @throws SQLException
+	 */
 	public Map<String, AlbumBean> retrieveBySearch(String parameter) throws SQLException {
 		// since we are not aware of what the users will search the store with, we will
 		// populate the results with every and anything that matches params
 		Map<String, AlbumBean> rv = new HashMap<String, AlbumBean>();
 		Connection con = this.ds.getConnection();
-		String query = "select * from album where (category like ? OR artist like ?  OR title like ?)"; // check
-																										// against,
-																										// title
-																										// category and
-																										// artist
+		String query = "select * from album where (category like ? OR artist like ?  OR title like ?)"; // check against, title category and artist
 		PreparedStatement p = con.prepareStatement(query);
 		p.setString(1, parameter);
 		p.setString(2, parameter);
@@ -146,7 +159,12 @@ public class AlbumDAO {
 		con.close();
 		return rv;
 	}
-
+	
+	/**
+	 * Add new album to store from provided album object
+	 * @param album
+	 * @throws Exception
+	 */
 	public void addAlbum(AlbumBean album) throws Exception {
 		String artist = album.getArtist();
 		String title = album.getTitle();
@@ -190,7 +208,11 @@ public class AlbumDAO {
 		}
 
 	}
-
+	
+	/**	
+	 * @return AID of last album entry in Database
+	 * @throws SQLException
+	 */
 	private int getLastAid() throws SQLException {
 		String query = "SELECT * FROM ALBUM ORDER BY aid DESC LIMIT 1";
 		Connection con = this.ds.getConnection();
@@ -205,7 +227,14 @@ public class AlbumDAO {
 		con.close();
 		return lastAid;
 	}
-
+	
+	/**
+	 * Check Database if Album entry already exists
+	 * @param artist
+	 * @param title
+	 * @return true or false based on if album exists
+	 * @throws SQLException
+	 */
 	public boolean preventDiuplicates(String artist, String title) throws SQLException {
 		Connection con = this.ds.getConnection();
 		String query = "SELECT * FROM album WHERE title = ? AND artist = ?";

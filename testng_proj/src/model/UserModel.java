@@ -14,7 +14,7 @@ import dao.UserDAO;
 /**
  * Profile/account model
  * 
- * @author akinad1
+ * @author Akin x Alan
  *
  */
 public class UserModel {
