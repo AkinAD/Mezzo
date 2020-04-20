@@ -19,6 +19,11 @@ public class AddressDAO {
 
 	private DataSource ds;
 
+	/**
+	 * Initializes the address data access object for data retrieval
+	 * 
+	 * @throws ClassNotFoundException
+	 */
 	public AddressDAO() throws ClassNotFoundException {
 		try {
 			//ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");

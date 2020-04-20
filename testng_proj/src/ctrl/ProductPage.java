@@ -68,7 +68,7 @@ public class ProductPage extends HttpServlet {
 			int aidInt = Integer.valueOf(aid);
 
 			// Retrieve Album
-			Map<String, AlbumBean> retrRes = musicStore.retrievAlbum(aidInt);
+			Map<String, AlbumBean> retrRes = musicStore.retrieveAlbum(aidInt);
 			AlbumBean retrResAlbum = retrRes.get(new Integer(aidInt).toString());
 			if (retrResAlbum == null) {
 				throw new IllegalArgumentException();

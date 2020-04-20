@@ -19,6 +19,11 @@ public class PODAO {
 	private DataSource ds;
 	private AddressDAO addrDAO = new AddressDAO();
 
+	/**
+	 * Initializes the Purchase Order data access object for data retrieval
+	 * 
+	 * @throws ClassNotFoundException
+	 */
 	public PODAO() throws ClassNotFoundException {
 		try {
 			//ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
@@ -186,29 +191,6 @@ public class PODAO {
 			String lname = r.getString("LNAME");
 			String fname = r.getString("FNAME");
 			map.put(PO_id, new POBean(PO_id, username, status, addrDAO.retrieveAddrByID(a_id), PO_date, lname, fname));
-		}
-		r.close();
-		p.close();
-		con.close();
-		return map;
-	}
-	
-	public Map<String, POBean> retrieveProcessedPOByMonth(String month) throws SQLException {
-		String query = "select * from PO where STATUS = 'PROCESSED' and select where left(right(PO_DATE, len(PO_DATE)-2), len(right(PO_DATE, len(PO_DATE)-2))-4) as month = " + month;
-		Map<String, POBean> map = new HashMap<String, POBean>();
-		Connection con = this.ds.getConnection();
-		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		while (r.next()) {
-			String PO_id = r.getString("PO_ID");
-			String username = r.getString("USERNAME");
-			String status = r.getString("STATUS");
-			int a_id = r.getInt("A_ID");
-			String PO_date = r.getString("PO_DATE");
-			String lname = r.getString("LNAME");
-			String fname = r.getString("FNAME");
-			map.put(PO_id, new POBean(PO_id, username, status, addrDAO.retrieveAddrByID(a_id), PO_date, lname, fname));
-			
 		}
 		r.close();
 		p.close();

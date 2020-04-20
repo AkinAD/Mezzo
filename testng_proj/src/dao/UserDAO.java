@@ -90,7 +90,7 @@ public class UserDAO {
 	}
 
 	/**
-	 *  After Account entry has been made, create entry in Customer table based on existing user in Account  table
+	 * After Account entry has been made, create entry in Customer table based on existing user in Account  table
 	 * @param username
 	 * @return true or false  Based on success or failure of the method
 	 * @throws SQLException
@@ -144,7 +144,7 @@ public class UserDAO {
 		throw new Exception("Password not found");
 	}
 	/**
-	 *  Create Profile entry in Database after successful account creation
+	 * Create Profile entry in Database after successful account creation
 	 * @param username
 	 * @return true or false  Based on success or failure of the method
 	 * @throws SQLException
@@ -273,7 +273,7 @@ public class UserDAO {
 	}
 	
 	/**
-	 * Assign new Priviledge to existing User
+	 * Assign new Privilege to existing User
 	 * @param username
 	 * @param role
 	 * @return true if successful, false otherwise

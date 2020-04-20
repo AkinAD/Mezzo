@@ -68,6 +68,10 @@ public class Api extends HttpServlet {
 		}
 	}
 
+	/**
+	 * @param request
+	 * @return path info
+	 */
 	private String[] getPathInfos(HttpServletRequest request) {
 		return request.getPathInfo() != null ? request.getPathInfo().split("/") : new String[0];
 	}
@@ -159,7 +163,7 @@ public class Api extends HttpServlet {
 			}
 			
 			if (validQuery) {
-				Map<String,AlbumBean> albumRes = musicStore.retrievAlbum(alb);
+				Map<String,AlbumBean> albumRes = musicStore.retrieveAlbum(alb);
 				AlbumBean resultAlbum = albumRes.values().iterator().next();
 			
 				String responseDoc = produceAlbumDocument(resultAlbum.getAid(),resultAlbum.getArtist(),resultAlbum.getTitle(),resultAlbum.getCategory(),resultAlbum.getPrice(),resultAlbum.getPicture());
@@ -174,6 +178,15 @@ public class Api extends HttpServlet {
 	}
 
 	
+	/**
+	 * @param aid
+	 * @param artist
+	 * @param title
+	 * @param category
+	 * @param price
+	 * @param picture
+	 * @return JSON text for albums
+	 */
 	private static String produceAlbumDocument(int aid, String artist, String title, String category, double price, String picture) {
 		JsonObjectBuilder bob = Json.createObjectBuilder(); // Bob the builder
 		bob.add("aid", aid);
@@ -186,6 +199,11 @@ public class Api extends HttpServlet {
 		return bob.build().toString();
 	}
 	
+	/**
+	 * @param responseCode
+	 * @param message
+	 * @return JSON text for Errors 
+	 */
 	private static String produceErrorDocument(int responseCode, String message) {
 		JsonObjectBuilder bob = Json.createObjectBuilder(); // Bob the builder
 		bob.add("status", responseCode);
@@ -197,8 +215,7 @@ public class Api extends HttpServlet {
 	/**
 	 * 
 	 * @param orders
-	 * Array of PO ids
-	 * @return
+	 * @return Array of PO ids
 	 */
 	private static String produceOrdersArrayDocument (String[] orders) {
 		JsonObjectBuilder bob = Json.createObjectBuilder(); // Bob the builder

@@ -21,6 +21,9 @@ import bean.ReviewBean;
 public class ReviewDAO {
 	private DataSource ds;
 	
+	/**
+	 * Initializes the Reviews data access object for data retrieval
+	 */
 	public ReviewDAO() {
 		try {
 //			ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");
@@ -31,10 +34,10 @@ public class ReviewDAO {
 	}
 	
 	/**
+	 * Retrieves reviews of album given an ID
 	 * 
 	 * @param aid
-	 * @return
-	 * Map of reviews with username as key
+	 * @return Map of reviews with username as key
 	 * @throws SQLException
 	 */
 	public Map<String,ReviewBean> retrieveReviews(int aid) throws SQLException{

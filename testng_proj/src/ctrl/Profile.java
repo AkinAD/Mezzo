@@ -48,6 +48,9 @@ public class Profile extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Initializes servlet with given config to serlvet container 
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);

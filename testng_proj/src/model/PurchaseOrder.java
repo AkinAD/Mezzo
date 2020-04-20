@@ -216,18 +216,6 @@ public class PurchaseOrder {
 	}
 
 	/**
-	 * NOT USED
-	 * 
-	 * @param month
-	 * @return
-	 * @throws SQLException
-	 */
-	public Map<String, POBean> retrieveProcessedByMonth(String month) throws SQLException {
-		// TODO Auto-generated method stub
-		return po.retrieveProcessedPOByMonth(month);
-	}
-
-	/**
 	 * Retrieves all albums sold given a month 
 	 * 
 	 * @return Array of albums sold per month

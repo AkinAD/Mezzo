@@ -13,6 +13,11 @@ public class POItemDAO {
 
 	private DataSource ds;
 
+	/**
+	 * Initializes the PO item data access object for data retrieval
+	 * 
+	 * @throws ClassNotFoundException
+	 */
 	public POItemDAO() throws ClassNotFoundException {
 		try {
 			//ds = (DataSource) (new InitialContext()).lookup("jdbc/Db2-4413");

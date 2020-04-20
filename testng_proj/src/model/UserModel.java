@@ -90,10 +90,9 @@ public class UserModel {
 
 	/**
 	 * 
-	 * 
 	 * @param username
 	 * @param password
-	 * @return
+	 * @return A map with a single element that is the ProfileBean associated with given username
 	 * @throws Exception
 	 */
 	public Map<String, ProfileBean> loginUser(String username, String password) throws Exception {
@@ -122,8 +121,7 @@ public class UserModel {
 	/**
 	 * 
 	 * @param username
-	 * @return
-	 * A map with a single element that is the ProfileBean. Empty if not found.
+	 * @return A map with a single element that is the ProfileBean. Empty if not found.
 	 */
 	public Map<String, ProfileBean> retrieveAccountByUsername(String username) throws IllegalArgumentException, SQLException {
 		if (username.length() < 2 || username.equals("")) {
@@ -134,6 +132,11 @@ public class UserModel {
 		return userDao.retrieveByUsername(username);
 	}
 
+	/**
+	 * @param email
+	 * @return Map with FULLNAME for key and ProfileBean for value 
+	 * @throws Exception
+	 */
 	public Map<String, ProfileBean> retrieveAccountByEmail(String email) throws Exception {
 		if (!isValidEmail(email)) {
 			Error = "Sorry, this is not a valid email address";
@@ -143,6 +146,11 @@ public class UserModel {
 		return userDao.retrieveByEmail(email);
 	}
 	
+	/**
+	 * @param username
+	 * @return billing address of this customer
+	 * @throws Exception
+	 */
 	public AddressBean retrieveBillingAddressByUsername(String username) throws Exception {
 		if (username.length() < 2 || username.equals("")) {
 			Error = "Sorry, this is not a valid username";
@@ -156,7 +164,7 @@ public class UserModel {
 	 * Retrieves the checkout profile of the given user
 	 * 
 	 * @param username
-	 * @return
+	 * @return checkout profile of given user
 	 * @throws Exception
 	 */
 	public CheckoutProfileBean retrieveCheckoutProfileByUsername(String username) throws Exception {

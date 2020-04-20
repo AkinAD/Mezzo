@@ -24,11 +24,17 @@ public class Test extends HttpServlet {
 	private static String query = "query";
 	private static String error = "";
 
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
 	public Test() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Initializes servlet with given config to serlvet container 
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -40,6 +46,10 @@ public class Test extends HttpServlet {
 		}
 	}
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST");
@@ -55,7 +65,7 @@ public class Test extends HttpServlet {
 			aid = Integer.parseInt(request.getParameter("aid"));
 
 			try {
-				data = MS.retrievAlbum(aid);
+				data = MS.retrieveAlbum(aid);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				System.out.println("Failure to Access DB.. or something");
@@ -102,6 +112,9 @@ public class Test extends HttpServlet {
 		}
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

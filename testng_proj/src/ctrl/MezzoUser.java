@@ -36,13 +36,17 @@ public class MezzoUser extends HttpServlet {
 	// Copying all the input parameters in to local variables
 	private static final String LoginReg = "/LoginReg.jsp";
 	private static final String Profile = "/profile";
-	
-	
 
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
 	public MezzoUser() {
 		super();
 	}
 
+	/**
+	 * Initializes servlet with given config to serlvet container 
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -210,7 +214,7 @@ public class MezzoUser extends HttpServlet {
 
 	}
 	/**
-	 *  Prepare Profile bean data for parsing to VIEW
+	 * Prepare Profile bean data for parsing to VIEW
 	 * @param data
 	 * @return
 	 */
@@ -239,6 +243,9 @@ public class MezzoUser extends HttpServlet {
 	}
 
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -285,22 +292,40 @@ public class MezzoUser extends HttpServlet {
 			return paramMap;
 		}
 		
+		/**
+		 * Returns a java.util.Map of the parameters of this request per the parent. 
+		 * Request parameters are extra information sent with the request. 
+		 * For HTTP servlets, parameters are contained in the query string or posted form data.
+		 */
 		public String[] getParameterValues(String name) {
 			return getParameterMap().get(name);
 		}
 		
+		/**
+		 * Returns the value of a request parameter as a String, or null if the parameter does not exist.
+		 */
 		public String getParameter(String name) {
 			return (getParameterValues(name) == null) ? null : getParameterValues(name)[0];
 		}
 		
+		/**
+		 * Returns an Enumeration of String objects containing the names of the parameters contained in this request. 
+		 * If the request has no parameters, the method returns an empty Enumeration.
+		 */
 		public Enumeration<String> getParameterNames() {
 			return new StringSetEnumeration(getParameterMap().keySet());
 		}
 		
+		/**
+		 * @return an immutable java.util.Map containing parameter names as keys and parameter values as map values.
+		 */
 		public Map<String, String[]> getRealParameterMap(){
 			return super.getParameterMap();
 		}
 		
+		/**
+		 * This small class provides some Enumeration functions for String objects.
+		 */
 		private static class StringSetEnumeration implements Enumeration<String> {
 			private Iterator<String> strSetIter;
 			

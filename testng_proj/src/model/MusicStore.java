@@ -48,30 +48,18 @@ public class MusicStore {
 	}
 
 	/**
-	 * (name typo)Retrieves an album given an album ID
+	 * Retrieves an album given an album ID
 	 * 
 	 * @param aid
 	 * @return album of given ID 
 	 * @throws Exception
 	 */
-	public Map<String, AlbumBean> retrievAlbum(int aid) throws Exception {
+	public Map<String, AlbumBean> retrieveAlbum(int aid) throws Exception {
 		if (aid < 0 || aid > 10000) {
 			throw new IllegalArgumentException();
 		}
 		Error = "";
 		return alDao.retrieveAll(aid);
-	}
-	
-	
-	/**
-	 * Retrieves album by id as well??? This method isn't called anywhere, remove?
-	 * 
-	 * @param aid
-	 * @return 
-	 * @throws Exception
-	 */
-	public AlbumBean retrieveAlbumByID(int aid) throws Exception {
-		return alDao.retrieveAlbum(aid);
 	}
 	
 	/**
@@ -135,7 +123,6 @@ public class MusicStore {
 	}
 
 	/**
-	 * 
 	 * 
 	 * @param namePrefix
 	 * @return
@@ -218,9 +205,6 @@ public class MusicStore {
 	    return string.matches("^\\d+\\.\\d{2}$");
 	  }
 	
-	/**
-	 * 
-	 */
 	private static final String URL_REGEX =
 			"^((((https?|ftps?|gopher|telnet|nntp)://)|(mailto:|news:))" +
 			"(%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@&=+$,A-Za-z0-9])+)" +
@@ -245,10 +229,9 @@ public class MusicStore {
 	}
 
 	/**
-	 * ?? whats the paramter?
 	 * 
 	 * @param parameter
-	 * @return
+	 * @return Map with album ID as key and album object as value entries
 	 * @throws SQLException
 	 */
 	public Map<String, AlbumBean> retrieveAlbumByGodKnowsWhat(String parameter) throws SQLException {

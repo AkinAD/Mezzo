@@ -44,6 +44,9 @@ public class Checkout extends HttpServlet {
     public Checkout() {
         super();
     }
+	/**
+	 * Initializes servlet with given config to serlvet container 
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -82,6 +85,14 @@ public class Checkout extends HttpServlet {
 		doGet(request, response);
 	}
 
+	/**
+	 * @param request
+	 * @param response
+	 * @param curUsername
+	 * @param uModel
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	private static void retrieveProfileBilling(HttpServletRequest request, HttpServletResponse response, String curUsername,
 			UserModel uModel) throws ServletException, IOException {
 		AddressBean billingAddress;

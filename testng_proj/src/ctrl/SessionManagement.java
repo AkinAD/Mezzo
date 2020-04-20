@@ -34,6 +34,10 @@ public class SessionManagement {
 		session.invalidate();
 	}
 
+	/**
+	 * @param session
+	 * @return Mezzo username
+	 */
 	public static String getBoundUsername(HttpSession session) {
 		return (String) session.getAttribute(MEZZO_USERNAME);
 	}
@@ -70,6 +74,10 @@ public class SessionManagement {
 		SessionManagement.bindCart(session,cart);
 	}
 	
+	/**
+	 * @param session
+	 * @return true if cart not empty
+	 */
 	public static boolean cartBound(HttpSession session) {
 		return session.getAttribute(MEZZO_CART) != null;
 	}
@@ -90,7 +98,7 @@ public class SessionManagement {
 	/**
 	 * 
 	 * @param session
-	 * @return
+	 * @return value of the fail counter
 	 */
 	public static int getFailCounter(HttpSession session) {
 		return (int) session.getAttribute(FAIL_CTR);		
