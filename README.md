@@ -25,8 +25,10 @@ If you choose to clone the repository via eclipse, the main project is located a
 
 In the [context.xml](https://github.com/AkinAD/Mezzo/blob/master/testng_proj/WebContent/META-INF/context.xml) file we have left the access credentials to access our CLoud DB,  however if you would prefer to run the  project locally, a [proj.sql](testng_proj/proj.sql) file has also been provided with the *early* stage version database of this project.
 
-Next, alter your DAOs depending on how youintend on access the Database. Set the appropriate data source. if you ahve decided to use our cloud db, the options below will connect you to the database per the specified credentials in the web.xml
+Next, alter your DAOs depending on how youintend on access the Database. Set the appropriate data source. if you ahve decided to use our cloud db, the options below will connect you to the database per the specified credentials in the [context.xml](testng_proj/WebContent/META-INF/context.xml)
+
 ```ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413"); // USE THIS TO DEBUG LOCALLY ```
+
 If you have opted foy your own local database, simply replace the'DB2-4413' with your local database name.
 
 At this point all should be set. Right click the main project 'testing_proj' and select run on server. the project should work as expected.
