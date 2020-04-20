@@ -72,6 +72,7 @@
 									<li><a href="mailto:mrspence004@gmail.com?Subject=Hello%20From%20The%20Mezzo%20Store" target="_top">Contact</a></li>
 								</ul></li>
 							<li><a href="admin">Admin</a></li>
+							<li><a href="howToRest.jsp">Partner</a></li>
 						</ul>
 					</div>
 					<!-- Nav End -->

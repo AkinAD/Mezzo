@@ -85,9 +85,9 @@
 						value="${requestScope.albumResult.aid}" class="btn essence-btn">Add
 						to cart</button>
 					<!-- Favourite -->
-					<div class="product-favourite ml-4">
+					<!-- <div class="product-favourite ml-4">
 						<a href="#" class="favme fa fa-heart">&#160;</a>
-					</div>
+					</div> -->
 				</div>
 			</form>
 			<!-- #### START Leave a review Section -->
