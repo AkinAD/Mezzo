@@ -54,8 +54,7 @@
                 <P> Sample Link: <a href="https://mezzo-4413.mybluemix.net/api/orders/?aid=1 ">https://mezzo-4413.mybluemix.net/api/orders/?aid=1</a></P>
                 <img src="${pageContext.request.contextPath}/res/img/other/rest_orders.png" />
             	</blockquote>   
-            	
-            	
+            	            	
             	
             	<blockquote>
                 <span style="margin-left: 0px;">productEndpoint</span>
