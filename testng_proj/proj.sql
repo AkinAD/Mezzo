@@ -289,22 +289,22 @@ INSERT INTO POItem (po_id, aid, quantity) VALUES
 --
 
 DROP TABLE CreditInfo;
-
-CREATE TABLE CreditInfo (
-username	VARCHAR(25) NOT NULL,
-cardType	INT NOT NULL,
-cardHolder	VARCHAR(25) NOT NULL,
-cardNumber	VARCHAR(20) NOT NULL,
-expireM		INT NOT NULL,
-expireY		INT NOT NULL,
-a_id		INT,
-PRIMARY KEY (username),
-FOREIGN KEY (username) REFERENCES Customer(username) ON DELETE CASCADE,
-FOREIGN KEY (a_id) REFERENCES Address(a_id) ON DELETE CASCADE
-);
-
-INSERT INTO CreditInfo (username, cardType, CardHolder, CardNumber, expireM, expireY, a_id) 
-VALUES ('akinAd', 1, 'Akin Adewale', '1111 2222 3333 4444', 8, 17, 1);
+-- WE DO NOT STORE ANY CREDIT CARD INFO
+--CREATE TABLE CreditInfo (
+--username	VARCHAR(25) NOT NULL,
+--cardType	INT NOT NULL,
+--cardHolder	VARCHAR(25) NOT NULL,
+--cardNumber	VARCHAR(20) NOT NULL,
+--expireM		INT NOT NULL,
+--expireY		INT NOT NULL,
+--a_id		INT,
+--PRIMARY KEY (username),
+--FOREIGN KEY (username) REFERENCES Customer(username) ON DELETE CASCADE,
+--FOREIGN KEY (a_id) REFERENCES Address(a_id) ON DELETE CASCADE
+--);
+--
+--INSERT INTO CreditInfo (username, cardType, CardHolder, CardNumber, expireM, expireY, a_id) 
+--VALUES ('akinAd', 1, 'Akin Adewale', '1111 2222 3333 4444', 8, 17, 1);
 
 --
 --Order Status

@@ -96,9 +96,9 @@ public class Pay extends HttpServlet {
 		String postParam = request.getParameter(PARAM_POSTAL);
 		String phonParam = request.getParameter(PARAM_PHONE);
 		// Credit card params
-		String creditCard = request.getParameter(PARAM_CREDIT);
-		String cvv = request.getParameter(PARAM_CVV);
-		String cardholder = request.getParameter(PARAM_CARDHOLDER);
+//		String creditCard = request.getParameter(PARAM_CREDIT);
+//		String cvv = request.getParameter(PARAM_CVV);
+//		String cardholder = request.getParameter(PARAM_CARDHOLDER);
 		String cardExpiryMo = request.getParameter(PARAM_CARDEXPMO);
 		String cardExpiryYe = request.getParameter(PARAM_CARDEXPYE);
 		
