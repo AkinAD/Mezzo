@@ -19,6 +19,9 @@ We hope you enjoy [Mezzo](https://mezzo-4413.mybluemix.net/) - #1 Album site!
 #### Part 2
 ![](Demo_2b.gif)
 
+## Report
+[Click here to view Report] (Final Project Report.pdf)
+
 ## How to Run
 ##### Clone Repository via Eclipse GIT
 If you choose to clone the repository via eclipse, the main project is located as the 'testing_proj'. as soon as it is imported, eclipse will recognize this as a project. At this point, provided you have set up Apache Tomcat 8.5 correctly, you will need to  then set up your database Access.
@@ -44,10 +47,12 @@ REST API testing - Visit here for information on the REST endpoints
 Sample links: Orders - https://mezzo-4413.mybluemix.net/api/orders/?aid=1
 Sample links: Products - https://mezzo-4413.mybluemix.net/api/products/1 
 
+## Issues? 
+If you have any issues setting up please contact the members below and/or create a github issue
 
  
  ## Authors
-* **Akin Adewale** - [akinAd](https://github.com/ayaAllan)
+* **Akin Adewale** - [akinAd](https://github.com/ayaAllan) [email](akinad1@my.yorku.ca)
 
 * **Alan Tang**  - [alanTang](https://github.com/domainabusers)
 
