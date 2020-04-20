@@ -19,13 +19,15 @@ We hope you enjoy [Mezzo](https://mezzo-4413.mybluemix.net/) - #1 Album site!
 #### Part 2
 ![](Demo_2b.gif)
 
-## Testing 
+## Testing - REST 
+Instuctions were unclear about TESTING towards the final moments of the project deadline, we opted for a quick java class with two test methods and a utility method. To see the REST api calls in action, visit links below . For quick Documentation on REST for partners, visit [Mezzo Partner page](http://mezzo-4413.mybluemix.net/howToRest.jsp)
+
+REST API testing - Visit here for information on the REST endpoints
+
+Sample links: Orders - https://mezzo-4413.mybluemix.net/api/orders/?aid=1
+Sample links: Products - https://mezzo-4413.mybluemix.net/api/products/1 
 
 
-
- blah 
- blah
- blah
  
  ## Authors
 * **Akin Adewale** - [akinAd](https://github.com/ayaAllan)
