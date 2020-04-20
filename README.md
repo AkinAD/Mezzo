@@ -4,12 +4,23 @@ Mezzo is the final term project for the York University EECS 4413 - Building E-C
 
 This project is the child of Authors Aya Abu Allan, Alan Tang, Dong Jae Lee, and Akinloluwa Adewale
 
-We hope you enjoy Mezzo - #1 Album site!
+We hope you enjoy [Mezzo](https://mezzo-4413.mybluemix.net/) - #1 Album site!
 
-ADD MORE
-AND MORE
-AND MORE 
-AND MORE
+## Built With
+
+* [Apache Tomcat](http://tomcat.apache.org/) - Local Server 
+* [DB2](https://www.ibm.com/cloud/db2-on-cloud/) - DBMS on cloud
+* [IBM Cloud](https://www.ibm.com/cloud) - Hosting 
+* [Eclipse Java EE](https://www.apachefriends.org/index.html) - Development
+
+## Quick Preview
+#### Part 1
+![](Demo_2.gif)
+#### Part 2
+![](Demo_2b.gif)
+
+## Testing 
+
 
 
  blah 
