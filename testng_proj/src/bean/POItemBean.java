@@ -7,7 +7,7 @@ public class POItemBean {
 	private String PO_id;
 	private int aid;
 	private int quantity;
-	
+
 	/**
 	 * Sets the purchase order id, bid, and quantity
 	 * 
@@ -21,7 +21,7 @@ public class POItemBean {
 		this.setAid(aid);
 		this.setQuantity(quantity);
 	}
-	
+
 	/**
 	 * @return purchase order id
 	 */
@@ -54,7 +54,6 @@ public class POItemBean {
 		this.aid = aid;
 	}
 
-	
 	/**
 	 * @return the quantity of the purchase order
 	 */
@@ -65,7 +64,7 @@ public class POItemBean {
 	/**
 	 * Sets the quantity to the given quantity
 	 * 
-	 * @param quantity 
+	 * @param quantity
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;

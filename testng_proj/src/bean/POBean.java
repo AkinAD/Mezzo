@@ -1,7 +1,5 @@
 package bean;
 
-import java.text.SimpleDateFormat;
-
 /**
  * Purchase order bean
  */
@@ -14,13 +12,10 @@ public class POBean {
 	private String lname;
 	private String fname;
 
-	private static SimpleDateFormat idf = new SimpleDateFormat("yyyyMMddHHmmSS");
-	private static SimpleDateFormat datef = new SimpleDateFormat("yyyyMMdd");
-
 	public final static String ORDERED = "ORDERED";
 	public final static String PROCESSED = "PROCESSED";
 	public final static String DENIED = "DENIED";
-	
+
 	/**
 	 * Initializes the Purchase order
 	 * 
@@ -138,7 +133,7 @@ public class POBean {
 	public void setLname(String lname) {
 		this.lname = lname;
 	}
-	
+
 	/**
 	 * @return the first name of the user
 	 */
@@ -154,17 +149,12 @@ public class POBean {
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
-	
+
 	/**
 	 * Print out the purchase order as a string
 	 */
 	public String toString() {
-		return "PO_id: " + PO_id
-				+ "\nusername: " + username
-				+ "\nstatus" + status
-				+ "\naddress: " +  address.toString()
-				+ "\nPO_date: " +  PO_date
-				+ "\nlname: " +   lname
-				+ "\nfname: " +   fname;
+		return "PO_id: " + PO_id + "\nusername: " + username + "\nstatus" + status + "\naddress: " + address.toString()
+				+ "\nPO_date: " + PO_date + "\nlname: " + lname + "\nfname: " + fname;
 	}
 }
