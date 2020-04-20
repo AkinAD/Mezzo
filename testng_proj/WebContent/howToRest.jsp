@@ -50,6 +50,9 @@
                 It must be called with the parameter aid which is the album ID for which the orders are retrieved.
                 <br/><br/>
                 <pre class="prettyprint">void ordersEndpoint<br/>@param request<br/>@param response<br/>@throws IOException</pre>
+                
+                <P> Sample Link: <a href="https://mezzo-4413.mybluemix.net/api/orders/?aid=1 ">https://mezzo-4413.mybluemix.net/api/orders/?aid=1</a></P>
+                <img src="${pageContext.request.contextPath}/res/img/other/rest_orders.png" />
             	</blockquote>   
             	
             	
@@ -69,6 +72,9 @@
 	 				</ul>
 	  			</pre>	  			
                 <pre class="prettyprint">void productEndpoint<br/>@param request<br/>@param response<br/>@throws IOException</pre>
+                 <P> Sample Link: <a href="https://mezzo-4413.mybluemix.net/api/products/1 ">https://mezzo-4413.mybluemix.net/api/products/1</a></P>
+                  <img src="${pageContext.request.contextPath}/res/img/other/rest_products.png" />
+                
             	</blockquote>   
             	
             	
