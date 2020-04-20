@@ -23,7 +23,7 @@ We hope you enjoy [Mezzo](https://mezzo-4413.mybluemix.net/) - #1 Album site!
 ##### Clone Repository via Eclipse GIT
 If you choose to clone the repository via eclipse, the main project is located as the 'testing_proj'. as soon as it is imported, eclipse will recognize this as a project. At this point, provided you have set up Apache Tomcat 8.5 correctly, you will need to  then set up your database Access.
 
-In the [context.xml](https://github.com/AkinAD/Mezzo/blob/master/testng_proj/WebContent/META-INF/context.xml) file we have left the access credentials to access our CLoud DB,  however if you would prefer to run the  project locally, a [proj.sql](proj.sql) file has also been provided with the *early* stage version database of this project.
+In the [context.xml](https://github.com/AkinAD/Mezzo/blob/master/testng_proj/WebContent/META-INF/context.xml) file we have left the access credentials to access our CLoud DB,  however if you would prefer to run the  project locally, a [proj.sql](testng_proj/proj.sql) file has also been provided with the *early* stage version database of this project.
 
 Next, alter your DAOs depending on how youintend on access the Database. Set the appropriate data source. if you ahve decided to use our cloud db, the options below will connect you to the database per the specified credentials in the web.xml
 ```ds = (DataSource) (new InitialContext()).lookup("java:/comp/env/jdbc/Db2-4413"); // USE THIS TO DEBUG LOCALLY ```
