@@ -14,7 +14,10 @@ We hope you enjoy [Mezzo](https://mezzo-4413.mybluemix.net/) - #1 Album site!
 * [Eclipse Java EE](https://www.apachefriends.org/index.html) - Development
 
 ## Quick Preview
-![](Demo_1.gif)
+#### Part 1
+![](Demo_2.gif)
+#### Part 2
+![](Demo_2b.gif)
 
 ## Testing 
 
