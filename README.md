@@ -40,7 +40,7 @@ At this point all should be set. Right click the main project 'testing_proj' and
 Most of the steps listed above still apply for this configuration, database setup is still required so be sure to complete those steps.
 
 ## Testing - REST 
-Instuctions were unclear about TESTING towards the final moments of the project deadline, we opted for [a quick java class](Rest_test.java) with two test methods and a utility method. To see the REST api calls in action, visit links below . For quick Documentation on REST for partners, visit [Mezzo Partner page](http://mezzo-4413.mybluemix.net/howToRest.jsp)
+Instuctions were unclear about TESTING towards the final moments of the project deadline, we opted for [a quick java class](REST_test.java) with two test methods and a utility method. To see the REST api calls in action, visit links below . For quick Documentation on REST for partners, visit [Mezzo Partner page](http://mezzo-4413.mybluemix.net/howToRest.jsp)
 
 REST API testing - Visit here for information on the REST endpoints
 
