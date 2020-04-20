@@ -52,7 +52,7 @@ If you have any issues setting up please contact the members below and/or create
 
  
  ## Authors
-* **Akin Adewale** - [akinAd](https://github.com/ayaAllan) [email]<mailto:akinad1@my.yorku.ca>
+* **Akin Adewale** - [akinAd](https://github.com/ayaAllan)   [email] <mailto:akinad1@my.yorku.ca>
 
 * **Alan Tang**  - [alanTang](https://github.com/domainabusers)
 
